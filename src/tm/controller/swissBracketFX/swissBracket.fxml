@@ -17,7 +17,7 @@
             <Label fx:id="participant1Lbl" alignment="CENTER" prefHeight="77.0" prefWidth="200.0" />
             <Region prefHeight="77.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <TextField fx:id="participant1Score" prefHeight="76.0" prefWidth="98.0" />
-            <Button mnemonicParsing="false" onAction="#setResult" prefHeight="103.0" prefWidth="192.0" text="Zadať výsledok" />
+            <Button fx:id="setResultBtn" mnemonicParsing="false" prefHeight="103.0" prefWidth="192.0" text="Zadať výsledok" />
             <TextField fx:id="participant2Score" prefHeight="76.0" prefWidth="98.0" />
             <Region prefHeight="77.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <Label fx:id="participant2Lbl" alignment="CENTER" contentDisplay="RIGHT" prefHeight="77.0" prefWidth="200.0" />

@@ -2,6 +2,8 @@ package tm.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -82,6 +84,10 @@ public class SwissSystemController implements Initializable {
 
             actualBracket =  brackets[0].get(i);
             SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket, this);
+            swissBracketFX.getSetResultBtn().setOnAction(event -> {
+                swissBracketFX.setResult();
+                addPoints(swissBracketFX.getSwissBracket());
+            });
             pane.getChildren().add(swissBracketFX);
 
             anchorPane.getChildren().add(pane);
