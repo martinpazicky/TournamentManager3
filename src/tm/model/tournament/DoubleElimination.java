@@ -18,23 +18,20 @@ public class DoubleElimination extends SingleElimination{
     private Participant finalFromWinners;
     private Participant finalFromLosers;
     private Map<Bracket,Bracket> bracketsToLooserBrackets = new HashMap<>();
-    private Set<Bracket> toDraw = new HashSet<>();
     private final int looserSize;
 
     public DoubleElimination(String name, List<Participant> participants) {
         super(name, participants);
         int levels = Utility.log2(participants.size());
-        System.out.println("levels = " + levels);
         int size = 2 * levels - 2;
         looserSize = size;
-        System.out.println("size = " + size);
         looserBrackets = new ArrayList[size];
         for (int i = 0; i < size; i++) {
             looserBrackets[i] = new ArrayList<>();
         }
-        createBrackets(size,looserBrackets);
-        setNextBrackets(size,looserBrackets);
-        mapLooserBrackets();
+        createLoserBrackets(brackets);
+        setNextLoserBrackets();
+        mapLoserBrackets();
         finalBracket = new Bracket(new Match(), 0,0);
         finalBracket2 = new Bracket(new Match(), 1,0);
         brackets[brackets.length - 1].get(brackets[brackets.length - 1].size() - 1).setNextBracket(finalBracket);
@@ -44,96 +41,60 @@ public class DoubleElimination extends SingleElimination{
         initializeListeners();
     }
 
-    private void mapLooserBrackets(){
-        //HARDCODE
-        int levels = looserBrackets.length;
+    private void createLoserBrackets(List<Bracket>[] brackets){
+        int offset = 0;
+        for (int i = 0; i < brackets.length; i++){
+            Bracket Lbracket;
+            for(int j = 0; j < brackets[i].size(); j++) {
+                if(i == 0) {
+                    if(j % 2 == 0) {
+                        Lbracket = new Bracket(new Match(), i, j);
+                        looserBrackets[i].add(Lbracket);
+                    }
+                }
+                else if(i == 1){
+                    Lbracket = new Bracket(new Match(), i, j);
+                    looserBrackets[i].add(Lbracket);
+                } else {
+                    Lbracket = new Bracket(new Match(), i + offset + 1, j);
+                    looserBrackets[i + offset + 1].add(Lbracket);
+                    Lbracket = new Bracket(new Match(), i + offset, j);
+                    looserBrackets[i + offset].add(Lbracket);
+                }
+            }
+            if (i > 1)
+                offset++;
+        }
+    }
+
+    private void mapLoserBrackets() {
+        int offset = 0;
         for (int i = 0; i < brackets.length; i++) {
-            int multiplier = 0;
             for (int j = 0; j < brackets[i].size(); j++) {
-                if (i == 0){
-                    int partSize = brackets[i].size();
-                    int toLvl = i;
-                    if(j == 4)
-                        multiplier++;
-                    int toIndex = looserBrackets[i].size() / 2 + j;
-//                    int toIndex = looserBrackets[i].size() / 2 + j + 4  + multiplier * 4;
-//                    bracketsToLooserBrackets.put(brackets[i].get(j), looserBrackets[i].get(
-//                            looserBrackets[i].size() / 2 + (j - (j % 2))
-//                    ));
-                    System.out.println("from " + i + " " + j + " to " + toLvl + " " + toIndex);
+                if(i == 0)
+                    bracketsToLooserBrackets.put(brackets[i].get(j),looserBrackets[i].get(j/2));
+                else if(i == 1)
+                    bracketsToLooserBrackets.put(brackets[i].get(j),looserBrackets[i].get(j));
+                else {
+                    bracketsToLooserBrackets.put(brackets[i].get(j),looserBrackets[i + offset + 1].get(j));
+                }
+            }
+            if (i > 1)
+                offset++;
+        }
+    }
+
+    private void setNextLoserBrackets(){
+        for (int i = 0; i < looserBrackets.length - 1; i++) {
+            for (int j = 0; j < looserBrackets[i].size(); j++) {
+                Bracket bracket = looserBrackets[i].get(j);
+                if(i % 2 == 0){
+                    bracket.setNextBracket(looserBrackets[i+1].get(j));
+                }else {
+                    bracket.setNextBracket(looserBrackets[i+1].get(j/2));
                 }
             }
         }
-//
-//                if (i == 0)
-//                    bracketsToLooserBrackets.put(brackets[i].get(j), looserBrackets[i].get(
-//                            looserBrackets[i].size()/2 + (j - (j % 2))
-//                    ));
-//
-//                if (i == 1)
-//                    bracketsToLooserBrackets.put(brackets[i].get(j), looserBrackets[i].get(
-//                            looserBrackets[i].size()/2 + j)
-//                    );
-//
-//                if (i == 2)
-//                    bracketsToLooserBrackets.put(brackets[i].get(j), looserBrackets[i].get(
-//                            j - (j % 2)
-//                    ));
-//
-//            }
-//        }
-//
-
-        if(brackets[0].size() == 8) {
-            bracketsToLooserBrackets.put(brackets[0].get(0), looserBrackets[0].get(21));
-            bracketsToLooserBrackets.put(brackets[0].get(1), looserBrackets[0].get(21));
-            bracketsToLooserBrackets.put(brackets[0].get(2), looserBrackets[0].get(23));
-            bracketsToLooserBrackets.put(brackets[0].get(3), looserBrackets[0].get(23));
-            bracketsToLooserBrackets.put(brackets[0].get(4), looserBrackets[0].get(29));
-            bracketsToLooserBrackets.put(brackets[0].get(5), looserBrackets[0].get(29));
-            bracketsToLooserBrackets.put(brackets[0].get(6), looserBrackets[0].get(31));
-            bracketsToLooserBrackets.put(brackets[0].get(7), looserBrackets[0].get(31));
-
-            bracketsToLooserBrackets.put(brackets[1].get(0), looserBrackets[1].get(10));
-            bracketsToLooserBrackets.put(brackets[1].get(1), looserBrackets[1].get(11));
-            bracketsToLooserBrackets.put(brackets[1].get(2), looserBrackets[1].get(14));
-            bracketsToLooserBrackets.put(brackets[1].get(3), looserBrackets[1].get(15));
-
-//        bracketsToLooserBrackets.put(brackets[2].get(0),looserBrackets[2].get(4));
-//        bracketsToLooserBrackets.put(brackets[2].get(1),looserBrackets[2].get(6));
-            bracketsToLooserBrackets.put(brackets[2].get(0), looserBrackets[3].get(2));
-            bracketsToLooserBrackets.put(brackets[2].get(1), looserBrackets[3].get(3));
-
-//        bracketsToLooserBrackets.put(brackets[3].get(0),looserBrackets[3].get(0));
-            bracketsToLooserBrackets.put(brackets[3].get(0), looserBrackets[5].get(0));
-
-            toDraw.add(looserBrackets[1].get(10).getNextBracket());
-            toDraw.add(looserBrackets[1].get(14).getNextBracket());
-            toDraw.add(looserBrackets[3].get(2).getNextBracket());
-        }
-
-
-        if(brackets[0].size() == 4) {
-            bracketsToLooserBrackets.put(brackets[0].get(0), looserBrackets[0].get(5));
-            bracketsToLooserBrackets.put(brackets[0].get(1), looserBrackets[0].get(5));
-            bracketsToLooserBrackets.put(brackets[0].get(2), looserBrackets[0].get(7));
-            bracketsToLooserBrackets.put(brackets[0].get(3), looserBrackets[0].get(7));
-
-            bracketsToLooserBrackets.put(brackets[1].get(0), looserBrackets[1].get(2));
-            bracketsToLooserBrackets.put(brackets[1].get(1), looserBrackets[1].get(3));
-
-            bracketsToLooserBrackets.put(brackets[2].get(0), looserBrackets[3].get(0));
-
-            toDraw.add(looserBrackets[1].get(2).getNextBracket());
-        }
-
-        if(brackets[0].size() == 2) {
-            bracketsToLooserBrackets.put(brackets[0].get(0), looserBrackets[0].get(0));
-            bracketsToLooserBrackets.put(brackets[0].get(1), looserBrackets[0].get(0));
-
-            bracketsToLooserBrackets.put(brackets[1].get(0), looserBrackets[1].get(0));
-        }
-
     }
 
     private void initializeListeners(){
@@ -195,10 +156,6 @@ public class DoubleElimination extends SingleElimination{
 
     public Map<Bracket, Bracket> getBracketsToLooserBrackets() {
         return bracketsToLooserBrackets;
-    }
-
-    public Set<Bracket> getToDraw() {
-        return toDraw;
     }
 
     public Bracket getFinalBracket() {
