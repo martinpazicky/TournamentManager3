@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<!--<AnchorPane prefHeight="63.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.swissBracketFX.SwissBracketFX">-->
+<!--</AnchorPane>-->
+
+<fx:root fx:id="rootPane" prefHeight="74.0" prefWidth="882.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.swissBracketFX.SwissBracketFX">
+    <children>
+      <HBox prefHeight="76.0" prefWidth="882.0">
+         <children>
+            <Label fx:id="participant1Lbl" alignment="CENTER" prefHeight="77.0" prefWidth="200.0" />
+            <Region prefHeight="77.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="participant1Score" prefHeight="76.0" prefWidth="98.0" />
+            <Button mnemonicParsing="false" onAction="#setResult" prefHeight="103.0" prefWidth="192.0" text="Zadať výsledok" />
+            <TextField fx:id="participant2Score" prefHeight="76.0" prefWidth="98.0" />
+            <Region prefHeight="77.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label fx:id="participant2Lbl" alignment="CENTER" contentDisplay="RIGHT" prefHeight="77.0" prefWidth="200.0" />
+         </children>
+      </HBox>
+   </children>
+</fx:root>

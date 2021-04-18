@@ -1,0 +1,1 @@
+zmena 2 kkk
