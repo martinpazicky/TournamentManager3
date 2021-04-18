@@ -83,7 +83,7 @@ public class Main extends Application {
 
 
     private static void testElimination(){
-        List<Participant> participants = Main.createParticipants(8);
+        List<Participant> participants = Main.createParticipants(16);
 //        SingleElimination de = new SingleElimination("turnaj", participants);
         DoubleElimination de = new DoubleElimination("aa",participants);
         de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());
