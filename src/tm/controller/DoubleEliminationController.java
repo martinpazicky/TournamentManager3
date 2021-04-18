@@ -65,19 +65,18 @@ public class DoubleEliminationController implements Initializable {
         double maxY = 0;
         double maxX = 0;
         double y;
+
+        double total = brackets[0].size() * dy;
         for(int i = 0; i < brackets.length; i++){
             y = Y;
-            y += Math.pow(2,i) * (dy/2);
+            y += (total / brackets[i].size())/2;
             for (Bracket bracket : brackets[i]) {
-                if (doubleElimination.getBracketsToLooserBrackets().containsValue(bracket) ||
-                        doubleElimination.getToDraw().contains(bracket)){
-                    BracketFX brFX = new BracketFX(bracket);
-                    brToBrFX.put(bracket,brFX);
-                    rootAP.getChildren().add(brFX);
-                    brFX.setLayoutX(x);
-                    brFX.setLayoutY(y);
-                }
-                y += dy * Math.pow(2,i)/2;
+                BracketFX brFX = new BracketFX(bracket);
+                brToBrFX.put(bracket,brFX);
+                rootAP.getChildren().add(brFX);
+                brFX.setLayoutX(x);
+                brFX.setLayoutY(y);
+                y += total / brackets[i].size();
             }
             if (i == 0)
                 maxY = y;
