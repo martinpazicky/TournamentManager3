@@ -5,11 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import tm.controller.SwissSystemController;
-import tm.controller.bracketFX.FXMLUtils;
-import tm.model.Bracket;
 import tm.model.SwissBracket;
-import tm.model.tournament.SwissSystem;
 
 public class SwissBracketFX extends AnchorPane {
     @FXML
@@ -26,13 +22,11 @@ public class SwissBracketFX extends AnchorPane {
     @FXML
     private AnchorPane rootPane;
 
-    private SwissSystemController swissSystemController;
 
     private SwissBracket swissBracket;
 
-    public SwissBracketFX(SwissBracket swissBracket, SwissSystemController swissSystemController) {
+    public SwissBracketFX(SwissBracket swissBracket) {
         this.swissBracket = swissBracket;
-        this.swissSystemController = swissSystemController;
         SwissBracketUtils.loadFXML(this);
         participant1Lbl.setText(swissBracket.getMatch().getParticipant1().getValue().getName());
         participant2Lbl.setText(swissBracket.getMatch().getParticipant2().getValue().getName());

@@ -60,7 +60,7 @@ public class SwissSystemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int amount = 4;
+        int amount = 5;
         participants = Main.createParticipants(amount);
 
         swissSystem = new SwissSystem("turnaj2", participants);
@@ -83,7 +83,7 @@ public class SwissSystemController implements Initializable {
             SwissBracket actualBracket;
 
             actualBracket =  brackets[0].get(i);
-            SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket, this);
+            SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket);
             swissBracketFX.getSetResultBtn().setOnAction(event -> {
                 swissBracketFX.setResult();
                 addPoints(swissBracketFX.getSwissBracket());
@@ -96,31 +96,38 @@ public class SwissSystemController implements Initializable {
             pane.setLayoutY(yLayout);
         }
 
+        yLayout = yLayout + 80;
+
         rootAP.getChildren().addAll(anchorPane);
         roundCounter =+ 1;
         setTable();
     }
 
+
     public void printNextRound(){
 
         AnchorPane anchorPane = new AnchorPane();
+
+        Label label = new Label(" " + "Round" + " " + (roundCounter + 1));
+        label.setWrapText(true);
+        label.setFont(new Font(20.0));
+        label.setLayoutY(yLayout + 40);
+        label.setLayoutX(20);
+
+        anchorPane.getChildren().add(label);
 
         for(int i = 0; i < brackets[0].size(); i++){
 
             AnchorPane pane = new AnchorPane();
 
-            Label label = new Label(" " + "Round" + " " + roundCounter);
-            label.setWrapText(true);
-            label.setFont(new Font(20.0));
-            label.setLayoutY(40);
-            label.setLayoutX(20);
-
-            anchorPane.getChildren().add(label);
-
             SwissBracket actualBracket;
 
             actualBracket =  brackets[roundCounter].get(i);
-            SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket, this);
+            SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket);
+            swissBracketFX.getSetResultBtn().setOnAction(event -> {
+                swissBracketFX.setResult();
+                addPoints(swissBracketFX.getSwissBracket());
+            });
             pane.getChildren().add(swissBracketFX);
 
             anchorPane.getChildren().add(pane);
@@ -129,9 +136,12 @@ public class SwissSystemController implements Initializable {
             pane.setLayoutY(yLayout);
         }
 
+        yLayout = yLayout + 80;
+
         rootAP.getChildren().addAll(anchorPane);
-        roundCounter =+ 1;
+        roundCounter = roundCounter + 1;
     }
+
 
     public void setTable() {
         for (Participant participant : participants){
@@ -204,16 +214,16 @@ public class SwissSystemController implements Initializable {
         List<SwissBracket> actualRound;
         boolean alreadyPaired;
 
-        int minGRankDiff = 1000000;
+        int minGRankDiff;
         int participant1GRank;
         int participant2GRank;
         Participant bestMatch = null;
 
         //find best match for all participants
         for (Participant participant1 : participants){
+            minGRankDiff = 1000000;
             ParticipantRecord participant1Record = participantsToRecords.get(participant1);
             participant1GRank = participant1Record.getRank();
-            pairs.add(participant1);
 
             //if participant1 already had pair in this round
             if (pairs.contains(participant1)){
@@ -226,6 +236,9 @@ public class SwissSystemController implements Initializable {
 
                 //if participant2 already had pair in this round
                 if (pairs.contains(participant2)) {
+                    continue;
+                }
+                if (participant1 == participant2){
                     continue;
                 }
 
@@ -248,6 +261,7 @@ public class SwissSystemController implements Initializable {
                     bestMatch = participant2;
                 }
             }
+            pairs.add(participant1);
             pairs.add(bestMatch);
         }
 
