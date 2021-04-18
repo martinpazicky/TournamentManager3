@@ -2,12 +2,12 @@ package tm.model;
 
 public class ParticipantRecord {
     private Participant participant;
-    private Integer points = 0;
-    private Integer matchesPlayed = 0;
-    private Integer numOfWins = 0;
-    private Integer numOfLosses = 0;
-    private Integer numOfDraws = 0;
-    private Integer gRank = 0;
+    private int points = 0;
+    private int matchesPlayed = 0;
+    private int numOfWins = 0;
+    private int numOfLosses = 0;
+    private int numOfDraws = 0;
+    private int rank = 0;
 
     public ParticipantRecord(Participant participant) {
         this.participant = participant;
@@ -21,51 +21,51 @@ public class ParticipantRecord {
         this.participant = participant;
     }
 
-    public Integer getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(Integer points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 
-    public Integer getMatchesPlayed() {
+    public int getMatchesPlayed() {
         return matchesPlayed;
     }
 
-    public void setMatchesPlayed(Integer matchesPlayed) {
+    public void setMatchesPlayed(int matchesPlayed) {
         this.matchesPlayed = matchesPlayed;
     }
 
-    public Integer getNumOfWins() {
+    public int getNumOfWins() {
         return numOfWins;
     }
 
-    public void setNumOfWins(Integer numOfWins) {
+    public void setNumOfWins(int numOfWins) {
         this.numOfWins = numOfWins;
     }
 
-    public Integer getNumOfLosses() {
+    public int getNumOfLosses() {
         return numOfLosses;
     }
 
-    public void setNumOfLosses(Integer numOfLosses) {
+    public void setNumOfLosses(int numOfLosses) {
         this.numOfLosses = numOfLosses;
     }
 
-    public Integer getNumOfDraws() {
+    public int getNumOfDraws() {
         return numOfDraws;
     }
 
-    public void setNumOfDraws(Integer numOfDraws) {
+    public void setNumOfDraws(int numOfDraws) {
         this.numOfDraws = numOfDraws;
     }
 
-    public Integer getgRank() {
-        return gRank;
+    public int getRank() {
+        return rank;
     }
 
-    public void setgRank(Integer gRank) {
-        this.gRank = gRank;
+    public void setRank(int gRank) {
+        this.rank = gRank;
     }
 }

@@ -141,7 +141,7 @@ public class SwissSystemController implements Initializable {
         numOfWinsCol.setCellValueFactory(new PropertyValueFactory<>("numOfWins"));
         numOfLossesCol.setCellValueFactory(new PropertyValueFactory<>("numOfLosses"));
         numOfDrawsCol.setCellValueFactory(new PropertyValueFactory<>("numOfDraws"));
-        gRankCol.setCellValueFactory(new PropertyValueFactory<>("gRank"));
+        gRankCol.setCellValueFactory(new PropertyValueFactory<>("rank"));
     }
 
     public ObservableList<ParticipantRecord> getParticipantsRecords() {
@@ -171,15 +171,15 @@ public class SwissSystemController implements Initializable {
             participant1Record.setPoints(participant1Record.getPoints() + 3);
             participant1Record.setNumOfWins(participant1Record.getNumOfWins() + 1);
             participant2Record.setNumOfLosses(participant2Record.getNumOfLosses() + 1);
-            participant1Record.setgRank(participant1Record.getgRank() + 3);
-            participant2Record.setgRank(participant2Record.getgRank() - 3);
+            participant1Record.setRank(participant1Record.getRank() + 3);
+            participant2Record.setRank(participant2Record.getRank() - 3);
         }
         else if (swissBracket.getMatch().getParticipant1ScoreProperty().getValue() < swissBracket.getMatch().getParticipant2ScoreProperty().getValue()){
             participant2Record.setPoints(participant2Record.getPoints() + 3);
             participant2Record.setNumOfWins(participant2Record.getNumOfWins() + 1);
             participant1Record.setNumOfLosses(participant1Record.getNumOfLosses() + 1);
-            participant2Record.setgRank(participant2Record.getgRank() + 3);
-            participant1Record.setgRank(participant1Record.getgRank() - 3);
+            participant2Record.setRank(participant2Record.getRank() + 3);
+            participant1Record.setRank(participant1Record.getRank() - 3);
         }
         participantsTable.getItems().clear();
         participantsTable.setItems(getParticipantsRecords());
@@ -206,7 +206,7 @@ public class SwissSystemController implements Initializable {
         //find best match for all participants
         for (Participant participant1 : participants){
             ParticipantRecord participant1Record = participantsToRecords.get(participant1);
-            participant1GRank = participant1Record.getgRank();
+            participant1GRank = participant1Record.getRank();
             pairs.add(participant1);
 
             //if participant1 already had pair in this round
@@ -216,7 +216,7 @@ public class SwissSystemController implements Initializable {
             for (Participant participant2 : participants) {
                 alreadyPaired = false;
                 ParticipantRecord participant2Record = participantsToRecords.get(participant2);
-                participant2GRank = participant2Record.getgRank();
+                participant2GRank = participant2Record.getRank();
 
                 //if participant2 already had pair in this round
                 if (pairs.contains(participant2)) {

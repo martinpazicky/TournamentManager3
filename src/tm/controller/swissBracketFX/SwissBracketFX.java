@@ -39,29 +39,6 @@ public class SwissBracketFX extends AnchorPane {
 
     }
 
-//    @FXML
-//    private void initialize() {
-//        this.swissBracket.getMatch().getParticipant1ScoreProperty().addListener(
-//                (observable, oldValue, newValue) ->
-//                {
-//
-//                }
-//        );
-//        this.swissBracket.getMatch().getParticipant2().addListener(
-//                (observable, oldValue, newValue) ->
-//                {
-//                    try {
-//                        this.participant2Lbl.setText(newValue.getName());
-//                    }catch (NullPointerException e){
-//                        e.printStackTrace();
-//                    }
-//                }
-//        );
-//        this.bracket.getMatch().getWinner().addListener(
-//                (observable, oldValue, newValue) -> highlightWinner()
-//        );
-//    }
-
     public void setResult(){
         swissBracket.getMatch().setParticipant1Score(Integer.valueOf(participant1Score.getText()));
         swissBracket.getMatch().setParticipant2Score(Integer.valueOf(participant2Score.getText()));
