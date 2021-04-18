@@ -20,8 +20,8 @@ public class SwissBracketFX extends AnchorPane {
     private Label participant1Lbl;
     @FXML
     private Label participant2Lbl;
-//    @FXML
-//    private Button setResultBtn;
+    @FXML
+    private Button setResultBtn;
 
     @FXML
     private AnchorPane rootPane;
@@ -65,7 +65,11 @@ public class SwissBracketFX extends AnchorPane {
     public void setResult(){
         swissBracket.getMatch().setParticipant1Score(Integer.valueOf(participant1Score.getText()));
         swissBracket.getMatch().setParticipant2Score(Integer.valueOf(participant2Score.getText()));
-        swissSystemController.addPoints(swissBracket);
+//        swissSystemController.addPoints(swissBracket);
+    }
+
+    public Button getSetResultBtn() {
+        return setResultBtn;
     }
 
     public SwissBracket getSwissBracket() {
