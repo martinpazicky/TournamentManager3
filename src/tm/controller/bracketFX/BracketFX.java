@@ -73,7 +73,7 @@ public class BracketFX extends AnchorPane {
         ScreenController.activateInNewWindow("bracketDetail",500,500);
     }
 
-    private void highlightWinner(){
+    public void highlightWinner(){
         Participant p1 = bracket.getMatch().getParticipant1().getValue();
         Participant p2 = bracket.getMatch().getParticipant2().getValue();
         Participant winner = bracket.getMatch().getWinner().getValue();
@@ -91,6 +91,10 @@ public class BracketFX extends AnchorPane {
             this.participant2Lbl.setStyle("-fx-text-fill: black; -fx-font-weight: normal");
 
         }
+    }
+
+    public Bracket getBracket() {
+        return bracket;
     }
 
     public Label getParticipant1Lbl() {
