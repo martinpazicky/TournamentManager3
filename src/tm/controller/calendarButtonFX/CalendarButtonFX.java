@@ -19,8 +19,12 @@ public class CalendarButtonFX extends AnchorPane {
 
     public CalendarButtonFX(Tournament tournament) {
         this.tournament = tournament;
+        String name = tournament.getName();
         CalendarButtonUtils.loadFXML(this);
-        tournamentBtn.setText(tournament.getName());
+        if (name.length() > 20){
+            name = name.substring(0,17) + "...";
+        }
+        tournamentBtn.setText(name);
         tournamentBtn.setStyle("-fx-background-color: " + tournament.getColor());
 //        tournamentBtn.setStyle(":hover{-fx-background-color: " + tournament.getColor() + "}");
     }

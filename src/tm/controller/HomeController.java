@@ -1,6 +1,11 @@
 package tm.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import tm.calendar.FullCalendarView;
+
+import java.time.YearMonth;
 
 public class HomeController {
 
@@ -22,6 +27,13 @@ public class HomeController {
     @FXML
     public void handleSwissSystemButton(){
         ScreenController.activate("swissSystem");
+    }
+
+    @FXML
+    public void handleCalendarButton(){
+//        ;
+//        primaryStage.show();
+        ScreenController.main.setRoot((new FullCalendarView(YearMonth.now()).getView()));;
     }
 
 }

@@ -41,6 +41,7 @@ public class Main extends Application {
         ScreenController.addScreen("freeForAll", "/tm/view/freeForAll.fxml");
         ScreenController.addScreen("swissSystem", "/tm/view/swissSystem.fxml");
         ScreenController.addScreen("bracketDetail", "/tm/view/bracketDetail.fxml");
+        ScreenController.addScreen("calendar", "/tm/calendar/fullCalendar.fxml");
     }
 
 
@@ -55,12 +56,6 @@ public class Main extends Application {
         primaryStage.show();
         primaryStage.setMinWidth(1400);
         primaryStage.setMinHeight(900);
-
-
-
-        primaryStage.setTitle("Full Calendar Example");
-        primaryStage.setScene(new Scene(new FullCalendarView(YearMonth.now()).getView()));
-        primaryStage.show();
     }
 
     public static void main(String[] args) {
