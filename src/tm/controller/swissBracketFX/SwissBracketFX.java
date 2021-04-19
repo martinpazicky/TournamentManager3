@@ -5,11 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import tm.controller.SwissSystemController;
-import tm.controller.bracketFX.FXMLUtils;
-import tm.model.Bracket;
 import tm.model.SwissBracket;
-import tm.model.tournament.SwissSystem;
 
 public class SwissBracketFX extends AnchorPane {
     @FXML
@@ -26,13 +22,11 @@ public class SwissBracketFX extends AnchorPane {
     @FXML
     private AnchorPane rootPane;
 
-    private SwissSystemController swissSystemController;
 
     private SwissBracket swissBracket;
 
-    public SwissBracketFX(SwissBracket swissBracket, SwissSystemController swissSystemController) {
+    public SwissBracketFX(SwissBracket swissBracket) {
         this.swissBracket = swissBracket;
-        this.swissSystemController = swissSystemController;
         SwissBracketUtils.loadFXML(this);
         participant1Lbl.setText(swissBracket.getMatch().getParticipant1().getValue().getName());
         participant2Lbl.setText(swissBracket.getMatch().getParticipant2().getValue().getName());
@@ -40,13 +34,26 @@ public class SwissBracketFX extends AnchorPane {
     }
 
     public void setResult(){
-        swissBracket.getMatch().setParticipant1Score(Integer.valueOf(participant1Score.getText()));
-        swissBracket.getMatch().setParticipant2Score(Integer.valueOf(participant2Score.getText()));
-//        swissSystemController.addPoints(swissBracket);
+        String score1 = participant1Score.getText();
+        String score2 = participant2Score.getText();
+        if(score1 != null && !score1.trim().isEmpty() && score2 != null && !score2.trim().isEmpty() && isNumeric(score1) && isNumeric(score2))
+        {
+            swissBracket.getMatch().setParticipant1Score(Integer.valueOf(participant1Score.getText()));
+            swissBracket.getMatch().setParticipant2Score(Integer.valueOf(participant2Score.getText()));
+        }
     }
 
     public Button getSetResultBtn() {
         return setResultBtn;
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
     }
 
     public SwissBracket getSwissBracket() {
