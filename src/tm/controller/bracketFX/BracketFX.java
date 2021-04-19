@@ -4,11 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import javafx.stage.Screen;
 import tm.controller.BracketDetailController;
 import tm.controller.ScreenController;
 import tm.model.Bracket;
 import tm.model.Participant;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * FX Component representing bracket
@@ -23,6 +27,7 @@ public class BracketFX extends AnchorPane {
     @FXML
     private AnchorPane rootPane;
     private Bracket bracket;
+    private List<Line> lines = new ArrayList<>();
 
     public static final double WIDTH = 150;
     public static final double HEIGHT = 80;
@@ -91,6 +96,14 @@ public class BracketFX extends AnchorPane {
             this.participant2Lbl.setStyle("-fx-text-fill: black; -fx-font-weight: normal");
 
         }
+    }
+
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    public void addLine(Line line) {
+        lines.add(line);
     }
 
     public Bracket getBracket() {
