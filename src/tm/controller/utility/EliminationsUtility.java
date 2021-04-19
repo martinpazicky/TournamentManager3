@@ -1,9 +1,11 @@
 package tm.controller.utility;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import tm.controller.bracketFX.BracketFX;
 import tm.model.Bracket;
+import tm.model.Participant;
 
 import java.util.List;
 import java.util.Map;
@@ -21,8 +23,6 @@ public class EliminationsUtility {
                 double yStart = brFX.getLayoutY() + BracketFX.HEIGHT/2;
                 double xEnd = nextBrFX.getLayoutX();
                 double yEnd = nextBrFX.getLayoutY() + BracketFX.HEIGHT/2;
-                System.out.println("start: x = " + xStart + " y = " + yStart);
-                System.out.println("end: x = " + xEnd + " y = " + yEnd);
 
                 Line line1 = new Line();
                 line1.setStartX(xStart);
@@ -44,5 +44,38 @@ public class EliminationsUtility {
                 rootAP.getChildren().add(line3);
             }
         }
+    }
+
+    public static void initializeHighlightListeners(BracketFX brFX, ObjectProperty<Participant> highlightedParticipant){
+        brFX.getParticipant1Lbl().setOnMouseEntered(
+                t -> highlightedParticipant.set(brFX.getBracket().getMatch().getParticipant1().getValue())
+        );
+        brFX.getParticipant1Lbl().setOnMouseExited(
+                t -> highlightedParticipant.set(null)
+        );
+        brFX.getParticipant2Lbl().setOnMouseEntered(
+                t -> highlightedParticipant.set(brFX.getBracket().getMatch().getParticipant2().getValue())
+        );
+        brFX.getParticipant2Lbl().setOnMouseExited(
+                t -> highlightedParticipant.set(null)
+        );
+        highlightedParticipant.addListener(
+                (observable, oldValue, newValue) ->
+                {
+                    if(highlightedParticipant.getValue() == null) {
+                        brFX.highlightWinner();
+                    }
+                    else if (brFX.getBracket().getMatch().getParticipant1().getValue() != null &&
+                            brFX.getBracket().getMatch().getParticipant1().getValue()
+                                    .equals(highlightedParticipant.getValue())){
+                        brFX.getParticipant1Lbl().setStyle("-fx-text-fill:red;");
+                    }
+                    else if (brFX.getBracket().getMatch().getParticipant2().getValue() != null &&
+                            brFX.getBracket().getMatch().getParticipant2().getValue()
+                                    .equals(highlightedParticipant.getValue())){
+                        brFX.getParticipant2Lbl().setStyle("-fx-text-fill:red;");
+                    }
+                }
+        );
     }
 }

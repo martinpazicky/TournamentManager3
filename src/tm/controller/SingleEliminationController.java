@@ -1,5 +1,7 @@
 package tm.controller;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +21,8 @@ public class SingleEliminationController implements Initializable {
     private AnchorPane rootAP;
 
     private Map<Bracket,BracketFX> brToBrFX = new HashMap<>();
+
+    private ObjectProperty<Participant> highlightedParticipant = new SimpleObjectProperty<>();
 
     private SingleElimination singleElimination;
 
@@ -43,6 +47,7 @@ public class SingleEliminationController implements Initializable {
             y += Math.pow(2,i) * (dy/2);
             for (Bracket bracket : brackets[i]) {
                 BracketFX brFX = new BracketFX(bracket);
+                EliminationsUtility.initializeHighlightListeners(brFX,highlightedParticipant);
                 brToBrFX.put(bracket,brFX);
                 rootAP.getChildren().add(brFX);
                 brFX.setLayoutX(x);
