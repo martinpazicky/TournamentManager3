@@ -42,6 +42,9 @@ public class EliminationsUtility {
                 line3.setEndX(xEnd);
                 line3.setEndY(yEnd);
                 rootAP.getChildren().add(line3);
+                brFX.addLine(line1);
+                brFX.addLine(line2);
+                brFX.addLine(line3);
             }
         }
     }
@@ -75,7 +78,34 @@ public class EliminationsUtility {
                                     .equals(highlightedParticipant.getValue())){
                         brFX.getParticipant2Lbl().setStyle("-fx-text-fill:red;");
                     }
+                    highlightLines(brFX,highlightedParticipant);
+                    highlightBracket(brFX,highlightedParticipant);
                 }
         );
+    }
+
+    private static void highlightLines(BracketFX brFX, ObjectProperty<Participant> highlightedParticipant){
+        if (brFX.getBracket().getMatch().containsParticipant(highlightedParticipant.getValue())
+                && highlightedParticipant.getValue() != null
+                && brFX.getBracket().getNextBracket().getMatch().containsParticipant(highlightedParticipant.getValue())) {
+            for (Line line : brFX.getLines()) {
+                line.setStyle("-fx-stroke:  red");
+            }
+        }else {
+            for (Line line : brFX.getLines()) {
+                line.setStyle("-fx-stroke:  black");
+            }
+        }
+    }
+
+    private static void highlightBracket(BracketFX brFX, ObjectProperty<Participant> highlightedParticipant){
+        if (brFX.getBracket().getMatch().containsParticipant(highlightedParticipant.getValue())
+                && highlightedParticipant.getValue() != null) {
+                brFX.setStyle("-fx-border-color: red;" +
+                        "-fx-border-width: 5px");
+        }else {
+                brFX.setStyle("-fx-border-color: black;" +
+                        "-fx-border-width: 5px");
+        }
     }
 }
