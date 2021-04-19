@@ -1,12 +1,6 @@
 package tm.controller;
 
 import javafx.application.Application;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +10,13 @@ import tm.model.Match;
 import tm.model.Participant;
 import tm.model.database.Database;
 import tm.model.tournament.DoubleElimination;
+import tm.calendar.FullCalendarView;
+import tm.model.tournament.FreeForAll;
 import tm.model.tournament.SingleElimination;
 import tm.model.tournament.Tournament;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +55,12 @@ public class Main extends Application {
         primaryStage.show();
         primaryStage.setMinWidth(1400);
         primaryStage.setMinHeight(900);
+
+
+
+        primaryStage.setTitle("Full Calendar Example");
+        primaryStage.setScene(new Scene(new FullCalendarView(YearMonth.now()).getView()));
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
@@ -74,18 +78,31 @@ public class Main extends Application {
 //        singleEliminationTest();
 
 
-//        testElimination();
-        Database.loadAll();
+        testElimination();
+        testTable();
+
+
+//        Database.loadAll();
         launch(args);
         Database.saveAll();
 
     }
 
+    private static void testTable(){
+        List<Participant> participants = Main.createParticipants(8);
+        FreeForAll freeForAll = new FreeForAll("Fajnovy turnaj",participants, 1);
+
+        LocalDate localDate = LocalDate.now();
+        freeForAll.setDate(localDate);
+
+
+        Database.tournaments.add(freeForAll);
+    }
 
     private static void testElimination(){
         List<Participant> participants = Main.createParticipants(16);
 //        SingleElimination de = new SingleElimination("turnaj", participants);
-        DoubleElimination de = new DoubleElimination("aa",participants);
+        DoubleElimination de = new DoubleElimination("Fakt velky turnaj ",participants);
         de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());
         de.getBrackets()[0].get(1).setWinner(de.getBrackets()[0].get(1).getMatch().getParticipant1().getValue());
         de.getBrackets()[0].get(2).setWinner(de.getBrackets()[0].get(2).getMatch().getParticipant1().getValue());
@@ -99,6 +116,9 @@ public class Main extends Application {
         de.getBrackets()[1].get(1).setWinner(de.getBrackets()[1].get(1).getMatch().getParticipant1().getValue());
         de.getBrackets()[1].get(2).setWinner(de.getBrackets()[1].get(2).getMatch().getParticipant1().getValue());
         de.getBrackets()[1].get(3).setWinner(de.getBrackets()[1].get(3).getMatch().getParticipant1().getValue());
+
+        LocalDate localDate = LocalDate.now();
+        de.setDate(localDate);
 
 
         Database.tournaments.add(de);

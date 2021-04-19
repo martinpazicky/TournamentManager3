@@ -17,6 +17,7 @@ public class Match implements Serializable {
     private transient IntegerProperty participant2Score = new SimpleIntegerProperty(-1);
     private transient ObjectProperty<Participant> winner = new SimpleObjectProperty<>();
 
+
     public Match() {
         this.participant1 = new SimpleObjectProperty<>();
         this.participant2 = new SimpleObjectProperty<>();

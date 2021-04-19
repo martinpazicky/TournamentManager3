@@ -1,0 +1,71 @@
+.button
+{
+    -fx-background-color : #3F2B63;
+}
+.button:hover
+{
+    /*-fx-background-color : #2A1C42 ;*/
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+}
+.button:pressed
+{
+    -fx-background-color : #7156DD ;
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size : 20;
+    -fx-background-color:   #7156DD;
+}
+.table-view .column-header .label{
+
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+    -fx-cell-size: 30;
+    -fx-alignment: center-left;
+    -fx-text-fill: #000000;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell:selected {
+    -fx-background-color:  rgb(127, 172, 243);
+}
+.table-row-cell:selected .text {
+    -fx-fill : white ;
+
+}
+/* scroll bar starts here */
+
+/* The increment and decrement button CSS class of scrollbar */
+/*.table-view .increment-button ,.table-view .decrement-button {*/
+/*    -fx-background-color:transparent;*/
+/*	-fx-background-radius: 2em;*/
+
+/*}*/
+
+/*!* The main scrollbar **track** CSS class  *!*/
+/*.table-view .scroll-bar:horizontal .track,*/
+/*.table-view .scroll-bar:vertical .track{*/
+/*	-fx-background-color: transparent;*/
+/*	-fx-border-color:derive(  #2D75E8,80%);*/
+/*	-fx-background-radius: 2em;*/
+/*	-fx-border-radius:2em;*/
+/*}*/
+
+/*!* The main scrollbar **thumb** CSS class which we drag every time (movable) *!*/
+/*.table-view .scroll-bar:horizontal .thumb,*/
+/*.table-view .scroll-bar:vertical .thumb {*/
+/*    -fx-background-color:derive( #2D75E8,90%);*/
+/*	-fx-background-insets: 2, 0, 0;*/
+/*	-fx-background-radius: 2em;*/
+
+/*}*/
