@@ -13,8 +13,6 @@ import java.util.List;
 
 
 public class FreeForAll extends Tournament{
-//    private List<TableCell[][]> list2d = new ArrayList<TableCell[][]>();
-//    private List<TableCell>[] table;
     private List<List<TableCell>[]> allRounds = new ArrayList<>();
     private int rounds;
 
@@ -32,20 +30,6 @@ public class FreeForAll extends Tournament{
             initializeListeners(table);
         }
     }
-
-//    public FreeForAll(String name, List<Participant> participants) {
-//        super(name, participants);
-//        int levels = participants.size();
-//        for (int i = 0; i < levels; i++){
-//            List<TableCell>[] table = new ArrayList[levels];
-//            for (int j = 0; j < levels; j++) {
-//                table[j] = new ArrayList<>();
-//            }
-//            allRounds.add(table);
-//        createCells(levels, table);
-//        initializeListeners(table);
-//        }
-//    }
 
     private void createCells(int levels, List<TableCell>[] table){
         for (int i = 0; i < levels; i++){

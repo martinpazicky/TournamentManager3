@@ -26,6 +26,8 @@ public class CalendarButtonFX extends AnchorPane {
         }
         tournamentBtn.setText(name);
         tournamentBtn.setStyle("-fx-background-color: " + tournament.getColor());
+//        this.setOnMouseClicked(e -> this.tournament);
+
 //        tournamentBtn.setStyle(":hover{-fx-background-color: " + tournament.getColor() + "}");
     }
 
