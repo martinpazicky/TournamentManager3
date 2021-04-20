@@ -24,7 +24,7 @@ public class SingleEliminationController implements Initializable {
 
     private ObjectProperty<Participant> highlightedParticipant = new SimpleObjectProperty<>();
 
-    private SingleElimination singleElimination;
+    public static SingleElimination singleElimination;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
