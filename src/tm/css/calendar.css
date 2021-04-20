@@ -1,8 +1,3 @@
-/*.button*/
-/*{*/
-/*    -fx-background-color : black;*/
-
-/*}*/
 
 .calendar-cell {
     -fx-padding: 4 ;
@@ -13,29 +8,6 @@
     -fx-border-width: 3 ;
 }
 
-
-
-/*.month-buttons {*/
-/*    -fx-padding: 10px;*/
-/*    -fx-border-insets: 10px;*/
-/*    -fx-background-insets: 10px;*/
-/*    -fx-font-size: 20pt ;*/
-/*    -fx-font-weight: bold ;*/
-/*    !*-fx-border-color: white;*!*/
-/*    -fx-background-color : #96bf15;*/
-/*    -fx-border-radius: 20px;*/
-/*}*/
-
-.month-buttons {
-    /*-fx-padding: 10 10 10 10;*/
-    /*-fx-background-color:*/
-    /*        linear-gradient(#f0ff35, #a9ff00),*/
-    /*        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);*/
-    /*-fx-background-radius: 6, 5;*/
-    /*-fx-background-insets: 0, 1;*/
-    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );*/
-    /*-fx-text-fill: #395306;*/
-}
 
 .month-buttons {
     -fx-background-color:
