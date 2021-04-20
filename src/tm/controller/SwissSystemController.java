@@ -60,7 +60,7 @@ public class SwissSystemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int amount = 5;
+        int amount = 6;
         participants = Main.createParticipants(amount);
 
         swissSystem = new SwissSystem("turnaj2", participants);
@@ -210,6 +210,8 @@ public class SwissSystemController implements Initializable {
             return;
         }
 
+        Map<Participant, Participant> allPairs = new HashMap<>();
+
         List<Participant> pairs = new ArrayList<>();
         List<SwissBracket> actualRound;
         boolean alreadyPaired;
@@ -220,7 +222,10 @@ public class SwissSystemController implements Initializable {
         Participant bestMatch = null;
 
         //find best match for all participants
-        for (Participant participant1 : participants){
+        while (true) {
+            Random randomizer = new Random();
+            Participant participant1 = participants.get(randomizer.nextInt(participants.size()));
+            bestMatch = null;
             minGRankDiff = 1000000;
             ParticipantRecord participant1Record = participantsToRecords.get(participant1);
             participant1GRank = participant1Record.getRank();
@@ -261,8 +266,16 @@ public class SwissSystemController implements Initializable {
                     bestMatch = participant2;
                 }
             }
-            pairs.add(participant1);
-            pairs.add(bestMatch);
+            if (bestMatch != null){
+                pairs.add(participant1);
+                pairs.add(bestMatch);
+                if (pairs.size() == participants.size()){
+                    break;
+                }
+            }
+            else {
+                pairs.clear();
+            }
         }
 
         int j = 0;
