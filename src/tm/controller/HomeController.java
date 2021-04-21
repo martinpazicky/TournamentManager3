@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import tm.calendar.FullCalendarView;
 
+import java.awt.*;
+import java.net.URL;
 import java.time.YearMonth;
 
 public class HomeController {
@@ -36,8 +38,6 @@ public class HomeController {
 
     @FXML
     public void handleCalendarButton(){
-//        ;
-//        primaryStage.show();
         ScreenController.main.setRoot((new FullCalendarView(YearMonth.now()).getView()));;
     }
 

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootPane" prefHeight="80.0" prefWidth="150.0" style="-fx-border-width: 5; -fx-border-color: black;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.bracketFX.BracketFX">
+<fx:root fx:id="rootPane" prefHeight="80.0" prefWidth="165.0" style="-fx-border-width: 5; -fx-border-color: black;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.bracketFX.BracketFX">
    <Label fx:id="participant1Lbl" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="93.0" />
    <Line endX="8.0" endY="39.29286193847656" startX="100.0" startY="39.2928466796875" />
    <Label fx:id="participant2Lbl" layoutX="14.0" layoutY="45.0" prefHeight="21.0" prefWidth="93.0" />
-   <Button fx:id="editButton" layoutX="112.0" layoutY="24.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="30.0" text="E" />
+   <Button fx:id="editButton" layoutX="108.0" layoutY="18.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="44.0" textAlignment="CENTER">
+      <font>
+         <Font size="4.0" />
+      </font>
+      <graphic>
+         <FontAwesomeIconView glyphName="PENCIL_SQUARE_ALT" size="25" textAlignment="CENTER" />
+      </graphic></Button>
 </fx:root>

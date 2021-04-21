@@ -47,7 +47,7 @@ public class DoubleEliminationController implements Initializable {
         renderFinalBrackets();
         EliminationsUtility.renderLines(brackets,brToBrFX,rootAP);
         EliminationsUtility.renderLines(looserBrackets,brToBrFX,rootAP);
-        EliminationsUtility.renderUtilities(doubleElimination,rootAP);
+        EliminationsUtility.renderUtilities(doubleElimination,rootAP,brToBrFX);
         rootAP.setPrefHeight(10000);
         rootAP.setPrefWidth(5000);
     }
@@ -69,8 +69,10 @@ public class DoubleEliminationController implements Initializable {
         finalBrackets[0] = new ArrayList<>();
         finalBrackets[0].add(doubleElimination.getFinalBracket());
         finalBrackets[0].add(doubleElimination.getFinalBracket2());
-        EliminationsUtility.initializeEditButtonAction(doubleElimination,doubleElimination.getFinalBracket(),brFX);
-        EliminationsUtility.initializeEditButtonAction(doubleElimination,doubleElimination.getFinalBracket2(),brFX2);
+        EliminationsUtility.initializeEditButtonAction(doubleElimination,doubleElimination.getFinalBracket(),brFX,
+                brToBrFX);
+        EliminationsUtility.initializeEditButtonAction(doubleElimination,doubleElimination.getFinalBracket2(),brFX2,
+                brToBrFX);
         EliminationsUtility.renderLines(finalBrackets,brToBrFX,rootAP);
     }
 
@@ -86,7 +88,7 @@ public class DoubleEliminationController implements Initializable {
             y += (total / brackets[i].size())/2;
             for (Bracket bracket : brackets[i]) {
                 BracketFX brFX = new BracketFX(bracket);
-                EliminationsUtility.initializeEditButtonAction(doubleElimination,bracket,brFX);
+                EliminationsUtility.initializeEditButtonAction(doubleElimination,bracket,brFX,brToBrFX);
                 EliminationsUtility.initializeHighlightListeners(brFX,highlightedParticipant);
                 brToBrFX.put(bracket,brFX);
                 rootAP.getChildren().add(brFX);
@@ -115,7 +117,7 @@ public class DoubleEliminationController implements Initializable {
             y += Math.pow(2,i) * (dy/2);
             for (Bracket bracket : brackets[i]) {
                 BracketFX brFX = new BracketFX(bracket);
-                EliminationsUtility.initializeEditButtonAction(doubleElimination,bracket,brFX);
+                EliminationsUtility.initializeEditButtonAction(doubleElimination,bracket,brFX,brToBrFX);
                 EliminationsUtility.initializeHighlightListeners(brFX,highlightedParticipant);
                 brToBrFX.put(bracket,brFX);
                 rootAP.getChildren().add(brFX);
