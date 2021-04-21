@@ -47,14 +47,11 @@ public class FreeForAllController implements Initializable {
 
     private Map<TableCell, CellFX> cellToCellFX = new HashMap<>();
 
-    private Map<Participant, ParticipantRecord> participantsToRecords = new HashMap<>();
+//    private Map<Participant, ParticipantRecord> participantsToRecords = new HashMap<>();
 
     public static FreeForAll freeForAll;
-    private List<TableCell>[] AllCells;
 
     private List<List<TableCell>[]> allRounds;
-
-    private List<Participant> participants;
 
 
     @Override
@@ -63,8 +60,6 @@ public class FreeForAllController implements Initializable {
         System.out.println(freeForAll.getName());
         int amount = freeForAll.getParticipants().size();
         double heightOfTable = 85*(amount+1);
-        participants = Main.createParticipants(amount);
-
         allRounds = freeForAll.getAllRounds();
 
 
@@ -90,7 +85,7 @@ public class FreeForAllController implements Initializable {
 
             TableCell actualCell;
 
-            AllCells = allRounds.get(k);
+            List<TableCell>[] allCells = allRounds.get(k);
 
             for (int i = 0; i <= amount; i++) {
                 for (int j = 0; j <= amount; j++) {
@@ -103,7 +98,7 @@ public class FreeForAllController implements Initializable {
                     if (i == 0) {
                         StackPane p = new StackPane();
                         p.setPrefSize(138, 85);
-                        actualCell = AllCells[i].get(j - 1);
+                        actualCell = allCells[i].get(j - 1);
                         Label lbl = new Label(actualCell.getMatch().getParticipant2().getValue().getNickName());
 
                         p.getChildren().add(lbl);
@@ -115,7 +110,7 @@ public class FreeForAllController implements Initializable {
                     if (j == 0) {
                         StackPane p = new StackPane();
                         p.setPrefSize(138, 85);
-                        actualCell = AllCells[i - 1].get(j);
+                        actualCell = allCells[i - 1].get(j);
                         Label lbl = new Label(actualCell.getMatch().getParticipant1().getValue().getNickName());
 
                         p.getChildren().add(lbl);
@@ -125,8 +120,16 @@ public class FreeForAllController implements Initializable {
                         continue;
                     }
 
-                    actualCell = AllCells[i - 1].get(j - 1);
-                    CellFX cellFX = new CellFX(actualCell, AllCells);
+                    actualCell = allCells[i - 1].get(j - 1);
+                    CellFX cellFX = new CellFX(actualCell, allCells);
+
+                    //if cell have score
+                    if (cellFX.getTableCell().getMatch().getParticipant1ScoreProperty().getValue() >= 0){
+                        String score1 = String.valueOf(cellFX.getTableCell().getMatch().getParticipant1ScoreProperty().getValue());
+                        String score2 = String.valueOf(cellFX.getTableCell().getMatch().getParticipant2ScoreProperty().getValue());
+                        cellFX.getParticipant1Score().setText((score1));
+                        cellFX.getParticipant2Score().setText((score2));
+                    }
                     table.add(cellFX, j, i);
                     cellToCellFX.put(actualCell, cellFX);
                 }
@@ -139,11 +142,6 @@ public class FreeForAllController implements Initializable {
     }
 
     public void setTable() {
-        for (Participant participant : participants){
-            ParticipantRecord participantRecord = new ParticipantRecord(participant);
-            participantsToRecords.put(participant,participantRecord);
-        }
-
         participantsTable.getItems().clear();
         participantsTable.setItems(getParticipantsRecords());
         nameCol.setCellValueFactory(new PropertyValueFactory<>("participant"));
@@ -152,13 +150,16 @@ public class FreeForAllController implements Initializable {
         numOfWinsCol.setCellValueFactory(new PropertyValueFactory<>("numOfWins"));
         numOfLossesCol.setCellValueFactory(new PropertyValueFactory<>("numOfLosses"));
         numOfDrawsCol.setCellValueFactory(new PropertyValueFactory<>("numOfDraws"));
+        pointsCol.setSortType(TableColumn.SortType.DESCENDING);
+        participantsTable.getSortOrder().add(pointsCol);
     }
 
     public ObservableList<ParticipantRecord> getParticipantsRecords() {
+        Map<Participant, ParticipantRecord> allRecords = freeForAll.getParticipantsToRecords();
         ObservableList<Participant> allPlayers = FXCollections.observableArrayList();
         allPlayers.addAll(freeForAll.getParticipants());
         ObservableList<ParticipantRecord> participantRecords = FXCollections.observableArrayList();
-        for (Map.Entry<Participant, ParticipantRecord> entry : participantsToRecords.entrySet()) {
+        for (Map.Entry<Participant, ParticipantRecord> entry : allRecords.entrySet()) {
             participantRecords.add(entry.getValue());
         }
         return participantRecords;
@@ -170,7 +171,7 @@ public class FreeForAllController implements Initializable {
         int amount = freeForAll.getParticipants().size();
         List<Participant> participants = freeForAll.getParticipants();
         for (Participant participant : participants) {
-            ParticipantRecord record = participantsToRecords.get(participant);
+            ParticipantRecord record = freeForAll.getParticipantsToRecords().get(participant);
             record.setPoints(0);
             record.setMatchesPlayed(0);
             record.setNumOfLosses(0);
@@ -190,8 +191,8 @@ public class FreeForAllController implements Initializable {
                         IntegerProperty participant1Score = actualCell.getMatch().getParticipant1ScoreProperty();
                         IntegerProperty participant2Score = actualCell.getMatch().getParticipant2ScoreProperty();
 
-                        ParticipantRecord record1 = participantsToRecords.get(participant1);
-                        ParticipantRecord record2 = participantsToRecords.get(participant2);
+                        ParticipantRecord record1 = freeForAll.getParticipantsToRecords().get(participant1);
+                        ParticipantRecord record2 = freeForAll.getParticipantsToRecords().get(participant2);
                         if (participant1Score.getValue() == -1 || participant2Score.getValue() == -1) {
                             continue;
                         }

@@ -38,6 +38,7 @@ public class SwissBracketFX extends AnchorPane {
         String score2 = participant2Score.getText();
         if(score1 != null && !score1.trim().isEmpty() && score2 != null && !score2.trim().isEmpty() && isNumeric(score1) && isNumeric(score2))
         {
+
             swissBracket.getMatch().setParticipant1Score(Integer.valueOf(participant1Score.getText()));
             swissBracket.getMatch().setParticipant2Score(Integer.valueOf(participant2Score.getText()));
         }
@@ -62,5 +63,21 @@ public class SwissBracketFX extends AnchorPane {
 
     public void setSwissBracket(SwissBracket swissBracket) {
         this.swissBracket = swissBracket;
+    }
+
+    public TextField getParticipant1Score() {
+        return participant1Score;
+    }
+
+    public void setParticipant1Score(TextField participant1Score) {
+        this.participant1Score = participant1Score;
+    }
+
+    public TextField getParticipant2Score() {
+        return participant2Score;
+    }
+
+    public void setParticipant2Score(TextField participant2Score) {
+        this.participant2Score = participant2Score;
     }
 }

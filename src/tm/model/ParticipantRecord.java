@@ -1,6 +1,8 @@
 package tm.model;
 
-public class ParticipantRecord {
+import java.io.Serializable;
+
+public class ParticipantRecord implements Serializable {
     private Participant participant;
     private int points = 0;
     private int matchesPlayed = 0;

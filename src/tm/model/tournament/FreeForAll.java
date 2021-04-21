@@ -3,6 +3,7 @@ package tm.model.tournament;
 import javafx.beans.property.IntegerProperty;
 import tm.model.Match;
 import tm.model.Participant;
+import tm.model.ParticipantRecord;
 import tm.model.TableCell;
 
 import java.io.IOException;
@@ -10,12 +11,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class FreeForAll extends Tournament implements Serializable {
     private List<List<TableCell>[]> allRounds = new ArrayList<>();
     private int rounds;
+    private Map<Participant, ParticipantRecord> participantsToRecords = new HashMap<>();
 
     public FreeForAll(String name, List<Participant> participants, int rounds) {
         super(name, participants);
@@ -30,6 +34,10 @@ public class FreeForAll extends Tournament implements Serializable {
             allRounds.add(table);
             createCells(levels, table);
             initializeListeners(table);
+        }
+        for (Participant participant : participants){
+            ParticipantRecord participantRecord = new ParticipantRecord(participant);
+            participantsToRecords.put(participant,participantRecord);
         }
     }
 
@@ -107,5 +115,13 @@ public class FreeForAll extends Tournament implements Serializable {
 
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
+    }
+
+    public Map<Participant, ParticipantRecord> getParticipantsToRecords() {
+        return participantsToRecords;
+    }
+
+    public void setParticipantsToRecords(Map<Participant, ParticipantRecord> participantsToRecords) {
+        this.participantsToRecords = participantsToRecords;
     }
 }
