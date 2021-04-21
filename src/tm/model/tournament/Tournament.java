@@ -1,7 +1,13 @@
 package tm.model.tournament;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import tm.model.Participant;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -12,7 +18,7 @@ public class Tournament implements Serializable {
     protected List<Participant> participants;
     private LocalDate date;
     boolean isFinished;
-    private Participant tournamentWinner;
+    protected transient ObjectProperty<Participant> tournamentWinner = new SimpleObjectProperty<>();
     protected String typeString;
 
     public Tournament(String name, List<Participant> participants) {
@@ -52,14 +58,6 @@ public class Tournament implements Serializable {
         this.date = date;
     }
 
-    public Participant getTournamentWinner() {
-        return tournamentWinner;
-    }
-
-    public void setTournamentWinner(Participant tournamentWinner) {
-        this.tournamentWinner = tournamentWinner;
-    }
-
     public boolean isFinished() {
         return isFinished;
     }
@@ -70,6 +68,22 @@ public class Tournament implements Serializable {
 
     public String getTypeString() {
         return typeString;
+    }
+
+    public Participant getTournamentWinner() {
+        return tournamentWinner.get();
+    }
+
+    public ObjectProperty<Participant> tournamentWinnerProperty() {
+        return tournamentWinner;
+    }
+
+    public void setTournamentWinner(Participant tournamentWinner) {
+        this.tournamentWinner.set(tournamentWinner);
+    }
+
+    public void setTypeString(String typeString) {
+        this.typeString = typeString;
     }
 
     public String getColor(){
@@ -96,4 +110,14 @@ public class Tournament implements Serializable {
 //        }
 //        return "#34a32e";
 //    }
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeObject(tournamentWinner.getValue());
+    }
+
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+        s.defaultReadObject();
+        this.tournamentWinner = new SimpleObjectProperty<>();
+        this.tournamentWinner.set((Participant)s.readObject());
+    }
 }

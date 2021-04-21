@@ -16,6 +16,7 @@ public class BracketDetailController implements Initializable {
     private Label p2Label;
 
     private static Bracket bracket;
+    private static boolean editable;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -23,21 +24,25 @@ public class BracketDetailController implements Initializable {
             p1Label.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
         if (bracket.getMatch().getParticipant2().getValue() != null)
             p2Label.setText(bracket.getMatch().getParticipant2().getValue().getNickName());
+
     }
 
     @FXML
     public void handleSetWinnerP1Button(){
-        bracket.setWinner(bracket.getMatch().getParticipant1().getValue());
+        if (editable)
+            bracket.setWinner(bracket.getMatch().getParticipant1().getValue());
     }
 
     @FXML
     public void handleSetWinnerP2Button(){
-        bracket.setWinner(bracket.getMatch().getParticipant2().getValue());
+        if (editable)
+            bracket.setWinner(bracket.getMatch().getParticipant2().getValue());
     }
 
     @FXML
     public void handleResetButton(){
-        bracket.unsetWinner();
+        if (editable)
+            bracket.unsetWinner();
     }
     public static Bracket getBracket() {
         return bracket;
@@ -47,4 +52,11 @@ public class BracketDetailController implements Initializable {
         BracketDetailController.bracket = bracket;
     }
 
+    public static boolean isEditable() {
+        return editable;
+    }
+
+    public static void setEditable(boolean editable) {
+        BracketDetailController.editable = editable;
+    }
 }

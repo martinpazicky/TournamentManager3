@@ -1,11 +1,17 @@
 package tm.controller.utility;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import tm.controller.BracketDetailController;
+import tm.controller.ScreenController;
+import tm.controller.TournamentDetailController;
 import tm.controller.bracketFX.BracketFX;
 import tm.model.Bracket;
 import tm.model.Participant;
+import tm.model.tournament.Tournament;
 
 import java.util.List;
 import java.util.Map;
@@ -87,6 +93,7 @@ public class EliminationsUtility {
     private static void highlightLines(BracketFX brFX, ObjectProperty<Participant> highlightedParticipant){
         if (brFX.getBracket().getMatch().containsParticipant(highlightedParticipant.getValue())
                 && highlightedParticipant.getValue() != null
+                && brFX.getBracket().getNextBracket() != null
                 && brFX.getBracket().getNextBracket().getMatch().containsParticipant(highlightedParticipant.getValue())) {
             for (Line line : brFX.getLines()) {
                 line.setStyle("-fx-stroke:  red");
@@ -107,5 +114,59 @@ public class EliminationsUtility {
                 brFX.setStyle("-fx-border-color: black;" +
                         "-fx-border-width: 5px");
         }
+    }
+
+    public static void renderUtilities(Tournament tournament, AnchorPane rootAP){
+        Button backButton = new Button("Späť");
+        Button finishButton = new Button("Ukončiť");
+        Label winnerTextLabel = new Label("Víťaz:");
+        Label winnerNameLabel = new Label();
+        if (tournament.getTournamentWinner() != null)
+            winnerNameLabel.setText(tournament.getTournamentWinner().getNickName());
+        tournament.tournamentWinnerProperty().addListener(
+                ((observable, oldValue, newValue) ->
+                {
+                    if(newValue != null)
+                        winnerNameLabel.setText(newValue.getNickName());
+                    else
+                        winnerNameLabel.setText("");
+                })
+        );
+        backButton.setLayoutX(10);
+        backButton.setLayoutY(10);
+        finishButton.setLayoutX(70);
+        finishButton.setLayoutY(10);
+        winnerTextLabel.setLayoutX(150);
+        winnerTextLabel.setLayoutY(10);
+        winnerNameLabel.setLayoutX(190);
+        winnerNameLabel.setLayoutY(10);
+        backButton.setOnAction(
+                e ->{
+                    TournamentDetailController.tournament = tournament;
+                    ScreenController.activate("tournamentDetail");
+                }
+        );
+        finishButton.setOnAction(
+                e ->{
+                    if (tournament.getTournamentWinner() != null) {
+                        System.out.println("finish");
+                        tournament.setFinished(true);
+                    }
+                }
+        );
+        rootAP.getChildren().addAll(finishButton,backButton,winnerNameLabel,winnerTextLabel);
+    }
+
+    public static void initializeEditButtonAction(Tournament tournament, Bracket bracket, BracketFX brFX){
+        brFX.getEditButton().setOnAction( e-> {
+            BracketDetailController.setBracket(bracket);
+            if (!tournament.isFinished()){
+                BracketDetailController.setEditable(true);
+            }
+            else {
+                BracketDetailController.setEditable(false);
+            }
+            ScreenController.activateInNewWindow("bracketDetail", 500, 500);
+        });
     }
 }

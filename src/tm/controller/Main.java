@@ -107,22 +107,22 @@ public class Main extends Application {
     }
 
     private static void testElimination(){
-        List<Participant> participants = Main.createParticipants(16);
-//        SingleElimination de = new SingleElimination("turnaj", participants);
-        DoubleElimination de = new DoubleElimination("Fakt velky turnaj ",participants);
+        List<Participant> participants = Main.createParticipants(8);
+        SingleElimination de = new SingleElimination("turnaj", participants);
+//        DoubleElimination de = new DoubleElimination("Fakt velky turnaj ",participants);
         de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());
         de.getBrackets()[0].get(1).setWinner(de.getBrackets()[0].get(1).getMatch().getParticipant1().getValue());
         de.getBrackets()[0].get(2).setWinner(de.getBrackets()[0].get(2).getMatch().getParticipant1().getValue());
         de.getBrackets()[0].get(3).setWinner(de.getBrackets()[0].get(3).getMatch().getParticipant1().getValue());
-        de.getBrackets()[0].get(4).setWinner(de.getBrackets()[0].get(4).getMatch().getParticipant1().getValue());
-        de.getBrackets()[0].get(5).setWinner(de.getBrackets()[0].get(5).getMatch().getParticipant1().getValue());
-        de.getBrackets()[0].get(6).setWinner(de.getBrackets()[0].get(6).getMatch().getParticipant1().getValue());
-        de.getBrackets()[0].get(7).setWinner(de.getBrackets()[0].get(7).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[0].get(4).setWinner(de.getBrackets()[0].get(4).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[0].get(5).setWinner(de.getBrackets()[0].get(5).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[0].get(6).setWinner(de.getBrackets()[0].get(6).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[0].get(7).setWinner(de.getBrackets()[0].get(7).getMatch().getParticipant1().getValue());
 
-        de.getBrackets()[1].get(0).setWinner(de.getBrackets()[1].get(0).getMatch().getParticipant1().getValue());
-        de.getBrackets()[1].get(1).setWinner(de.getBrackets()[1].get(1).getMatch().getParticipant1().getValue());
-        de.getBrackets()[1].get(2).setWinner(de.getBrackets()[1].get(2).getMatch().getParticipant1().getValue());
-        de.getBrackets()[1].get(3).setWinner(de.getBrackets()[1].get(3).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[1].get(0).setWinner(de.getBrackets()[1].get(0).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[1].get(1).setWinner(de.getBrackets()[1].get(1).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[1].get(2).setWinner(de.getBrackets()[1].get(2).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[1].get(3).setWinner(de.getBrackets()[1].get(3).getMatch().getParticipant1().getValue());
 
         LocalDate localDate = LocalDate.now();
         de.setDate(localDate);

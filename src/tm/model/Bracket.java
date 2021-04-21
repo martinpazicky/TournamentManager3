@@ -48,7 +48,6 @@ public class Bracket implements Serializable {
         match.setWinner(winner);
 
         if (nextBracket == null) {
-            System.out.println("Víťaz turnaja je " + winner.getNickName());
             return;
         }
 

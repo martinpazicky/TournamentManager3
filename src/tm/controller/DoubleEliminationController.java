@@ -2,9 +2,12 @@ package tm.controller;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
@@ -14,9 +17,11 @@ import tm.model.Bracket;
 import tm.model.Participant;
 import tm.model.database.Database;
 import tm.model.tournament.DoubleElimination;
+import tm.model.tournament.Tournament;
 
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 
 public class DoubleEliminationController implements Initializable {
     @FXML
@@ -42,10 +47,10 @@ public class DoubleEliminationController implements Initializable {
         renderFinalBrackets();
         EliminationsUtility.renderLines(brackets,brToBrFX,rootAP);
         EliminationsUtility.renderLines(looserBrackets,brToBrFX,rootAP);
+        EliminationsUtility.renderUtilities(doubleElimination,rootAP);
         rootAP.setPrefHeight(10000);
         rootAP.setPrefWidth(5000);
     }
-
 
     private void renderFinalBrackets(){
         BracketFX brFX = new BracketFX(doubleElimination.getFinalBracket());
@@ -64,6 +69,8 @@ public class DoubleEliminationController implements Initializable {
         finalBrackets[0] = new ArrayList<>();
         finalBrackets[0].add(doubleElimination.getFinalBracket());
         finalBrackets[0].add(doubleElimination.getFinalBracket2());
+        EliminationsUtility.initializeEditButtonAction(doubleElimination,doubleElimination.getFinalBracket(),brFX);
+        EliminationsUtility.initializeEditButtonAction(doubleElimination,doubleElimination.getFinalBracket2(),brFX2);
         EliminationsUtility.renderLines(finalBrackets,brToBrFX,rootAP);
     }
 
@@ -79,6 +86,7 @@ public class DoubleEliminationController implements Initializable {
             y += (total / brackets[i].size())/2;
             for (Bracket bracket : brackets[i]) {
                 BracketFX brFX = new BracketFX(bracket);
+                EliminationsUtility.initializeEditButtonAction(doubleElimination,bracket,brFX);
                 EliminationsUtility.initializeHighlightListeners(brFX,highlightedParticipant);
                 brToBrFX.put(bracket,brFX);
                 rootAP.getChildren().add(brFX);
@@ -107,6 +115,7 @@ public class DoubleEliminationController implements Initializable {
             y += Math.pow(2,i) * (dy/2);
             for (Bracket bracket : brackets[i]) {
                 BracketFX brFX = new BracketFX(bracket);
+                EliminationsUtility.initializeEditButtonAction(doubleElimination,bracket,brFX);
                 EliminationsUtility.initializeHighlightListeners(brFX,highlightedParticipant);
                 brToBrFX.put(bracket,brFX);
                 rootAP.getChildren().add(brFX);
@@ -123,7 +132,6 @@ public class DoubleEliminationController implements Initializable {
         rootAP.setPrefHeight(maxY + dy);
         rootAP.setPrefWidth(maxX + dx);
     }
-
 
 }
 

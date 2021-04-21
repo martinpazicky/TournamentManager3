@@ -1,5 +1,6 @@
 package tm.model.tournament;
 
+import javafx.beans.property.SimpleObjectProperty;
 import tm.model.Bracket;
 import tm.model.Match;
 import tm.model.Participant;
@@ -137,10 +138,20 @@ public class DoubleElimination extends SingleElimination{
                     if (newValue == finalFromWinners){
                         finalBracket.setNextBracket(null);
                         finalBracket.setWinner(finalFromWinners);
+                        tournamentWinner.set(finalFromWinners);
+                        System.out.println("winner is " + newValue.getNickName());
                     }
                     if (newValue == null){
+                        tournamentWinner.set(null);
                         finalBracket2.getMatch().setParticipant1(null);
                     }
+                }
+        );
+        finalBracket2.getMatch().getWinner().addListener(
+                (observable, oldValue, newValue) -> {
+                    tournamentWinner.set(newValue);
+                    if(newValue != null)
+                        System.out.println("winner is " + newValue.getNickName());
                 }
         );
     }
@@ -169,10 +180,13 @@ public class DoubleElimination extends SingleElimination{
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
+        this.tournamentWinner = new SimpleObjectProperty<>();
+        this.tournamentWinner.set((Participant)s.readObject());
         initializeListeners();
     }
 
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
+        s.writeObject(tournamentWinner.getValue());
     }
 }
