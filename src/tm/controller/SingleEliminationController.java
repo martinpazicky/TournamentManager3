@@ -34,6 +34,7 @@ public class SingleEliminationController implements Initializable {
         double lineXBreakPoint = (dx - BracketFX.WIDTH) * (0.65) ;
         renderBrackets(brackets,dx,dy);
         EliminationsUtility.renderLines(brackets,brToBrFX,rootAP);
+        EliminationsUtility.renderUtilities(singleElimination,rootAP);
     }
 
     private void renderBrackets(List<Bracket>[] brackets, double dx, double dy){
@@ -46,6 +47,7 @@ public class SingleEliminationController implements Initializable {
             y += Math.pow(2,i) * (dy/2);
             for (Bracket bracket : brackets[i]) {
                 BracketFX brFX = new BracketFX(bracket);
+                EliminationsUtility.initializeEditButtonAction(singleElimination,bracket,brFX);
                 EliminationsUtility.initializeHighlightListeners(brFX,highlightedParticipant);
                 brToBrFX.put(bracket,brFX);
                 rootAP.getChildren().add(brFX);

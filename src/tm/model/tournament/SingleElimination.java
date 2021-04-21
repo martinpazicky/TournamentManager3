@@ -1,6 +1,11 @@
 package tm.model.tournament;
 
+import javafx.beans.property.SimpleObjectProperty;
 import tm.model.*;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +27,8 @@ public class SingleElimination extends Tournament implements Serializable {
         createBrackets(levels,brackets);
         setNextBrackets(levels,brackets);
         fillFirstLevelBrackets();
+        if (!(this instanceof DoubleElimination))
+            initializeWinnerBracketListener();
     }
 
     /**
@@ -73,9 +80,21 @@ public class SingleElimination extends Tournament implements Serializable {
         }
     }
 
+    private Bracket getFinalBracket(){
+        return brackets[brackets.length - 1].get(brackets[brackets.length - 1].size() - 1);
+    }
+
+    private void initializeWinnerBracketListener(){
+        getFinalBracket().getMatch().getWinner().addListener(
+                (observable, oldValue, newValue) -> {
+                    this.tournamentWinner.set(newValue);
+                    if(newValue != null)
+                        System.out.println("winner is " + newValue.getNickName());
+                }
+        );
+    }
 
     public Bracket getNextBracket(Bracket bracket, List<Bracket>[] brackets){
-//        if(bracket.getLevel() == maxLevel)
         try {
             return brackets[bracket.getLevel() + 1].get(bracket.getIndex() / 2);
         }catch (IndexOutOfBoundsException e){
@@ -110,5 +129,18 @@ public class SingleElimination extends Tournament implements Serializable {
 
     public int getMaxLevel() {
         return maxLevel;
+    }
+
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+        s.defaultReadObject();
+        this.tournamentWinner = new SimpleObjectProperty<>();
+        this.tournamentWinner.set((Participant)s.readObject());
+        if (!(this instanceof DoubleElimination))
+            initializeWinnerBracketListener();
+    }
+
+    private void writeObject(ObjectOutputStream s) throws IOException {
+        s.defaultWriteObject();
+        s.writeObject(tournamentWinner.getValue());
     }
 }

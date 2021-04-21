@@ -1,6 +1,7 @@
 package tm.controller.bracketFX;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
@@ -22,6 +23,8 @@ public class BracketFX extends AnchorPane {
     private Label participant1Lbl;
     @FXML
     private Label participant2Lbl;
+    @FXML
+    private Button editButton;
     @FXML
     private AnchorPane rootPane;
     private Bracket bracket;
@@ -70,12 +73,6 @@ public class BracketFX extends AnchorPane {
         highlightWinner();
     }
 
-    @FXML
-    public void handleEditButton(){
-        BracketDetailController.setBracket(bracket);
-        ScreenController.activateInNewWindow("bracketDetail",500,500);
-    }
-
     public void highlightWinner(){
         Participant p1 = bracket.getMatch().getParticipant1().getValue();
         Participant p2 = bracket.getMatch().getParticipant2().getValue();
@@ -112,17 +109,12 @@ public class BracketFX extends AnchorPane {
         return participant1Lbl;
     }
 
-    public void setParticipant1Lbl(Label participant1Lbl) {
-        this.participant1Lbl = participant1Lbl;
-    }
-
     public Label getParticipant2Lbl() {
         return participant2Lbl;
     }
 
-    public void setParticipant2Lbl(Label participant2Lbl) {
-        this.participant2Lbl = participant2Lbl;
+    public Button getEditButton() {
+        return editButton;
     }
-
 }
 
