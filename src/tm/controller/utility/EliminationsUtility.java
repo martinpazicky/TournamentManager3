@@ -1,5 +1,6 @@
 package tm.controller.utility;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +14,8 @@ import tm.model.Bracket;
 import tm.model.Participant;
 import tm.model.tournament.Tournament;
 
+import java.awt.*;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -116,7 +119,7 @@ public class EliminationsUtility {
         }
     }
 
-    public static void renderUtilities(Tournament tournament, AnchorPane rootAP){
+    public static void renderUtilities(Tournament tournament, AnchorPane rootAP, Map<Bracket,BracketFX> brToBrFX){
         Button backButton = new Button("Späť");
         Button finishButton = new Button("Ukončiť");
         Label winnerTextLabel = new Label("Víťaz:");
@@ -151,22 +154,32 @@ public class EliminationsUtility {
                     if (tournament.getTournamentWinner() != null) {
                         System.out.println("finish");
                         tournament.setFinished(true);
+                        changeButtonsText(brToBrFX);
+                        }
                     }
-                }
         );
         rootAP.getChildren().addAll(finishButton,backButton,winnerNameLabel,winnerTextLabel);
     }
 
-    public static void initializeEditButtonAction(Tournament tournament, Bracket bracket, BracketFX brFX){
-        brFX.getEditButton().setOnAction( e-> {
+    public static void initializeEditButtonAction(Tournament tournament, Bracket bracket,
+                                                  BracketFX brFX,Map<Bracket,BracketFX> brToBrFX) {
+        brFX.getEditButton().setOnAction(e -> {
             BracketDetailController.setBracket(bracket);
-            if (!tournament.isFinished()){
-                BracketDetailController.setEditable(true);
-            }
-            else {
-                BracketDetailController.setEditable(false);
-            }
+            BracketDetailController.setEditable(!tournament.isFinished());
             ScreenController.activateInNewWindow("bracketDetail", 500, 500);
         });
+        if (tournament.isFinished())
+            changeButtonsText(brToBrFX);
     }
+
+    public static void changeButtonsText(Map<Bracket,BracketFX> brToBrFX){
+        for (Bracket bracket: brToBrFX.keySet()) {
+            FontAwesomeIconView fontIconView = new FontAwesomeIconView();
+            fontIconView.setGlyphName("INFO_CIRCLE");
+            fontIconView.setSize("25");
+            fontIconView.setStyle("-fx-text-alignment: center");
+            brToBrFX.get(bracket).getEditButton().setGraphic(fontIconView);
+        }
+    }
+
 }

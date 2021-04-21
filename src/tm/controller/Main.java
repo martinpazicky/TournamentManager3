@@ -72,12 +72,12 @@ public class Main extends Application {
 //        singleEliminationTest();
 
 
-//        testElimination();
+        testElimination();
 //        testTable();
 //        testSwiss();
 
 //
-        Database.loadAll();
+//        Database.loadAll();
         List<Tournament> t = Database.tournaments.getItems();
         launch(args);
         Database.saveAll();

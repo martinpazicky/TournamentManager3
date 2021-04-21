@@ -1,5 +1,6 @@
 package tm.controller.bracketFX;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,7 +31,7 @@ public class BracketFX extends AnchorPane {
     private Bracket bracket;
     private List<Line> lines = new ArrayList<>();
 
-    public static final double WIDTH = 150;
+    public static final double WIDTH = 175;
     public static final double HEIGHT = 80;
 
 
