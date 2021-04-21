@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tm.view.CreateTournamentType"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.CreateTournamentTypeController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="91.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="97.0" text="O">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USER_SECRET" size="25" />
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
