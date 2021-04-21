@@ -12,6 +12,7 @@ public class SingleElimination extends Tournament implements Serializable {
 
     public SingleElimination(String name, List<Participant> participants) {
         super(name, participants);
+        this.typeString = "Single Elimination";
         int levels = Utility.log2(participants.size());
         maxLevel = levels - 1;
         brackets = new ArrayList[levels];

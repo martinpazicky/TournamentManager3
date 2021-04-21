@@ -30,6 +30,11 @@ public class HomeController {
     }
 
     @FXML
+    public void handleCreateButton(){
+        ScreenController.activate("createTournamentType");
+    }
+
+    @FXML
     public void handleCalendarButton(){
 //        ;
 //        primaryStage.show();

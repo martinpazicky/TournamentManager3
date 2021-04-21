@@ -11,6 +11,9 @@ public class Tournament implements Serializable {
     private String name;
     protected List<Participant> participants;
     private LocalDate date;
+    boolean isFinished;
+    private Participant tournamentWinner;
+    protected String typeString;
 
     public Tournament(String name, List<Participant> participants) {
         this.name = name;
@@ -47,6 +50,26 @@ public class Tournament implements Serializable {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Participant getTournamentWinner() {
+        return tournamentWinner;
+    }
+
+    public void setTournamentWinner(Participant tournamentWinner) {
+        this.tournamentWinner = tournamentWinner;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public void setFinished(boolean finished) {
+        isFinished = finished;
+    }
+
+    public String getTypeString() {
+        return typeString;
     }
 
     public String getColor(){

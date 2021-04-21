@@ -1,8 +1,5 @@
 package tm.model;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Part;
-import javafx.fxml.FXML;
-
 import java.io.Serializable;
 
 public class Bracket implements Serializable {
@@ -51,7 +48,7 @@ public class Bracket implements Serializable {
         match.setWinner(winner);
 
         if (nextBracket == null) {
-            System.out.println("Víťaz turnaja je " + winner.getName());
+            System.out.println("Víťaz turnaja je " + winner.getNickName());
             return;
         }
 

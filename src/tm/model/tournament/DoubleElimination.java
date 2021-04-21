@@ -22,6 +22,7 @@ public class DoubleElimination extends SingleElimination{
 
     public DoubleElimination(String name, List<Participant> participants) {
         super(name, participants);
+        this.typeString = "Double Elimination";
         int levels = Utility.log2(participants.size());
         int size = 2 * levels - 2;
         looserSize = size;

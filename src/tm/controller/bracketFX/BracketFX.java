@@ -1,11 +1,9 @@
 package tm.controller.bracketFX;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
-import javafx.stage.Screen;
 import tm.controller.BracketDetailController;
 import tm.controller.ScreenController;
 import tm.model.Bracket;
@@ -39,7 +37,7 @@ public class BracketFX extends AnchorPane {
                 (observable, oldValue, newValue) ->
                 {
                     if(newValue != null) {
-                        this.participant1Lbl.setText(newValue.getName());
+                        this.participant1Lbl.setText(newValue.getNickName());
                     }
                     else{
                         this.participant1Lbl.setText("");
@@ -50,7 +48,7 @@ public class BracketFX extends AnchorPane {
                 (observable, oldValue, newValue) ->
                 {
                     if(newValue != null) {
-                        this.participant2Lbl.setText(newValue.getName());
+                        this.participant2Lbl.setText(newValue.getNickName());
                     }
                     else{
                         this.participant2Lbl.setText("");
@@ -66,9 +64,9 @@ public class BracketFX extends AnchorPane {
         this.bracket = bracket;
         FXMLUtils.loadFXML(this);
         if (bracket.getMatch().getParticipant1().getValue() != null)
-            participant1Lbl.setText(bracket.getMatch().getParticipant1().getValue().getName());
+            participant1Lbl.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
         if (bracket.getMatch().getParticipant2().getValue() != null)
-            participant2Lbl.setText(bracket.getMatch().getParticipant2().getValue().getName());
+            participant2Lbl.setText(bracket.getMatch().getParticipant2().getValue().getNickName());
         highlightWinner();
     }
 

@@ -28,8 +28,8 @@ public class SwissBracketFX extends AnchorPane {
     public SwissBracketFX(SwissBracket swissBracket) {
         this.swissBracket = swissBracket;
         SwissBracketUtils.loadFXML(this);
-        participant1Lbl.setText(swissBracket.getMatch().getParticipant1().getValue().getName());
-        participant2Lbl.setText(swissBracket.getMatch().getParticipant2().getValue().getName());
+        participant1Lbl.setText(swissBracket.getMatch().getParticipant1().getValue().getNickName());
+        participant2Lbl.setText(swissBracket.getMatch().getParticipant2().getValue().getNickName());
 
     }
 

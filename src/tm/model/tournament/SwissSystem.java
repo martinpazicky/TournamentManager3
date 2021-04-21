@@ -17,6 +17,7 @@ public class SwissSystem extends Tournament implements Serializable {
 
     public SwissSystem(String name, List<Participant> participants) {
         super(name, participants);
+        this.typeString = "Swiss System";
         this.maxRounds = participants.size();
         brackets = new ArrayList[maxRounds];
         for (int i = 0; i < maxRounds; i++) {

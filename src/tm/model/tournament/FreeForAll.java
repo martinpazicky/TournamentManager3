@@ -8,16 +8,18 @@ import tm.model.TableCell;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class FreeForAll extends Tournament{
+public class FreeForAll extends Tournament implements Serializable {
     private List<List<TableCell>[]> allRounds = new ArrayList<>();
     private int rounds;
 
     public FreeForAll(String name, List<Participant> participants, int rounds) {
         super(name, participants);
+        this.typeString = "Round Robin";
         this.rounds = rounds;
         int levels = participants.size();
         for (int i = 0; i < rounds; i++){
@@ -96,9 +98,9 @@ public class FreeForAll extends Tournament{
     }
 
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+        s.defaultReadObject();
         for (int i = 0; i < rounds; i++){
             List<TableCell>[] table = allRounds.get(i);
-            s.defaultReadObject();
             initializeListeners(table);
         }
     }

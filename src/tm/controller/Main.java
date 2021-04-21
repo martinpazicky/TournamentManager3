@@ -42,6 +42,8 @@ public class Main extends Application {
         ScreenController.addScreen("swissSystem", "/tm/view/swissSystem.fxml");
         ScreenController.addScreen("bracketDetail", "/tm/view/bracketDetail.fxml");
         ScreenController.addScreen("calendar", "/tm/calendar/fullCalendar.fxml");
+        ScreenController.addScreen("tournamentDetail", "/tm/view/tournamentDetail.fxml");
+        ScreenController.addScreen("createTournamentType", "/tm/view/createTournamentType.fxml");
     }
 
 
@@ -78,6 +80,7 @@ public class Main extends Application {
 
 
 //        Database.loadAll();
+        List<Tournament> t = Database.tournaments.getItems();
         launch(args);
         Database.saveAll();
 
@@ -85,7 +88,7 @@ public class Main extends Application {
 
     private static void testTable(){
         List<Participant> participants = Main.createParticipants(8);
-        FreeForAll freeForAll = new FreeForAll("Fajnovy turnaj",participants, 1);
+        FreeForAll freeForAll = new FreeForAll("Fajnovy turnaj",participants, 2);
 
         LocalDate localDate = LocalDate.now();
         freeForAll.setDate(localDate);

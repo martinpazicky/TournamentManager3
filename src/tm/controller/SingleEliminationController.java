@@ -28,7 +28,6 @@ public class SingleEliminationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        singleElimination = (SingleElimination) Database.tournaments.get(1);
         List<Bracket>[] brackets = singleElimination.getBrackets();
         double dx = BracketFX.WIDTH + 150;
         double dy = BracketFX.HEIGHT + 20;

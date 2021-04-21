@@ -1,6 +1,8 @@
 package tm.model;
 
-public class TableCell {
+import java.io.Serializable;
+
+public class TableCell implements Serializable {
     private Match match;
     private int row;
     private int column;

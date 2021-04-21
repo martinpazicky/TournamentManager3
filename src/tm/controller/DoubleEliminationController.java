@@ -29,11 +29,10 @@ public class DoubleEliminationController implements Initializable {
     double Y = 100;
     double maxX = 0;
 
-    private DoubleElimination doubleElimination;
+    public static DoubleElimination doubleElimination;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        doubleElimination = (DoubleElimination) Database.tournaments.get(1);
         List<Bracket>[] brackets = doubleElimination.getBrackets();
         List<Bracket>[] looserBrackets = doubleElimination.getLooserBrackets();
         double dx = BracketFX.WIDTH + 150;

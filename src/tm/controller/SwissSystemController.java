@@ -49,7 +49,7 @@ public class SwissSystemController implements Initializable {
     @FXML
     private TableColumn<ParticipantRecord, Integer> gRankCol;
 
-    private SwissSystem swissSystem;
+    public static SwissSystem swissSystem;
     private List<SwissBracket>[] brackets;
     private List<Participant> participants;
 
@@ -63,7 +63,6 @@ public class SwissSystemController implements Initializable {
         int amount = 6;
         participants = Main.createParticipants(amount);
 
-        swissSystem = new SwissSystem("turnaj2", participants);
         brackets = swissSystem.getBrackets();
 
         AnchorPane anchorPane = new AnchorPane();

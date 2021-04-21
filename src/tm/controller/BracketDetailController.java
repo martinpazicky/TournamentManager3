@@ -20,9 +20,9 @@ public class BracketDetailController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (bracket.getMatch().getParticipant1().getValue() != null)
-            p1Label.setText(bracket.getMatch().getParticipant1().getValue().getName());
+            p1Label.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
         if (bracket.getMatch().getParticipant2().getValue() != null)
-            p2Label.setText(bracket.getMatch().getParticipant2().getValue().getName());
+            p2Label.setText(bracket.getMatch().getParticipant2().getValue().getNickName());
     }
 
     @FXML

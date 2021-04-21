@@ -49,7 +49,7 @@ public class FreeForAllController implements Initializable {
 
     private Map<Participant, ParticipantRecord> participantsToRecords = new HashMap<>();
 
-    private FreeForAll freeForAll;
+    public static FreeForAll freeForAll;
     private List<TableCell>[] AllCells;
 
     private List<List<TableCell>[]> allRounds;
@@ -59,13 +59,12 @@ public class FreeForAllController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int rounds = 2;
-
-        int amount = 3;
+        int rounds = freeForAll.getRounds();
+        System.out.println(freeForAll.getName());
+        int amount = freeForAll.getParticipants().size();
         double heightOfTable = 85*(amount+1);
         participants = Main.createParticipants(amount);
 
-        freeForAll = new FreeForAll("turnaj2", participants, rounds);
         allRounds = freeForAll.getAllRounds();
 
 
@@ -105,7 +104,7 @@ public class FreeForAllController implements Initializable {
                         StackPane p = new StackPane();
                         p.setPrefSize(138, 85);
                         actualCell = AllCells[i].get(j - 1);
-                        Label lbl = new Label(actualCell.getMatch().getParticipant2().getValue().getName());
+                        Label lbl = new Label(actualCell.getMatch().getParticipant2().getValue().getNickName());
 
                         p.getChildren().add(lbl);
                         StackPane.setAlignment(lbl, Pos.CENTER);
@@ -117,7 +116,7 @@ public class FreeForAllController implements Initializable {
                         StackPane p = new StackPane();
                         p.setPrefSize(138, 85);
                         actualCell = AllCells[i - 1].get(j);
-                        Label lbl = new Label(actualCell.getMatch().getParticipant1().getValue().getName());
+                        Label lbl = new Label(actualCell.getMatch().getParticipant1().getValue().getNickName());
 
                         p.getChildren().add(lbl);
                         StackPane.setAlignment(lbl, Pos.CENTER);
