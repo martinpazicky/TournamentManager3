@@ -9,11 +9,8 @@ import tm.model.Bracket;
 import tm.model.Match;
 import tm.model.Participant;
 import tm.model.database.Database;
-import tm.model.tournament.DoubleElimination;
+import tm.model.tournament.*;
 import tm.calendar.FullCalendarView;
-import tm.model.tournament.FreeForAll;
-import tm.model.tournament.SingleElimination;
-import tm.model.tournament.Tournament;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -75,11 +72,12 @@ public class Main extends Application {
 //        singleEliminationTest();
 
 
-        testElimination();
-        testTable();
+//        testElimination();
+//        testTable();
+//        testSwiss();
 
-
-//        Database.loadAll();
+//
+        Database.loadAll();
         List<Tournament> t = Database.tournaments.getItems();
         launch(args);
         Database.saveAll();
@@ -95,6 +93,17 @@ public class Main extends Application {
 
 
         Database.tournaments.add(freeForAll);
+    }
+
+    private static void testSwiss(){
+        List<Participant> participants = Main.createParticipants(8);
+        SwissSystem swissSystem = new SwissSystem("Sak vis ako",participants);
+
+        LocalDate localDate = LocalDate.now();
+        swissSystem.setDate(localDate);
+
+
+        Database.tournaments.add(swissSystem);
     }
 
     private static void testElimination(){

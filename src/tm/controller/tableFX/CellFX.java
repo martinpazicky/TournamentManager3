@@ -62,4 +62,28 @@ public class CellFX extends AnchorPane {
         this.table = table;
         CellFXUtils.loadFXML(this);
     }
+
+    public TextField getParticipant1Score() {
+        return participant1Score;
+    }
+
+    public void setParticipant1Score(TextField participant1Score) {
+        this.participant1Score = participant1Score;
+    }
+
+    public TextField getParticipant2Score() {
+        return participant2Score;
+    }
+
+    public void setParticipant2Score(TextField participant2Score) {
+        this.participant2Score = participant2Score;
+    }
+
+    public TableCell getTableCell() {
+        return tableCell;
+    }
+
+    public void setTableCell(TableCell tableCell) {
+        this.tableCell = tableCell;
+    }
 }

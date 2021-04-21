@@ -1,6 +1,8 @@
 package tm.model;
 
-public class SwissBracket {
+import java.io.Serializable;
+
+public class SwissBracket implements Serializable {
     private Match match;
     private int level;
     private int index;

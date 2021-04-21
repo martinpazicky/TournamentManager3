@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import tm.controller.bracketFX.BracketFX;
 import tm.controller.swissBracketFX.SwissBracketFX;
 import tm.controller.tableFX.CellFX;
+import tm.model.Match;
 import tm.model.Participant;
 import tm.model.ParticipantRecord;
 import tm.model.SwissBracket;
@@ -55,14 +56,10 @@ public class SwissSystemController implements Initializable {
 
     private double yLayout = 0;
 
-    private Map<Participant, ParticipantRecord> participantsToRecords = new HashMap<>();
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int amount = 6;
-        participants = Main.createParticipants(amount);
-
+        participants = swissSystem.getParticipants();
         brackets = swissSystem.getBrackets();
 
         AnchorPane anchorPane = new AnchorPane();
@@ -83,9 +80,20 @@ public class SwissSystemController implements Initializable {
 
             actualBracket =  brackets[0].get(i);
             SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket);
+            //if cell have score
+            if (swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue() >= 0){
+                String score1 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue());
+                String score2 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant2ScoreProperty().getValue());
+                swissBracketFX.getParticipant1Score().setText((score1));
+                swissBracketFX.getParticipant2Score().setText((score2));
+            }
+
+
             swissBracketFX.getSetResultBtn().setOnAction(event -> {
+//                ParticipantRecord participant1Record = swissSystem.getParticipantsToRecords().get(swissBracketFX.getSwissBracket().getMatch().getParticipant1().getValue());
+//                participant1Record.set
                 swissBracketFX.setResult();
-                addPoints(swissBracketFX.getSwissBracket());
+                addPoints();
             });
             pane.getChildren().add(swissBracketFX);
 
@@ -125,7 +133,7 @@ public class SwissSystemController implements Initializable {
             SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket);
             swissBracketFX.getSetResultBtn().setOnAction(event -> {
                 swissBracketFX.setResult();
-                addPoints(swissBracketFX.getSwissBracket());
+                addPoints();
             });
             pane.getChildren().add(swissBracketFX);
 
@@ -143,10 +151,6 @@ public class SwissSystemController implements Initializable {
 
 
     public void setTable() {
-        for (Participant participant : participants){
-            ParticipantRecord participantRecord = new ParticipantRecord(participant);
-            participantsToRecords.put(participant,participantRecord);
-        }
 
         participantsTable.getItems().clear();
         participantsTable.setItems(getParticipantsRecords());
@@ -157,51 +161,77 @@ public class SwissSystemController implements Initializable {
         numOfLossesCol.setCellValueFactory(new PropertyValueFactory<>("numOfLosses"));
         numOfDrawsCol.setCellValueFactory(new PropertyValueFactory<>("numOfDraws"));
         gRankCol.setCellValueFactory(new PropertyValueFactory<>("rank"));
+        pointsCol.setSortType(TableColumn.SortType.DESCENDING);
+        participantsTable.getSortOrder().add(pointsCol);
     }
 
     public ObservableList<ParticipantRecord> getParticipantsRecords() {
         ObservableList<Participant> allPlayers = FXCollections.observableArrayList();
         allPlayers.addAll(swissSystem.getParticipants());
         ObservableList<ParticipantRecord> participantRecords = FXCollections.observableArrayList();
-        for (Map.Entry<Participant, ParticipantRecord> entry : participantsToRecords.entrySet()) {
+        for (Map.Entry<Participant, ParticipantRecord> entry : swissSystem.getParticipantsToRecords().entrySet()) {
             participantRecords.add(entry.getValue());
         }
         return participantRecords;
     }
 
-    public void addPoints(SwissBracket swissBracket){
-        ParticipantRecord participant1Record = participantsToRecords.get(swissBracket.getMatch().getParticipant1().getValue());
-        ParticipantRecord participant2Record = participantsToRecords.get(swissBracket.getMatch().getParticipant2().getValue());
+    public void addPoints(){
+        clearTable();
 
-        participant1Record.setMatchesPlayed(participant1Record.getMatchesPlayed() + 1);
-        participant2Record.setMatchesPlayed(participant2Record.getMatchesPlayed() + 1);
+        for (List<SwissBracket> oneRound : brackets){
+            for (SwissBracket swissBracket : oneRound){
 
-        if (swissBracket.getMatch().getParticipant1ScoreProperty().getValue() == swissBracket.getMatch().getParticipant2ScoreProperty().getValue()){
-            participant1Record.setPoints(participant1Record.getPoints() + 1);
-            participant2Record.setPoints(participant2Record.getPoints() + 1);
-            participant1Record.setNumOfDraws(participant1Record.getNumOfDraws() + 1);
-            participant2Record.setNumOfDraws(participant2Record.getNumOfDraws() + 1);
-        }
-        else if (swissBracket.getMatch().getParticipant1ScoreProperty().getValue() > swissBracket.getMatch().getParticipant2ScoreProperty().getValue()){
-            participant1Record.setPoints(participant1Record.getPoints() + 3);
-            participant1Record.setNumOfWins(participant1Record.getNumOfWins() + 1);
-            participant2Record.setNumOfLosses(participant2Record.getNumOfLosses() + 1);
-            participant1Record.setRank(participant1Record.getRank() + 3);
-            participant2Record.setRank(participant2Record.getRank() - 3);
-        }
-        else if (swissBracket.getMatch().getParticipant1ScoreProperty().getValue() < swissBracket.getMatch().getParticipant2ScoreProperty().getValue()){
-            participant2Record.setPoints(participant2Record.getPoints() + 3);
-            participant2Record.setNumOfWins(participant2Record.getNumOfWins() + 1);
-            participant1Record.setNumOfLosses(participant1Record.getNumOfLosses() + 1);
-            participant2Record.setRank(participant2Record.getRank() + 3);
-            participant1Record.setRank(participant1Record.getRank() - 3);
-        }
+                //if brackets score is set
+                if (swissBracket.getMatch().getParticipant1ScoreProperty().getValue() >= 0 && swissBracket.getMatch().getParticipant2ScoreProperty().getValue() >= 0){
+                    ParticipantRecord participant1Record = swissSystem.getParticipantsToRecords().get(swissBracket.getMatch().getParticipant1().getValue());
+                    ParticipantRecord participant2Record = swissSystem.getParticipantsToRecords().get(swissBracket.getMatch().getParticipant2().getValue());
+
+                    participant1Record.setMatchesPlayed(participant1Record.getMatchesPlayed() + 1);
+                    participant2Record.setMatchesPlayed(participant2Record.getMatchesPlayed() + 1);
+
+                    if (swissBracket.getMatch().getParticipant1ScoreProperty().getValue() == swissBracket.getMatch().getParticipant2ScoreProperty().getValue()){
+                        participant1Record.setPoints(participant1Record.getPoints() + 1);
+                        participant2Record.setPoints(participant2Record.getPoints() + 1);
+                        participant1Record.setNumOfDraws(participant1Record.getNumOfDraws() + 1);
+                        participant2Record.setNumOfDraws(participant2Record.getNumOfDraws() + 1);
+                    }
+                    else if (swissBracket.getMatch().getParticipant1ScoreProperty().getValue() > swissBracket.getMatch().getParticipant2ScoreProperty().getValue()){
+                        participant1Record.setPoints(participant1Record.getPoints() + 3);
+                        participant1Record.setNumOfWins(participant1Record.getNumOfWins() + 1);
+                        participant2Record.setNumOfLosses(participant2Record.getNumOfLosses() + 1);
+                        participant1Record.setRank(participant1Record.getRank() + 3);
+                        participant2Record.setRank(participant2Record.getRank() - 3);
+                    }
+                    else if (swissBracket.getMatch().getParticipant1ScoreProperty().getValue() < swissBracket.getMatch().getParticipant2ScoreProperty().getValue()){
+                        participant2Record.setPoints(participant2Record.getPoints() + 3);
+                        participant2Record.setNumOfWins(participant2Record.getNumOfWins() + 1);
+                        participant1Record.setNumOfLosses(participant1Record.getNumOfLosses() + 1);
+                        participant2Record.setRank(participant2Record.getRank() + 3);
+                        participant1Record.setRank(participant1Record.getRank() - 3);
+                    }
+                }
+            }
+                }
         participantsTable.getItems().clear();
         participantsTable.setItems(getParticipantsRecords());
         pointsCol.setSortType(TableColumn.SortType.DESCENDING);
         participantsTable.getSortOrder().add(pointsCol);
     }
 
+
+    public void clearTable(){
+        participantsTable.getItems().clear();
+        List<ParticipantRecord> records = getParticipantsRecords();
+        for (ParticipantRecord participantRecord : records){
+            participantRecord.setPoints(0);
+            participantRecord.setMatchesPlayed(0);
+            participantRecord.setNumOfDraws(0);
+            participantRecord.setNumOfLosses(0);
+            participantRecord.setNumOfWins(0);
+            participantRecord.setRank(0);
+        }
+        participantsTable.setItems(getParticipantsRecords());
+    }
 
     public void nextRound(){
 
@@ -226,7 +256,7 @@ public class SwissSystemController implements Initializable {
             Participant participant1 = participants.get(randomizer.nextInt(participants.size()));
             bestMatch = null;
             minGRankDiff = 1000000;
-            ParticipantRecord participant1Record = participantsToRecords.get(participant1);
+            ParticipantRecord participant1Record = swissSystem.getParticipantsToRecords().get(participant1);
             participant1GRank = participant1Record.getRank();
 
             //if participant1 already had pair in this round
@@ -235,7 +265,7 @@ public class SwissSystemController implements Initializable {
             }
             for (Participant participant2 : participants) {
                 alreadyPaired = false;
-                ParticipantRecord participant2Record = participantsToRecords.get(participant2);
+                ParticipantRecord participant2Record = swissSystem.getParticipantsToRecords().get(participant2);
                 participant2GRank = participant2Record.getRank();
 
                 //if participant2 already had pair in this round
@@ -286,4 +316,6 @@ public class SwissSystemController implements Initializable {
         }
         printNextRound();
         }
+
+
 }

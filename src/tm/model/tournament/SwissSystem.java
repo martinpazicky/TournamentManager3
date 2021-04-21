@@ -7,12 +7,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SwissSystem extends Tournament implements Serializable {
 
     private List<SwissBracket>[] brackets;
     final private int maxRounds;
+    private Map<Participant, ParticipantRecord> participantsToRecords = new HashMap<>();
 
 
     public SwissSystem(String name, List<Participant> participants) {
@@ -25,6 +28,11 @@ public class SwissSystem extends Tournament implements Serializable {
         }
         createBrackets(participants.size(), maxRounds);
         fillFirstLevelBrackets(participants.size());
+
+        for (Participant participant : participants){
+            ParticipantRecord participantRecord = new ParticipantRecord(participant);
+            participantsToRecords.put(participant,participantRecord);
+        }
     }
 
     private void createBrackets(int size, int maxLevel){
@@ -64,5 +72,13 @@ public class SwissSystem extends Tournament implements Serializable {
 
     public int getMaxRounds() {
         return maxRounds;
+    }
+
+    public Map<Participant, ParticipantRecord> getParticipantsToRecords() {
+        return participantsToRecords;
+    }
+
+    public void setParticipantsToRecords(Map<Participant, ParticipantRecord> participantsToRecords) {
+        this.participantsToRecords = participantsToRecords;
     }
 }
