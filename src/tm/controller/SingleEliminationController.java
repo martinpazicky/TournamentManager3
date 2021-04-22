@@ -17,7 +17,6 @@ import tm.model.tournament.SingleElimination;
 import java.net.URL;
 import java.util.*;
 
-import static jdk.nashorn.internal.objects.NativeMath.max;
 
 public class SingleEliminationController implements Initializable {
 
@@ -72,8 +71,8 @@ public class SingleEliminationController implements Initializable {
             maxX = x;
             x += dx;
         }
-        rootAP.setPrefHeight(max(maxY + dy,ScreenController.main.getHeight()));
-        rootAP.setPrefWidth(max(maxX + dx,ScreenController.main.getWidth()));
+        rootAP.setPrefHeight(Math.max(maxY + dy,ScreenController.main.getHeight()));
+        rootAP.setPrefWidth(Math.max(maxX + dx,ScreenController.main.getWidth()));
     }
 
 
