@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.SingleEliminationController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="667.0" stylesheets="@../css/eliminations.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.DoubleEliminationController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -20,7 +20,7 @@
         <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="700.0" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
-        <AnchorPane prefHeight="50.0" prefWidth="600.0">
+        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: grey;">
             <children>
                 <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
@@ -33,25 +33,31 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="194.0">
                             <children>
-                                <Button fx:id="backButton" mnemonicParsing="false" text="Späť">
+                                <Button fx:id="backButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="64.0" styleClass="edit-button" text="Späť" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets left="80.0" />
                                     </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
                                 </Button>
-                                <Button fx:id="finishTournamentButton" mnemonicParsing="false" text="Ukončiť">
+                                <Button fx:id="finishTournamentButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="79.0" styleClass="edit-button" text="Ukončiť" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets left="10.0" />
                                     </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
                                 </Button>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                             <children>
-                                <Label text="Stav:">
+                                <Label text="Stav:" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font></Label>
-                                <Label fx:id="tournamentStateLabel" text="Upraviteľný">
+                                <Label fx:id="tournamentStateLabel" text="Upraviteľný" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets left="5.0" />
                                     </HBox.margin>
@@ -59,7 +65,7 @@
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Label>
-                                <Label text="Víťaz:">
+                                <Label text="Víťaz:" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets left="10.0" />
                                     </HBox.margin>
@@ -67,7 +73,7 @@
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="tournamentWinnerLabel" text="-">
+                                <Label fx:id="tournamentWinnerLabel" text="-" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets left="5.0" right="80.0" />
                                     </HBox.margin>
