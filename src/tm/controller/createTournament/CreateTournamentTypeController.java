@@ -71,9 +71,9 @@ public class CreateTournamentTypeController implements Initializable {
     private void nextStepButtonAction(){
         // get a handle to the stage
         Stage stage = (Stage) nextStepButton.getScene().getWindow();
-        // do what you have to do
         stage.close();
         ScreenController.activateInNewWindow("chooseParticipantsType", 733, 450);
+
     }
 
     @Override

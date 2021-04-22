@@ -1,15 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.createTournament.CreateTournamentController">
+<AnchorPane prefHeight="450.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.createTournament.CreateTournamentController">
    <children>
-      <ComboBox layoutX="108.0" layoutY="185.0" prefWidth="150.0" />
-      <TextField layoutX="90.0" layoutY="89.0" />
-      <Label layoutX="91.0" layoutY="61.0" text="Názov:" />
+      <Label layoutX="128.0" layoutY="14.0" text="Váš turnaj je takmer hotový! ">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="250.0" layoutY="83.0" prefHeight="240.0" prefWidth="195.0" style="-fx-background-color: #d1bb13; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+         <children>
+            <TextField layoutX="14.0" layoutY="192.0" prefHeight="34.0" prefWidth="170.0" />
+            <Label layoutX="62.0" layoutY="152.0" text="Názov:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView glyphName="MAP_SIGNS" layoutX="73.0" layoutY="68.0" size="50" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="472.0" layoutY="137.0" prefHeight="188.0" prefWidth="195.0" style="-fx-background-color: #cd7f32; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+         <children>
+            <TextField layoutX="13.0" layoutY="140.0" prefHeight="34.0" prefWidth="170.0" />
+            <Label layoutX="65.0" layoutY="97.0" text="Šport:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView glyphName="SOCCER_BALL_ALT" layoutX="73.0" layoutY="55.0" size="50" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="29.0" layoutY="121.0" prefHeight="202.0" prefWidth="195.0" style="-fx-background-color: #C0C0C0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+         <children>
+            <TextField layoutX="15.0" layoutY="154.0" prefHeight="34.0" prefWidth="170.0" />
+            <Label layoutX="47.0" layoutY="112.0" text="Počet kôl:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView glyphName="REFRESH" layoutX="76.0" layoutY="57.0" size="50" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="358.0" prefHeight="92.0" prefWidth="733.0" style="-fx-background-color: #d9e3d8;">
+         <children>
+            <FontAwesomeIconView glyphName="PLAY" layoutX="343.0" layoutY="66.0" size="60" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
