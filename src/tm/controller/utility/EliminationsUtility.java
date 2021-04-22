@@ -14,12 +14,11 @@ import tm.model.Bracket;
 import tm.model.Participant;
 import tm.model.tournament.Tournament;
 
-import java.awt.*;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
 public class EliminationsUtility {
+
     public static void renderLines(List<Bracket>[] brackets, Map<Bracket,BracketFX> brToBrFX, AnchorPane rootAP){
         double breakPoint = 30;
         for(int i = 0; i < brackets.length; i++) {
@@ -46,10 +45,11 @@ public class EliminationsUtility {
                 line2.setEndY(yEnd);
                 rootAP.getChildren().add(line2);
                 Line line3 = new Line();
+                line3.setOpacity(0.9);
                 line3.setStartX(xEnd - breakPoint);
                 line3.setStartY(yEnd);
-                line3.setEndX(xEnd);
                 line3.setEndY(yEnd);
+                line3.setEndX(xEnd);
                 rootAP.getChildren().add(line3);
                 brFX.addLine(line1);
                 brFX.addLine(line2);
@@ -80,12 +80,12 @@ public class EliminationsUtility {
                     else if (brFX.getBracket().getMatch().getParticipant1().getValue() != null &&
                             brFX.getBracket().getMatch().getParticipant1().getValue()
                                     .equals(highlightedParticipant.getValue())){
-                        brFX.getParticipant1Lbl().setStyle("-fx-text-fill:red;");
+                        brFX.getParticipant1Lbl().setStyle("-fx-text-fill:#feff26;");
                     }
                     else if (brFX.getBracket().getMatch().getParticipant2().getValue() != null &&
                             brFX.getBracket().getMatch().getParticipant2().getValue()
                                     .equals(highlightedParticipant.getValue())){
-                        brFX.getParticipant2Lbl().setStyle("-fx-text-fill:red;");
+                        brFX.getParticipant2Lbl().setStyle("-fx-text-fill:#feff26;");
                     }
                     highlightLines(brFX,highlightedParticipant);
                     highlightBracket(brFX,highlightedParticipant);
@@ -99,11 +99,12 @@ public class EliminationsUtility {
                 && brFX.getBracket().getNextBracket() != null
                 && brFX.getBracket().getNextBracket().getMatch().containsParticipant(highlightedParticipant.getValue())) {
             for (Line line : brFX.getLines()) {
-                line.setStyle("-fx-stroke:  red");
+                line.setStyle("-fx-stroke:  #ffe400; -fx-stroke-width: 3px;");
+                line.toFront();
             }
         }else {
             for (Line line : brFX.getLines()) {
-                line.setStyle("-fx-stroke:  black");
+                line.setStyle("-fx-stroke: black;");
             }
         }
     }
@@ -111,19 +112,20 @@ public class EliminationsUtility {
     private static void highlightBracket(BracketFX brFX, ObjectProperty<Participant> highlightedParticipant){
         if (brFX.getBracket().getMatch().containsParticipant(highlightedParticipant.getValue())
                 && highlightedParticipant.getValue() != null) {
-                brFX.setStyle("-fx-border-color: red;" +
-                        "-fx-border-width: 5px");
+                brFX.setStyle("-fx-border-color: #e3ba1e;" +
+                        "-fx-border-width: 5px;" +
+                        "-fx-border-radius: 5"
+                );
         }else {
-                brFX.setStyle("-fx-border-color: black;" +
-                        "-fx-border-width: 5px");
+                brFX.setStyle(
+    "-fx-background-insets: 0,1,4,5,6;" +
+    "-fx-background-radius: 9,8,5,4,3;" +
+    "-fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);");
         }
     }
 
-    public static void renderUtilities(Tournament tournament, AnchorPane rootAP, Map<Bracket,BracketFX> brToBrFX){
-        Button backButton = new Button("Späť");
-        Button finishButton = new Button("Ukončiť");
-        Label winnerTextLabel = new Label("Víťaz:");
-        Label winnerNameLabel = new Label();
+    public static void renderUtilities(Tournament tournament, Map<Bracket,BracketFX> brToBrFX,
+    Button finishButton, Button backButton, Label winnerNameLabel, Label tournamentState){
         if (tournament.getTournamentWinner() != null)
             winnerNameLabel.setText(tournament.getTournamentWinner().getNickName());
         tournament.tournamentWinnerProperty().addListener(
@@ -135,14 +137,9 @@ public class EliminationsUtility {
                         winnerNameLabel.setText("");
                 })
         );
-        backButton.setLayoutX(10);
-        backButton.setLayoutY(10);
-        finishButton.setLayoutX(70);
-        finishButton.setLayoutY(10);
-        winnerTextLabel.setLayoutX(150);
-        winnerTextLabel.setLayoutY(10);
-        winnerNameLabel.setLayoutX(190);
-        winnerNameLabel.setLayoutY(10);
+        if (tournament.isFinished())
+            tournamentState.setText("Ukončený");
+
         backButton.setOnAction(
                 e ->{
                     TournamentDetailController.tournament = tournament;
@@ -152,13 +149,12 @@ public class EliminationsUtility {
         finishButton.setOnAction(
                 e ->{
                     if (tournament.getTournamentWinner() != null) {
-                        System.out.println("finish");
+                        tournamentState.setText("Ukončený");
                         tournament.setFinished(true);
-                        changeButtonsText(brToBrFX);
+                        changeButtonsIcons(brToBrFX);
                         }
                     }
         );
-        rootAP.getChildren().addAll(finishButton,backButton,winnerNameLabel,winnerTextLabel);
     }
 
     public static void initializeEditButtonAction(Tournament tournament, Bracket bracket,
@@ -169,15 +165,16 @@ public class EliminationsUtility {
             ScreenController.activateInNewWindow("bracketDetail", 500, 500);
         });
         if (tournament.isFinished())
-            changeButtonsText(brToBrFX);
+            changeButtonsIcons(brToBrFX);
     }
 
-    public static void changeButtonsText(Map<Bracket,BracketFX> brToBrFX){
+    public static void changeButtonsIcons(Map<Bracket,BracketFX> brToBrFX){
         for (Bracket bracket: brToBrFX.keySet()) {
             FontAwesomeIconView fontIconView = new FontAwesomeIconView();
             fontIconView.setGlyphName("INFO_CIRCLE");
             fontIconView.setSize("25");
-            fontIconView.setStyle("-fx-text-alignment: center");
+            fontIconView.setStyle("-fx-text-alignment: center;" +
+                    "-fx-fill:white;");
             brToBrFX.get(bracket).getEditButton().setGraphic(fontIconView);
         }
     }
