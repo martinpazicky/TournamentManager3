@@ -80,16 +80,16 @@ public class BracketFX extends AnchorPane {
         Participant winner = bracket.getMatch().getWinner().getValue();
         if (winner != null) {
             if (winner.equals(p1)) {
-                this.participant1Lbl.setStyle("-fx-text-fill: green; -fx-font-weight: bold");
-                this.participant2Lbl.setStyle("-fx-text-fill: black; -fx-font-weight: normal");
+                this.participant1Lbl.setStyle("-fx-text-fill: #48c626; -fx-font-weight: bold");
+                this.participant2Lbl.setStyle("-fx-text-fill: white; -fx-font-weight: normal");
             }
             else if (winner.equals(p2)) {
-                this.participant2Lbl.setStyle("-fx-text-fill: green; -fx-font-weight: bold");
-                this.participant1Lbl.setStyle("-fx-text-fill: black; -fx-font-weight: normal");
+                this.participant2Lbl.setStyle("-fx-text-fill: #48c626; -fx-font-weight: bold");
+                this.participant1Lbl.setStyle("-fx-text-fill: white; -fx-font-weight: normal");
             }
         }else {
-            this.participant1Lbl.setStyle("-fx-text-fill: black; -fx-font-weight: normal");
-            this.participant2Lbl.setStyle("-fx-text-fill: black; -fx-font-weight: normal");
+            this.participant1Lbl.setStyle("-fx-text-fill: white; -fx-font-weight: normal");
+            this.participant2Lbl.setStyle("-fx-text-fill: white; -fx-font-weight: normal");
 
         }
     }

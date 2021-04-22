@@ -50,6 +50,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/tm/view/home.fxml"));
         Scene scene = new Scene(root, 1400, 900);
+        scene.getStylesheets().add("tm/css/eliminations.css");
         initializeScreenController(primaryStage,scene);
         primaryStage.setTitle("TM");
         primaryStage.setScene(scene);

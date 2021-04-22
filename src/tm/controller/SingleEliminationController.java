@@ -4,6 +4,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import tm.controller.bracketFX.BracketFX;
@@ -15,10 +17,20 @@ import tm.model.tournament.SingleElimination;
 import java.net.URL;
 import java.util.*;
 
+import static jdk.nashorn.internal.objects.NativeMath.max;
+
 public class SingleEliminationController implements Initializable {
 
     @FXML
     private AnchorPane rootAP;
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button finishTournamentButton;
+    @FXML
+    private Label tournamentWinnerLabel;
+    @FXML
+    private Label tournamentStateLabel;
 
     private Map<Bracket,BracketFX> brToBrFX = new HashMap<>();
 
@@ -33,7 +45,8 @@ public class SingleEliminationController implements Initializable {
         double dy = BracketFX.HEIGHT + 20;
         renderBrackets(brackets,dx,dy);
         EliminationsUtility.renderLines(brackets,brToBrFX,rootAP);
-        EliminationsUtility.renderUtilities(singleElimination,rootAP,brToBrFX);
+        EliminationsUtility.renderUtilities(singleElimination,brToBrFX,finishTournamentButton,
+                backButton,tournamentWinnerLabel,tournamentStateLabel);
     }
 
     private void renderBrackets(List<Bracket>[] brackets, double dx, double dy){
@@ -59,8 +72,8 @@ public class SingleEliminationController implements Initializable {
             maxX = x;
             x += dx;
         }
-        rootAP.setPrefHeight(maxY + dy);
-        rootAP.setPrefWidth(maxX + dx);
+        rootAP.setPrefHeight(max(maxY + dy,ScreenController.main.getHeight()));
+        rootAP.setPrefWidth(max(maxX + dx,ScreenController.main.getWidth()));
     }
 
 
