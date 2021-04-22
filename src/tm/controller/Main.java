@@ -74,12 +74,13 @@ public class Main extends Application {
 //        singleEliminationTest();
 
 
-        testElimination();
+//        testElimination();
 //        testTable();
 //        testSwiss();
 
 //
 //        Database.loadAll();
+        testElimination();
         List<Tournament> t = Database.tournaments.getItems();
         launch(args);
         Database.saveAll();
@@ -109,7 +110,7 @@ public class Main extends Application {
     }
 
     private static void testElimination(){
-        List<Participant> participants = Main.createParticipants(8);
+        List<Participant> participants = Main.createParticipants(11);
         SingleElimination de = new SingleElimination("turnaj", participants);
 //        DoubleElimination de = new DoubleElimination("Fakt velky turnaj ",participants);
         de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());

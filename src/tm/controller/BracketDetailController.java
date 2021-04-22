@@ -2,7 +2,13 @@ package tm.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+import tm.controller.utility.Utils;
 import tm.model.Bracket;
 
 import java.net.URL;
@@ -11,9 +17,15 @@ import java.util.ResourceBundle;
 public class BracketDetailController implements Initializable {
 
     @FXML
-    private Label p1Label;
+    private Button SetWinnerP1Button;
     @FXML
-    private Label p2Label;
+    private Button SetWinnerP2Button;
+    @FXML
+    private Label winnerLabel;
+    @FXML
+    private TextField p1ScoreTF;
+    @FXML
+    private TextField p2ScoreTF;
 
     private static Bracket bracket;
     private static boolean editable;
@@ -21,29 +33,60 @@ public class BracketDetailController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (bracket.getMatch().getParticipant1().getValue() != null)
-            p1Label.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
+            SetWinnerP1Button.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
         if (bracket.getMatch().getParticipant2().getValue() != null)
-            p2Label.setText(bracket.getMatch().getParticipant2().getValue().getNickName());
-
+            SetWinnerP2Button.setText(bracket.getMatch().getParticipant2().getValue().getNickName());
+        ScreenController.newWindow.setOnCloseRequest(e -> handleSaveButton());
+        try {
+            if (bracket.getMatch().getParticipant1ScoreProperty().getValue() != -1)
+                p1ScoreTF.setText(bracket.getMatch().getParticipant1ScoreProperty().getValue().toString());
+            if (bracket.getMatch().getParticipant2ScoreProperty().getValue() != -1)
+                p2ScoreTF.setText(bracket.getMatch().getParticipant2ScoreProperty().getValue().toString());
+        }catch (NullPointerException ignored){}
+        if (bracket.getMatch().getWinner().getValue() != null){
+            winnerLabel.setText(bracket.getMatch().getWinner().getValue().getNickName());
+        }
+        ScreenController.newWindow.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ENTER == event.getCode()) {
+                handleSaveButton();
+            }
+        });
     }
 
     @FXML
     public void handleSetWinnerP1Button(){
-        if (editable)
+        if (editable && bracket.getMatch().getParticipant1().getValue() != null) {
             bracket.setWinner(bracket.getMatch().getParticipant1().getValue());
+            winnerLabel.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
+        }
     }
 
     @FXML
     public void handleSetWinnerP2Button(){
-        if (editable)
+        if (editable && bracket.getMatch().getParticipant2().getValue() != null) {
             bracket.setWinner(bracket.getMatch().getParticipant2().getValue());
+            winnerLabel.setText(bracket.getMatch().getParticipant2().getValue().getNickName());
+
+        }
     }
 
     @FXML
     public void handleResetButton(){
-        if (editable)
+        if (editable) {
+            winnerLabel.setText("-");
             bracket.unsetWinner();
+        }
     }
+
+    @FXML
+    public void handleSaveButton(){
+        if (Utils.isInteger(p1ScoreTF.getText()) && Utils.isInteger(p2ScoreTF.getText())){
+            bracket.getMatch().setParticipant1Score(Integer.parseInt(p1ScoreTF.getText()));
+            bracket.getMatch().setParticipant2Score(Integer.parseInt(p2ScoreTF.getText()));
+        }
+        ScreenController.newWindow.close();
+    }
+
     public static Bracket getBracket() {
         return bracket;
     }

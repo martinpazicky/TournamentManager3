@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import tm.controller.ScreenController;
 import tm.model.database.TournamentTypeMeta;
 import tm.model.tournament.Tournament;
@@ -68,12 +69,8 @@ public class CreateTournamentTypeController implements Initializable {
     }
 
     @FXML
-    private void nextStepButtonAction(){
-        // get a handle to the stage
-        Stage stage = (Stage) nextStepButton.getScene().getWindow();
-        stage.close();
-        ScreenController.activateInNewWindow("chooseParticipantsType", 733, 450);
-
+    public void nextStepButtonAction(){
+        ScreenController.activate("chooseParticipantsType",ScreenController.newWindow);
     }
 
     @Override

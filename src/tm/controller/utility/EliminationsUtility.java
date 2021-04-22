@@ -162,7 +162,7 @@ public class EliminationsUtility {
         brFX.getEditButton().setOnAction(e -> {
             BracketDetailController.setBracket(bracket);
             BracketDetailController.setEditable(!tournament.isFinished());
-            ScreenController.activateInNewWindow("bracketDetail", 500, 500);
+            ScreenController.activateInNewWindow("bracketDetail", 370, 350);
         });
         if (tournament.isFinished())
             changeButtonsIcons(brToBrFX);
