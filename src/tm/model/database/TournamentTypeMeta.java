@@ -8,19 +8,19 @@ public abstract class TournamentTypeMeta {
     private static final String swissSystemName = "Swiss system";
     private static final String swissSystemDescription = "Princíp Swiss System spočíva v rozdelení hráčov tak, aby proti sebe v každom kole hrali rovnako alebo aspoň čo najpodobnejšie kvalitný hráči z predchádzajúcich kôl. Zároveň platí že každý hráč hrá s konkrétnym iným hráčom najviac jeden zápas.";
     private static final String swissSystemParticipants = "Jednotlivci, tímy...";
-    private static final String swissSystemSuitsFor = "Bežne užívaný typ rozpisu zápasov turnajov v šachu, bridžu, scrabble, squashi, bedmintone, pétanque, guličkách a ďalších hrách";
+    private static final String swissSystemSuitsFor = "Bežne užívaný typ rozpisu zápasov turnajov v šachu, bridžu, scrabble, bedmintone a ďalších hrách";
     private static final String swissSystemAlsoKnownAs = "Dutch system, Monrad system";
 
-    private static final String roundRobinColor = "#1958a6";
-    private static final String roundRobinSecondaryColor = "#60a0f0";
+    private static final String roundRobinColor = "#168c22";
+    private static final String roundRobinSecondaryColor = "#65e072";
     private static final String roundRobinName = "Round robin";
     private static final String roundRobinDescription = "Klasický režim pre takmer každý šport. Hráči alebo tímy sú rozdelené do skupín a každý hrá proti každému v tej istej skupine práve jeden zápas. Tento herný systém umožňuej aj hru na viac kôl respektíve tabuliek.";
     private static final String roundRobinParticipants = "Jednotlivci, tímy...";
     private static final String roundRobinSuitsFor = "Veľké turnaje, kvalifikáciu pred vyraďovacím kolom, náhodné rozdelenie do skupín...";
     private static final String roundRobinAlsoKnownAs = "All-play-all, Free for all";
 
-    private static final String singleEliminationColor = "#168c22";
-    private static final String singleEliminationSecondaryColor = "#65e072";
+    private static final String singleEliminationColor = "#1958a6";
+    private static final String singleEliminationSecondaryColor = "#60a0f0";
     private static final String singleEliminationName = "Single elimination";
     private static final String singleEliminationDescription = "Typ eliminačného turnaja, kde je porazený každý zápas okamžite vyradený z turnaja. Každý víťaz bude v ďalšom kole hrať ďalšie, až do finálového zápasu, ktorého víťazom sa stane majster turnaja.";
     private static final String singleEliminationParticipants = "Jednotlivci, tímy...";

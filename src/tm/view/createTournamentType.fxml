@@ -5,45 +5,56 @@
 <?import de.jensd.fx.glyphs.weathericons.WeatherIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.CreateTournamentTypeController">
+<AnchorPane fx:id="primaryAP" prefHeight="400.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.createTournament.CreateTournamentTypeController">
    <children>
       <VBox prefHeight="400.0" prefWidth="91.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="91.0" style="-fx-background-color: #1958a6;">
+            <Button mnemonicParsing="false" onAction="#singleEliminationDetail" prefHeight="100.0" prefWidth="91.0" style="-fx-background-color: #1958a6;">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="TROPHY" size="45" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="91.0" style="-fx-background-color: #bd1919;">
+            <Button mnemonicParsing="false" onAction="#swissSystemDetail" prefHeight="100.0" prefWidth="91.0" style="-fx-background-color: #bd1919;">
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="HOSPITAL" size="45" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="91.0" style="-fx-background-color: #14826e;">
+            <Button mnemonicParsing="false" onAction="#doubleEliminationDetail" prefHeight="100.0" prefWidth="91.0" style="-fx-background-color: #14826e;">
                <graphic>
                   <WeatherIconView fill="WHITE" glyphName="OWM_212" size="45" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="91.0" style="-fx-background-color: #168c22;">
+            <Button mnemonicParsing="false" onAction="#roundRobinDetail" prefHeight="100.0" prefWidth="91.0" style="-fx-background-color: #168c22;">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="ROTATE_LEFT" size="45" />
                </graphic>
             </Button>
          </children>
       </VBox>
-      <Label layoutX="142.0" layoutY="33.0" prefHeight="38.0" prefWidth="159.0" text="Label" />
-      <TextArea editable="false" layoutX="142.0" layoutY="87.0" prefHeight="200.0" prefWidth="241.0" />
-      <Label layoutX="432.0" layoutY="42.0" text="Účastníci:" />
-      <Label layoutX="432.0" layoutY="137.0" text="Vhodný pre:" />
-      <Label layoutX="432.0" layoutY="219.0" text="Tiež známky ako:" />
-      <TextField editable="false" layoutX="432.0" layoutY="87.0" />
-      <TextField editable="false" layoutX="432.0" layoutY="172.0" />
-      <Button layoutX="586.0" layoutY="355.0" mnemonicParsing="false" text="Vytvoriť turnaj" />
-      <TextField editable="false" layoutX="432.0" layoutY="256.0" />
+      <Label fx:id="typeName" layoutX="142.0" layoutY="14.0" prefHeight="38.0" prefWidth="238.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label layoutX="142.0" layoutY="298.0" text="Účastníci:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font></Label>
+      <Label layoutX="457.0" layoutY="33.0" text="Vhodný pre:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font></Label>
+      <Label layoutX="457.0" layoutY="176.0" text="Tiež známky ako:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font></Label>
+      <Button fx:id="nextStepButton" layoutX="586.0" layoutY="355.0" mnemonicParsing="false" onAction="#nextStepButtonAction" text="Vytvoriť turnaj" />
+      <Label fx:id="typeDescription" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="142.0" layoutY="66.0" prefHeight="219.0" prefWidth="279.0" text="Label" textFill="WHITE" wrapText="true" />
+      <Label fx:id="participants" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="142.0" layoutY="334.0" prefHeight="49.0" prefWidth="189.0" text="Label" textFill="WHITE" wrapText="true" />
+      <Label fx:id="suitsFor" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="457.0" layoutY="66.0" prefHeight="93.0" prefWidth="246.0" text="Label" textFill="WHITE" wrapText="true" />
+      <Label fx:id="alsoKnownAs" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="457.0" layoutY="219.0" prefHeight="93.0" prefWidth="246.0" text="Label" textFill="WHITE" wrapText="true" />
    </children>
 </AnchorPane>

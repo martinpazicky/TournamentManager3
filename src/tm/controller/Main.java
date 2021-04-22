@@ -41,6 +41,7 @@ public class Main extends Application {
         ScreenController.addScreen("calendar", "/tm/calendar/fullCalendar.fxml");
         ScreenController.addScreen("tournamentDetail", "/tm/view/tournamentDetail.fxml");
         ScreenController.addScreen("createTournamentType", "/tm/view/createTournamentType.fxml");
+        ScreenController.addScreen("chooseParticipantsType", "/tm/view/chooseParticipantsType.fxml");
     }
 
 

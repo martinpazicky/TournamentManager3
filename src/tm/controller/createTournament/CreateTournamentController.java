@@ -1,4 +1,4 @@
-package tm.controller;
+package tm.controller.createTournament;
 
 public class CreateTournamentController {
 }
