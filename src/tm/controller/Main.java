@@ -5,15 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tm.model.Bracket;
-import tm.model.Match;
+import tm.controller.utility.XMLParser;
 import tm.model.Participant;
 import tm.model.database.Database;
 import tm.model.tournament.*;
-import tm.calendar.FullCalendarView;
 
+import java.io.File;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +48,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/tm/view/home.fxml"));
         Scene scene = new Scene(root, 1400, 900);
-        scene.getStylesheets().add("tm/css/eliminations.css");
+        scene.getStylesheets().add("tm/resources/css/eliminations.css");
         initializeScreenController(primaryStage,scene);
         primaryStage.setTitle("TM");
         primaryStage.setScene(scene);
@@ -81,6 +79,16 @@ public class Main extends Application {
 //
 //        Database.loadAll();
         testElimination();
+        File f = new File("src/tm/resources/participants.xml");
+        List<Participant> participants = XMLParser.parseParticipants(f);
+        for (Participant p :
+        participants             ) {
+            System.out.println(p.getNickName());
+            System.out.println(p.getAge());
+            System.out.println(p.getFirstName());
+            System.out.println(p.getLastName());
+        }
+
         List<Tournament> t = Database.tournaments.getItems();
         launch(args);
         Database.saveAll();

@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import tm.controller.calendarButtonFX.CalendarButtonFX;
 import tm.model.database.Database;
@@ -36,7 +35,7 @@ public class FullCalendarView {
         currentYearMonth = yearMonth;
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
-        calendar.getStylesheets().add("tm/css/calendar.css");
+        calendar.getStylesheets().add("tm/resources/css/calendar.css");
         calendar.setPrefSize(600, 800);
         calendar.setGridLinesVisible(true);
         // Create rows and columns with anchor panes for the calendar
@@ -70,13 +69,13 @@ public class FullCalendarView {
         calendarTitle.setStyle("-fx-font: 25 arial;");
         Button previousMonth = new Button("<<");
 
-        previousMonth.getStylesheets().add("tm/css/calendar.css");
+        previousMonth.getStylesheets().add("tm/resources/css/calendar.css");
         previousMonth.getStyleClass().add("month-buttons");
 
         previousMonth.setOnAction(e -> previousMonth());
         Button nextMonth = new Button(">>");
 
-        nextMonth.getStylesheets().add("tm/css/calendar.css");
+        nextMonth.getStylesheets().add("tm/resources/css/calendar.css");
         nextMonth.getStyleClass().add("month-buttons");
 
         nextMonth.setOnAction(e -> nextMonth());
