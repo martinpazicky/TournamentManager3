@@ -33,7 +33,7 @@ public class HomeController {
 
     @FXML
     public void handleCreateButton(){
-        ScreenController.activate("createTournamentType");
+        ScreenController.activateInNewWindow("createTournamentType", 733, 450);
     }
 
     @FXML
