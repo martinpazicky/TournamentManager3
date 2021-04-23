@@ -1,5 +1,6 @@
 package tm.controller;
 
+import com.sun.glass.ui.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -7,8 +8,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import tm.calendar.FullCalendarView;
 
 import java.io.IOException;
+import java.time.YearMonth;
 import java.util.HashMap;
 
 public class ScreenController {
@@ -28,6 +31,10 @@ public class ScreenController {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void activate(Parent view){
+        ScreenController.main.setRoot(view);
     }
 
     public static void activate(String name, Stage stage){
