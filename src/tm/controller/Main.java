@@ -53,8 +53,8 @@ public class Main extends Application {
         primaryStage.setTitle("TM");
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setMinWidth(1400);
-        primaryStage.setMinHeight(900);
+        primaryStage.setMinWidth(1200);
+        primaryStage.setMinHeight(700);
     }
 
     public static void main(String[] args) {
@@ -118,7 +118,11 @@ public class Main extends Application {
     }
 
     private static void testElimination(){
-        List<Participant> participants = Main.createParticipants(11);
+        File f = new File("src/tm/resources/participants.xml");
+
+        List<Participant> participants = XMLParser.parseParticipants(f);
+
+//        List<Participant> participants = Main.createParticipants(11);
         SingleElimination de = new SingleElimination("turnaj", participants);
 //        DoubleElimination de = new DoubleElimination("Fakt velky turnaj ",participants);
         de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());
