@@ -39,6 +39,7 @@ public class HomeController {
     @FXML
     public void handleCalendarButton(){
         ScreenController.activate((new FullCalendarView(YearMonth.now()).getView()));
+
     }
 
 }
