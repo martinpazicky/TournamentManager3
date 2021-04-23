@@ -1,5 +1,6 @@
 package tm.calendar;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import tm.controller.ScreenController;
 import tm.controller.calendarButtonFX.CalendarButtonFX;
 import tm.model.database.Database;
 import tm.model.tournament.Tournament;
@@ -79,19 +81,28 @@ public class FullCalendarView {
         nextMonth.getStyleClass().add("month-buttons");
 
         nextMonth.setOnAction(e -> nextMonth());
+        Button backButton = new Button("Späť");
+        backButton.setOnAction(
+                e -> ScreenController.activate("home")
+        );
         HBox titleBar = new HBox(previousMonth, calendarTitle, nextMonth);
         HBox.setMargin(calendarTitle, new Insets(0,20,0,20));
-        titleBar.setPrefSize( 100, 500);
-        HBox.setMargin(titleBar, new Insets(80, 0, 80, 0));
-
+        titleBar.setPrefSize( ScreenController.stage.getWidth() - 120, 200);
+//        HBox.setMargin(titleBar, new Insets(80, 0, 80, 0));
         titleBar.setAlignment(Pos.BASELINE_CENTER);
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
+        HBox united = new HBox(backButton,titleBar);
+        united.setMaxHeight(200);
+        HBox.setMargin(backButton,new Insets(10,0,0,35));
         // Create the calendar view
-        view = new VBox(titleBar, dayLabels, calendar);
+        view = new VBox(united, dayLabels, calendar);
+        backButton.setLayoutX(30);
+        backButton.setLayoutY(30);
         VBox.setMargin(calendar, new Insets(0,30,40,30));
+        VBox.setMargin(united, new Insets(10,0,0,0));
         VBox.setMargin(dayLabels, new Insets(0,30,0,30));
-        VBox.setMargin(titleBar, new Insets(20,20,20,20));
+//        VBox.setMargin(titleBar, new Insets(20,20,20,450));
 
     }
 
