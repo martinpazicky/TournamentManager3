@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import tm.controller.ScreenController;
 import tm.model.database.TournamentTypeMeta;
+import tm.model.tournament.SwissSystem;
 import tm.model.tournament.Tournament;
 
 import java.net.URL;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class CreateTournamentTypeController implements Initializable {
 
-    public static Tournament tournament;
+    public static String tournamentType;
 
     @FXML private javafx.scene.control.Button nextStepButton;
 
@@ -42,6 +43,7 @@ public class CreateTournamentTypeController implements Initializable {
         participants.setText(TournamentTypeMeta.getSwissSystemParticipants());
         suitsFor.setText(TournamentTypeMeta.getSwissSystemSuitsFor());
         alsoKnownAs.setText(TournamentTypeMeta.getSwissSystemAlsoKnownAs());
+        tournamentType = TournamentTypeMeta.getSwissSystemName();
     }
     public void roundRobinDetail(){
         primaryAP.setStyle("-fx-background-color: " + TournamentTypeMeta.getRoundRobinSecondaryColor() + ";");
@@ -50,6 +52,7 @@ public class CreateTournamentTypeController implements Initializable {
         participants.setText(TournamentTypeMeta.getRoundRobinParticipants());
         suitsFor.setText(TournamentTypeMeta.getRoundRobinSuitsFor());
         alsoKnownAs.setText(TournamentTypeMeta.getRoundRobinAlsoKnownAs());
+        tournamentType = TournamentTypeMeta.getRoundRobinName();
     }
     public void singleEliminationDetail(){
         primaryAP.setStyle("-fx-background-color: " + TournamentTypeMeta.getSingleEliminationSecondaryColor() + ";");
@@ -58,6 +61,7 @@ public class CreateTournamentTypeController implements Initializable {
         participants.setText(TournamentTypeMeta.getSingleEliminationParticipants());
         suitsFor.setText(TournamentTypeMeta.getSingleEliminationParticipants());
         alsoKnownAs.setText(TournamentTypeMeta.getSingleEliminationAlsoKnownAs());
+        tournamentType = TournamentTypeMeta.getSingleEliminationName();
     }
     public void doubleEliminationDetail(){
         primaryAP.setStyle("-fx-background-color: " + TournamentTypeMeta.getDoubleEliminationSecondaryColor() + ";");
@@ -66,11 +70,13 @@ public class CreateTournamentTypeController implements Initializable {
         participants.setText(TournamentTypeMeta.getDoubleEliminationParticipants());
         suitsFor.setText(TournamentTypeMeta.getDoubleEliminationSuitsFor());
         alsoKnownAs.setText(TournamentTypeMeta.getDoubleEliminationAlsoKnownAs());
+        tournamentType = TournamentTypeMeta.getDoubleEliminationName();
     }
 
     @FXML
     public void nextStepButtonAction(){
         ScreenController.activate("chooseParticipantsType",ScreenController.newWindow);
+        CreateTournamentInfo.tournamentType = tournamentType;
     }
 
     @Override

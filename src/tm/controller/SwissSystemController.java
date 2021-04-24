@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import tm.controller.bracketFX.BracketFX;
 import tm.controller.swissBracketFX.SwissBracketFX;
@@ -59,6 +60,8 @@ public class SwissSystemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        rootAP.getStylesheets().add("tm/resources/css/swissSystem.css");
+        participantsTable.getStylesheets().add("tm/resources/css/table.css");
         participants = swissSystem.getParticipants();
         brackets = swissSystem.getBrackets();
 
@@ -69,6 +72,8 @@ public class SwissSystemController implements Initializable {
             AnchorPane pane = new AnchorPane();
 
             Label label = new Label(" " + "Round" + " " + roundCounter);
+            label.setTextFill(Color.web("#6bfc03"));
+            label.setFont(new Font(30));
             label.setWrapText(true);
             label.setFont(new Font(20.0));
             label.setLayoutY(40);
@@ -117,6 +122,8 @@ public class SwissSystemController implements Initializable {
 
         Label label = new Label(" " + "Round" + " " + (roundCounter + 1));
         label.setWrapText(true);
+        label.setTextFill(Color.web("#6bfc03"));
+        label.setFont(new Font(30));
         label.setFont(new Font(20.0));
         label.setLayoutY(yLayout + 40);
         label.setLayoutX(20);

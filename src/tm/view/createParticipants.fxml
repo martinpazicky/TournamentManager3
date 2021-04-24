@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootAP" prefHeight="400.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.createTournament.CreateParticipantsController">
+   <children>
+      <TableView fx:id="participantsTable" layoutX="349.0" layoutY="32.0" prefHeight="345.0" prefWidth="352.0">
+        <columns>
+          <TableColumn fx:id="nickNameCol" prefWidth="115.0" text="Nickname" />
+          <TableColumn fx:id="firstNameCol" prefWidth="113.0" text="Meno:" />
+            <TableColumn fx:id="lastNameCol" prefWidth="123.0" text="Priezvisko:" />
+        </columns>
+      </TableView>
+      <Label layoutX="21.0" layoutY="32.0" prefHeight="37.0" prefWidth="112.0" text="Nickname:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <TextField fx:id="nameTextField" layoutX="134.0" layoutY="35.0" />
+      <TextField fx:id="sureNameTextField" layoutX="134.0" layoutY="96.0" />
+      <TextField fx:id="nicknameTextField" layoutX="134.0" layoutY="157.0" />
+      <Button layoutX="134.0" layoutY="304.0" mnemonicParsing="false" onAction="#nextScreen" prefHeight="69.0" prefWidth="187.0" style="-fx-background-color: #b5561b; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" text="Pokračovať" textFill="WHITE">
+         <font>
+            <Font size="26.0" />
+         </font></Button>
+      <Button layoutX="134.0" layoutY="205.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="69.0" prefWidth="85.0" style="-fx-background-color: #1b89b5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="50" />
+         </graphic>
+      </Button>
+      <Button layoutX="236.0" layoutY="205.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="69.0" prefWidth="85.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0); -fx-background-color: #2db51b;">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="TRASH" size="50" />
+         </graphic>
+      </Button>
+      <Label layoutX="21.0" layoutY="93.0" prefHeight="37.0" prefWidth="112.0" text="Meno:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="154.0" prefHeight="37.0" prefWidth="112.0" text="Priezvisko:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

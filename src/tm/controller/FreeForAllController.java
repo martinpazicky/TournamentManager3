@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import tm.controller.tableFX.CellFX;
 import tm.model.Participant;
@@ -28,6 +30,15 @@ public class FreeForAllController implements Initializable {
 
     @FXML
     private AnchorPane rootAP;
+
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button finishTournamentButton;
+    @FXML
+    private Label tournamentWinnerLabel;
+    @FXML
+    private Label tournamentStateLabel;
 
     @FXML
     private TableView<ParticipantRecord> participantsTable;
@@ -56,6 +67,9 @@ public class FreeForAllController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        rootAP.getStylesheets().add("tm/resources/css/swissSystem.css");
+        participantsTable.getStylesheets().add("tm/resources/css/table.css");
+
         int rounds = freeForAll.getRounds();
         System.out.println(freeForAll.getName());
         int amount = freeForAll.getParticipants().size();
@@ -68,9 +82,11 @@ public class FreeForAllController implements Initializable {
 
             GridPane table = new GridPane();
 
+
             Label label = new Label(" " + "Round" + " " + (k+1));
+            label.setTextFill(Color.web("#6bfc03"));
+            label.setFont(new Font(30));
             label.setWrapText(true);
-            label.setFont(new Font(20.0));
             label.setLayoutY(-20);
             label.setLayoutX(20);
 
@@ -91,7 +107,7 @@ public class FreeForAllController implements Initializable {
                 for (int j = 0; j <= amount; j++) {
                     if (i == j) {
                         AnchorPane empty = new AnchorPane();
-                        empty.setStyle("-fx-background-color: grey");
+                        empty.setStyle("-fx-background-color: black");
                         table.add(empty, j, i);
                         continue;
                     }
@@ -100,6 +116,7 @@ public class FreeForAllController implements Initializable {
                         p.setPrefSize(138, 85);
                         actualCell = allCells[i].get(j - 1);
                         Label lbl = new Label(actualCell.getMatch().getParticipant2().getValue().getNickName());
+                        lbl.setTextFill(Color.web("#6bfc03"));
 
                         p.getChildren().add(lbl);
                         StackPane.setAlignment(lbl, Pos.CENTER);
@@ -112,6 +129,7 @@ public class FreeForAllController implements Initializable {
                         p.setPrefSize(138, 85);
                         actualCell = allCells[i - 1].get(j);
                         Label lbl = new Label(actualCell.getMatch().getParticipant1().getValue().getNickName());
+                        lbl.setTextFill(Color.web("#6bfc03"));
 
                         p.getChildren().add(lbl);
                         StackPane.setAlignment(lbl, Pos.CENTER);

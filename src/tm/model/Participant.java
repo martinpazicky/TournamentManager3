@@ -12,6 +12,12 @@ public class Participant implements Serializable {
     public Participant(){
     }
 
+    public Participant(String nickName, String firstName, String lastName) {
+        this.nickName = nickName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Participant(String nickName) {
         this.nickName = nickName;
     }

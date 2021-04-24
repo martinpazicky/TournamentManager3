@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
 
 <!--<AnchorPane prefHeight="63.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.swissBracketFX.SwissBracketFX">-->
 <!--</AnchorPane>-->
@@ -14,13 +15,16 @@
     <children>
       <HBox prefHeight="76.0" prefWidth="882.0">
          <children>
-            <Label fx:id="participant1Lbl" alignment="CENTER" prefHeight="77.0" prefWidth="200.0" />
+            <Label fx:id="participant1Lbl" alignment="CENTER" prefHeight="77.0" prefWidth="200.0" styleClass="participant-label" />
             <Region prefHeight="77.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <TextField fx:id="participant1Score" prefHeight="76.0" prefWidth="98.0" />
-            <Button fx:id="setResultBtn" mnemonicParsing="false" prefHeight="103.0" prefWidth="192.0" text="Zadať výsledok" />
+            <Button fx:id="setResultBtn" mnemonicParsing="false" prefHeight="103.0" prefWidth="192.0" styleClass="bracket-detail-button" text="Zadať výsledok" textFill="#6bfc03">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
             <TextField fx:id="participant2Score" prefHeight="76.0" prefWidth="98.0" />
             <Region prefHeight="77.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Label fx:id="participant2Lbl" alignment="CENTER" contentDisplay="RIGHT" prefHeight="77.0" prefWidth="200.0" />
+            <Label fx:id="participant2Lbl" alignment="CENTER" contentDisplay="RIGHT" prefHeight="77.0" prefWidth="200.0" styleClass="participant-label" />
          </children>
       </HBox>
    </children>
