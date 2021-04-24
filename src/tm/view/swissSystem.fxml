@@ -2,33 +2,119 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="585.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.SwissSystemController">
+<AnchorPane prefHeight="585.0" prefWidth="1463.0" style="-fx-background-color: #9d9e9d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.SwissSystemController">
    <children>
-      <HBox prefHeight="774.0" prefWidth="1463.0">
+      <HBox prefHeight="774.0" prefWidth="1463.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ScrollPane prefHeight="753.0" prefWidth="813.0" HBox.hgrow="ALWAYS">
-               <content>
-                  <AnchorPane fx:id="rootAP" prefHeight="776.0" prefWidth="885.0" />
-               </content>
+            <GridPane HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-            </ScrollPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="529.0" vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <ScrollPane prefHeight="753.0" prefWidth="813.0" GridPane.rowIndex="1">
+                     <content>
+                        <AnchorPane fx:id="rootAP" prefHeight="2000.0" prefWidth="2000.0" styleClass="bracket-root-pane" />
+                     </content>
+                  </ScrollPane>
+                  <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: grey;">
+                     <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="194.0">
+                                 <children>
+                                    <Button fx:id="backButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="64.0" styleClass="edit-button" text="Späť" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets left="80.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="finishTournamentButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="79.0" styleClass="edit-button" text="Ukončiť" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label text="Stav:" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tournamentStateLabel" text="Upraviteľný" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Víťaz:" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tournamentWinnerLabel" text="-" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="80.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
             <VBox prefHeight="753.0" prefWidth="516.0" HBox.hgrow="ALWAYS">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button layoutX="166.0" layoutY="74.0" mnemonicParsing="false" onAction="#nextRound" prefHeight="53.0" prefWidth="163.0" text="Ďalšie kolo" />
+                        <Button layoutX="183.0" layoutY="74.0" mnemonicParsing="false" onAction="#nextRound" prefHeight="88.0" prefWidth="218.0" styleClass="edit-button" text="Ďalšie kolo" textFill="#6bfc03">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font></Button>
                      </children>
                   </Pane>
                   <Region VBox.vgrow="ALWAYS" />

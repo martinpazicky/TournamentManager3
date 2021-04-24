@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="411.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.createTournament.CreateTournamentInfo">
+<AnchorPane prefHeight="393.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.createTournament.CreateTournamentInfo">
    <children>
       <Label layoutX="128.0" layoutY="14.0" text="Váš turnaj je takmer hotový! ">
          <font>
@@ -47,7 +47,7 @@
             <FontAwesomeIconView glyphName="REFRESH" layoutX="76.0" layoutY="57.0" size="50" />
          </children>
       </AnchorPane>
-      <Button layoutX="-6.0" layoutY="335.0" mnemonicParsing="false" onAction="#checkInfo" prefHeight="79.0" prefWidth="722.0" style="-fx-background-color: #d9e3d8;">
+      <Button layoutX="-6.0" layoutY="335.0" mnemonicParsing="false" onAction="#checkInfo" prefHeight="51.0" prefWidth="722.0" style="-fx-background-color: #d9e3d8;">
          <graphic>
             <FontAwesomeIconView glyphName="PLAY" size="50" />
          </graphic>
