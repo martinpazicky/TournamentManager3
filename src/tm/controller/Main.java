@@ -40,6 +40,8 @@ public class Main extends Application {
         ScreenController.addScreen("tournamentDetail", "/tm/view/tournamentDetail.fxml");
         ScreenController.addScreen("createTournamentType", "/tm/view/createTournamentType.fxml");
         ScreenController.addScreen("chooseParticipantsType", "/tm/view/chooseParticipantsType.fxml");
+        ScreenController.addScreen("createParticipants", "/tm/view/createParticipants.fxml");
+        ScreenController.addScreen("createTournamentInfo", "/tm/view/createTournamentGeneral.fxml");
     }
 
 
@@ -79,15 +81,6 @@ public class Main extends Application {
 //
 //        Database.loadAll();
         testElimination();
-        File f = new File("src/tm/resources/participants.xml");
-        List<Participant> participants = XMLParser.parseParticipants(f);
-        for (Participant p :
-        participants             ) {
-            System.out.println(p.getNickName());
-            System.out.println(p.getAge());
-            System.out.println(p.getFirstName());
-            System.out.println(p.getLastName());
-        }
 
         List<Tournament> t = Database.tournaments.getItems();
         launch(args);
