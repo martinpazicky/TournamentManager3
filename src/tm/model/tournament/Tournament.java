@@ -115,6 +115,8 @@ public class Tournament implements Serializable {
         s.writeObject(tournamentWinner.getValue());
     }
 
+
+
     private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         this.tournamentWinner = new SimpleObjectProperty<>();

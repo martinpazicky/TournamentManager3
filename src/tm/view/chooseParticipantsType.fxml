@@ -67,6 +67,6 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="amountTextField" layoutX="173.0" layoutY="72.0" prefHeight="42.0" prefWidth="387.0" promptText="sadasd" />
+      <TextField fx:id="amountTextField" layoutX="173.0" layoutY="72.0" prefHeight="42.0" prefWidth="387.0" />
    </children>
 </AnchorPane>
