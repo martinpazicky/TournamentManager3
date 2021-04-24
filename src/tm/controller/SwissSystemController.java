@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,7 +33,19 @@ public class SwissSystemController implements Initializable {
     @FXML
     private AnchorPane rootAP;
 
-    public Integer roundCounter = 1;
+
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button resultsButton;
+    @FXML
+    private Button finishTournamentButton;
+    @FXML
+    private Label tournamentWinnerLabel;
+    @FXML
+    private Label tournamentStateLabel;
+
+    public Integer roundCounter = 0;
 
     @FXML
     private TableView<ParticipantRecord> participantsTable;
@@ -60,59 +73,76 @@ public class SwissSystemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         rootAP.getStylesheets().add("tm/resources/css/swissSystem.css");
         participantsTable.getStylesheets().add("tm/resources/css/table.css");
         participants = swissSystem.getParticipants();
         brackets = swissSystem.getBrackets();
 
-        AnchorPane anchorPane = new AnchorPane();
+        if (swissSystem.isFinished()){
+            int i = 0;
+            while (brackets[i].get(0).getMatch().getParticipant1().getValue() != null || swissSystem.getMaxRounds() == i)
+            {
+                printNextRound();
+                i++;
+            }
+        }
+        else {
+            AnchorPane anchorPane = new AnchorPane();
 
-        for(int i = 0; i < brackets[0].size(); i++){
+            for(int i = 0; i < brackets[0].size(); i++){
 
-            AnchorPane pane = new AnchorPane();
+                AnchorPane pane = new AnchorPane();
 
-            Label label = new Label(" " + "Round" + " " + roundCounter);
-            label.setTextFill(Color.web("#6bfc03"));
-            label.setFont(new Font(30));
-            label.setWrapText(true);
-            label.setFont(new Font(20.0));
-            label.setLayoutY(40);
-            label.setLayoutX(20);
+                Label label = new Label(" " + "Round" + " " + (roundCounter + 1));
+                label.setTextFill(Color.web("#6bfc03"));
+                label.setFont(new Font(30));
+                label.setWrapText(true);
+                label.setFont(new Font(20.0));
+                label.setLayoutY(40);
+                label.setLayoutX(20);
 
-            anchorPane.getChildren().add(label);
+                anchorPane.getChildren().add(label);
 
-            SwissBracket actualBracket;
+                SwissBracket actualBracket;
 
-            actualBracket =  brackets[0].get(i);
-            SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket);
-            //if cell have score
-            if (swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue() >= 0){
-                String score1 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue());
-                String score2 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant2ScoreProperty().getValue());
-                swissBracketFX.getParticipant1Score().setText((score1));
-                swissBracketFX.getParticipant2Score().setText((score2));
+                actualBracket =  brackets[0].get(i);
+                SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket, swissSystem);
+                //if cell have score
+//                if (swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue() >= 0){
+//                    String score1 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue());
+//                    String score2 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant2ScoreProperty().getValue());
+//                    swissBracketFX.getParticipant1Score().setText((score1));
+//                    swissBracketFX.getParticipant2Score().setText((score2));
+//                }
+
+
+                swissBracketFX.getSetResultBtn().setOnAction(event -> {
+                    swissBracketFX.setResult();
+                    addPoints();
+                });
+                pane.getChildren().add(swissBracketFX);
+
+                anchorPane.getChildren().add(pane);
+
+                yLayout = yLayout + 80;
+                pane.setLayoutY(yLayout);
             }
 
-
-            swissBracketFX.getSetResultBtn().setOnAction(event -> {
-//                ParticipantRecord participant1Record = swissSystem.getParticipantsToRecords().get(swissBracketFX.getSwissBracket().getMatch().getParticipant1().getValue());
-//                participant1Record.set
-                swissBracketFX.setResult();
-                addPoints();
-            });
-            pane.getChildren().add(swissBracketFX);
-
-            anchorPane.getChildren().add(pane);
-
             yLayout = yLayout + 80;
-            pane.setLayoutY(yLayout);
+
+            rootAP.getChildren().addAll(anchorPane);
+            roundCounter =+ 1;
         }
-
-        yLayout = yLayout + 80;
-
-        rootAP.getChildren().addAll(anchorPane);
-        roundCounter =+ 1;
         setTable();
+
+        if (swissSystem.isFinished()){
+            tournamentStateLabel.setText("Ukončený");
+            resultsButton.setDisable(true);
+            ParticipantRecord winnerRecord = participantsTable.getItems().get(0);
+            Participant winner = winnerRecord.getParticipant();
+            tournamentWinnerLabel.setText(winner.getNickName());
+        }
     }
 
 
@@ -137,7 +167,16 @@ public class SwissSystemController implements Initializable {
             SwissBracket actualBracket;
 
             actualBracket =  brackets[roundCounter].get(i);
-            SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket);
+            SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket, swissSystem);
+
+            //if cell have score
+            if (swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue() >= 0){
+                String score1 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue());
+                String score2 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant2ScoreProperty().getValue());
+                swissBracketFX.getParticipant1Score().setText((score1));
+                swissBracketFX.getParticipant2Score().setText((score2));
+            }
+
             swissBracketFX.getSetResultBtn().setOnAction(event -> {
                 swissBracketFX.setResult();
                 addPoints();
@@ -258,6 +297,7 @@ public class SwissSystemController implements Initializable {
         Participant bestMatch = null;
 
         //find best match for all participants
+        int maxSize = participants.size() - (participants.size() % 2);
         while (true) {
             Random randomizer = new Random();
             Participant participant1 = participants.get(randomizer.nextInt(participants.size()));
@@ -305,7 +345,7 @@ public class SwissSystemController implements Initializable {
             if (bestMatch != null){
                 pairs.add(participant1);
                 pairs.add(bestMatch);
-                if (pairs.size() == participants.size()){
+                if (pairs.size() == maxSize){
                     break;
                 }
             }
@@ -324,5 +364,18 @@ public class SwissSystemController implements Initializable {
         printNextRound();
         }
 
-
+    @FXML
+    public void goBack(){
+        TournamentDetailController.tournament = swissSystem;
+        ScreenController.activate("tournamentDetail");
+    }
+    @FXML
+    public void finish(){
+        swissSystem.setFinished(true);
+        tournamentStateLabel.setText("Ukončený");
+        ParticipantRecord winnerRecord = participantsTable.getItems().get(0);
+        Participant winner = winnerRecord.getParticipant();
+        tournamentWinnerLabel.setText(winner.getNickName());
+        swissSystem.setTournamentWinner(winner);
+    }
 }

@@ -45,7 +45,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="194.0">
                                  <children>
-                                    <Button fx:id="backButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="64.0" styleClass="edit-button" text="Späť" textFill="WHITE">
+                                    <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="64.0" styleClass="edit-button" text="Späť" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="80.0" />
                                        </HBox.margin>
@@ -53,7 +53,7 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="finishTournamentButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="79.0" styleClass="edit-button" text="Ukončiť" textFill="WHITE">
+                                    <Button fx:id="finishTournamentButton" mnemonicParsing="false" onAction="#finish" prefHeight="38.0" prefWidth="79.0" styleClass="edit-button" text="Ukončiť" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -111,7 +111,7 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button layoutX="78.0" layoutY="69.0" mnemonicParsing="false" onAction="#updateTable" prefHeight="95.0" prefWidth="281.0" styleClass="edit-button" text="Aktualizovať výsledky" textFill="#6bfc03">
+                        <Button fx:id="resultsButton" layoutX="78.0" layoutY="69.0" mnemonicParsing="false" onAction="#updateTable" prefHeight="95.0" prefWidth="281.0" styleClass="edit-button" text="Aktualizovať výsledky" textFill="#6bfc03">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font></Button>

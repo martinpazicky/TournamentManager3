@@ -1,5 +1,6 @@
 package tm.controller;
 
+import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +34,8 @@ public class FreeForAllController implements Initializable {
 
     @FXML
     private Button backButton;
+    @FXML
+    private Button resultsButton;
     @FXML
     private Button finishTournamentButton;
     @FXML
@@ -157,6 +160,13 @@ public class FreeForAllController implements Initializable {
 
         }
         setTable();
+        if (freeForAll.isFinished()){
+            tournamentStateLabel.setText("Ukončený");
+            resultsButton.setDisable(true);
+            ParticipantRecord winnerRecord = participantsTable.getItems().get(0);
+            Participant winner = winnerRecord.getParticipant();
+            tournamentWinnerLabel.setText(winner.getNickName());
+        }
     }
 
     public void setTable() {
@@ -241,5 +251,20 @@ public class FreeForAllController implements Initializable {
         participantsTable.setItems(getParticipantsRecords());
         pointsCol.setSortType(TableColumn.SortType.DESCENDING);
         participantsTable.getSortOrder().add(pointsCol);
+    }
+
+    @FXML
+    public void goBack(){
+        TournamentDetailController.tournament = freeForAll;
+        ScreenController.activate("tournamentDetail");
+    }
+    @FXML
+    public void finish(){
+        freeForAll.setFinished(true);
+        tournamentStateLabel.setText("Ukončený");
+        ParticipantRecord winnerRecord = participantsTable.getItems().get(0);
+        Participant winner = winnerRecord.getParticipant();
+        tournamentWinnerLabel.setText(winner.getNickName());
+        freeForAll.setTournamentWinner(winner);
     }
 }

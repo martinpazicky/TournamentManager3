@@ -23,19 +23,18 @@ public class ChooseParticipantsTypeController {
     public void generateParticipants(){
         if (amountTextField.getText().equals(""))
             System.out.println("Braskou daj pocet ucastnikov");
-        if (Utils.isInteger(amountTextField.getText())){
+        else if (Utils.isInteger(amountTextField.getText())){
             int amount = Integer.parseInt(amountTextField.getText());
             for (int i = 1; i <= amount; i++ ){
                 String name = "jozo" + i;
                 Participant p = new Participant(name);
                 participants.add(p);
             }
+            goToInfo();
         }
         else {
             System.out.println("Davaj cislo braskou");
         }
-        goToInfo();
-
     }
 
 
