@@ -12,6 +12,7 @@ import tm.controller.bracketFX.BracketFX;
 import tm.model.Bracket;
 import tm.model.Participant;
 import tm.model.tournament.Tournament;
+import tm.view.AlertBox;
 
 import java.util.List;
 import java.util.Map;
@@ -147,11 +148,16 @@ public class EliminationsUtility {
         );
         finishButton.setOnAction(
                 e ->{
+                    if (tournament.isFinished()) {
+                        AlertBox.displayError("Chyba", "Turnaj uz bol ukonceny");
+                        return;
+                    }
                     if (tournament.getTournamentWinner() != null) {
                         tournamentState.setText("Ukončený");
                         tournament.setFinished(true);
                         changeButtonsIcons(brToBrFX);
                         }
+                    else AlertBox.displayError("Chyba","Pre ukončenie musí byť určený víťaz");
                     }
         );
     }

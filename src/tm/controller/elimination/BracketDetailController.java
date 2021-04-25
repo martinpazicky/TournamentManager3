@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import tm.controller.ScreenController;
 import tm.controller.utility.Utils;
 import tm.model.Bracket;
+import tm.view.AlertBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,19 +56,26 @@ public class BracketDetailController implements Initializable {
 
     @FXML
     public void handleSetWinnerP1Button(){
-        if (editable && bracket.getMatch().getParticipant1().getValue() != null) {
-            bracket.setWinner(bracket.getMatch().getParticipant1().getValue());
-            winnerLabel.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
+        if (editable){
+            if (bracket.getMatch().getParticipant1().getValue() != null){
+                bracket.setWinner(bracket.getMatch().getParticipant1().getValue());
+                winnerLabel.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
+            }
+            else AlertBox.displayError("Chyba","Hráč neexistuje");
         }
+        else AlertBox.displayError("Chyba","Turnaj už nie je možné upravovať");
     }
 
     @FXML
     public void handleSetWinnerP2Button(){
-        if (editable && bracket.getMatch().getParticipant2().getValue() != null) {
-            bracket.setWinner(bracket.getMatch().getParticipant2().getValue());
-            winnerLabel.setText(bracket.getMatch().getParticipant2().getValue().getNickName());
-
+        if (editable) {
+            if (bracket.getMatch().getParticipant2().getValue() != null) {
+                bracket.setWinner(bracket.getMatch().getParticipant2().getValue());
+                winnerLabel.setText(bracket.getMatch().getParticipant2().getValue().getNickName());
+            }
+            else AlertBox.displayError("Chyba","Hráč neexistuje");
         }
+        else AlertBox.displayError("Chyba","Turnaj už nie je možné upravovať");
     }
 
     @FXML
@@ -76,6 +84,7 @@ public class BracketDetailController implements Initializable {
             winnerLabel.setText("-");
             bracket.unsetWinner();
         }
+        else AlertBox.displayError("Chyba","Turnaj už nie je možné upravovať");
     }
 
     @FXML
