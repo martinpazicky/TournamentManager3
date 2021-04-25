@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tm.controller.ScreenController;
 import tm.model.Participant;
+import tm.view.AlertBox;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -52,8 +53,7 @@ public class CreateParticipantsController implements Initializable {
 
         if( firstName == null || firstName.trim().isEmpty() || lastName == null || lastName.trim().isEmpty() || nickName == null || nickName.trim().isEmpty())
         {
-//            root.controller.AlertBox.display("CHYBA","Vyplnte prosím všetky polia");
-            //TODO AlERT BOX
+            AlertBox.displayError("CHUBA", "Vyplnte prosím všetky polia.");
         }
         else
         {
@@ -84,7 +84,7 @@ public class CreateParticipantsController implements Initializable {
         }
         else
         {
-//            root.controller.AlertBox.display("CHYBA","Pred kliknutim na zmazat, oznacte riadok tovaru, ktory si prajete zmazat.");
+            AlertBox.displayError("CHUBA", "Pred kliknutim na zmazat, oznacte riadok, ktory si prajete zmazat.");
         }
     }
 

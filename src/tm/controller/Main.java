@@ -54,17 +54,15 @@ public class Main extends Application {
         Scene scene = new Scene(root, 1400, 900);
         scene.getStylesheets().add("tm/resources/css/eliminations.css");
         primaryStage.getIcons().add(new Image("tm/resources/img/tm_icon.png"));
-//        AlertBox.displayError("Nadpis","Sprava");
         initializeScreenController(primaryStage,scene);
         primaryStage.setTitle("TM");
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setMinWidth(1200);
-        primaryStage.setMinHeight(700);
+        primaryStage.setWidth(500);
+        primaryStage.setHeight(450);
     }
 
     public static void main(String[] args) {
-
 //        List<Participant> participants = createParticipants(8);
 //        FreeForAll freeForAll = new FreeForAll("Tabulka", participants);
 //        List<Bracket>[] brackets2 = freeForAll.getBrackets();
@@ -118,7 +116,6 @@ public class Main extends Application {
 
         List<Participant> participants = XMLParser.parseParticipants(f);
 
-//        List<Participant> participants = Main.createParticipants(11);
         SingleElimination de = new SingleElimination("turnaj", participants);
 //        DoubleElimination de = new DoubleElimination("Fakt velky turnaj ",participants);
         de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());
