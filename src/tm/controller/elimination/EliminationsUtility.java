@@ -149,7 +149,7 @@ public class EliminationsUtility {
         finishButton.setOnAction(
                 e ->{
                     if (tournament.isFinished()) {
-                        AlertBox.displayError("Chyba", "Turnaj uz bol ukonceny");
+                        AlertBox.displayError("Chyba", "Turnaj uz bol ukončený");
                         return;
                     }
                     if (tournament.getTournamentWinner() != null) {
