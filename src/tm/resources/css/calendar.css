@@ -11,33 +11,30 @@
 
 .month-buttons {
     -fx-background-color:
-            linear-gradient(#cad1b4, #88a822),
-            linear-gradient(#cad1b4, #7a9620),
-            linear-gradient(#cad1b4, #5e7319);
+            linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),
+            linear-gradient(#020b02, #3a3a3a),
+            linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),
+            linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),
+            linear-gradient(#777777 0%, #606060 50%, #505250 51%, #2a2b2a 100%);
     -fx-background-insets: 0,1,2,3;
     -fx-background-radius: 3,2,2,2;
     -fx-padding: 12 30 12 30;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-border-color: black;
-    -fx-border-width: 1 ;
+    -fx-border-width: 1;
 }
 
-
-.month-buttons:hover {
-    -fx-background-color : #9fbf36;
-    /*-fx-border-radius: 20px;*/
-}
 
 .button:hover
 {
-    -fx-scale-y: 1.1;
-    -fx-text-fill: black;
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
 }
 .button:pressed
 {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-    -fx-background-color : #7156DD ;
+    -fx-scale-y: 0.95;
+    -fx-scale-x: 0.95;
+    -fx-background-color : black ;
 }

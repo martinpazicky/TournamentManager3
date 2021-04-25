@@ -1,4 +1,4 @@
-package tm.calendar;
+package tm.controller.calendar;
 
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -22,8 +22,6 @@ public class AnchorPaneNode extends AnchorPane {
         super(children);
         this.setMinHeight(150);
         this.getStyleClass().add("calendar-cell");
-        // Add action handler for mouse clicked
-        this.setOnMouseClicked(e -> System.out.println("This pane's date is: " + date));
     }
 
     public LocalDate getDate() {

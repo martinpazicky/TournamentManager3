@@ -1,4 +1,4 @@
-package tm.controller;
+package tm.controller.elimination;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -7,9 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import tm.controller.ScreenController;
 import tm.controller.bracketFX.BracketFX;
-import tm.controller.utility.EliminationsUtility;
 import tm.model.Bracket;
 import tm.model.Participant;
 import tm.model.tournament.DoubleElimination;
@@ -52,7 +51,7 @@ public class DoubleEliminationController implements Initializable {
         EliminationsUtility.renderLines(looserBrackets,brToBrFX,rootAP);
         EliminationsUtility.renderUtilities(doubleElimination,brToBrFX,finishTournamentButton,
                 backButton,tournamentWinnerLabel,tournamentStateLabel);
-        rootAP.setPrefHeight(Math.max(Y + dy,ScreenController.main.getHeight()));
+        rootAP.setPrefHeight(Math.max(Y + dy, ScreenController.main.getHeight()));
         rootAP.setPrefWidth(Math.max(maxX + dx,ScreenController.main.getWidth()));
     }
 

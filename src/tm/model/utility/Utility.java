@@ -1,4 +1,4 @@
-package tm.model;
+package tm.model.utility;
 
 public class Utility {
     public static int log2(int N)

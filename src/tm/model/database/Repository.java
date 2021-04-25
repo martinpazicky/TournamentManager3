@@ -1,6 +1,6 @@
 package tm.model.database;
 
-import tm.model.MyLogger;
+import tm.model.utility.MyLogger;
 
 import java.io.*;
 import java.util.ArrayList;

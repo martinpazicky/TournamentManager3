@@ -1,13 +1,10 @@
 package tm.controller.bracketFX;
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
-import tm.controller.BracketDetailController;
-import tm.controller.ScreenController;
 import tm.model.Bracket;
 import tm.model.Participant;
 

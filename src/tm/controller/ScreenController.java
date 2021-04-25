@@ -1,17 +1,12 @@
 package tm.controller;
 
-import com.sun.glass.ui.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import tm.calendar.FullCalendarView;
 
 import java.io.IOException;
-import java.time.YearMonth;
 import java.util.HashMap;
 
 public class ScreenController {

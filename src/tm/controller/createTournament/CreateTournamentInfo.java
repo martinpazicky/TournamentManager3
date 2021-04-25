@@ -32,35 +32,7 @@ public class CreateTournamentInfo {
     @FXML
     private TextField sportTextField;
 
-    // REGEX NA SKONTROLOVANIE ZADANEJ CENY
-    final String Digits     = "(\\p{Digit}+)";
-    final String HexDigits  = "(\\p{XDigit}+)";
-    // an exponent is 'e' or 'E' followed by an optionally
-    // signed decimal integer.
-    final String Exp        = "[eE][+-]?"+Digits;
-    public final String fpRegex    =
-            ("[\\x00-\\x20]*"+ // Optional leading "whitespace"
-                    "[+-]?(" +         // Optional sign character
-                    "NaN|" +           // "NaN" string
-                    "Infinity|" +      // "Infinity" string
 
-                    // Digits ._opt Digits_opt ExponentPart_opt FloatTypeSuffix_opt
-                    "((("+Digits+"(\\.)?("+Digits+"?)("+Exp+")?)|"+
-
-                    // . Digits ExponentPart_opt FloatTypeSuffix_opt
-                    "(\\.("+Digits+")("+Exp+")?)|"+
-
-                    // Hexadecimal strings
-                    "((" +
-                    // 0[xX] HexDigits ._opt BinaryExponent FloatTypeSuffix_opt
-                    "(0[xX]" + HexDigits + "(\\.)?)|" +
-
-                    // 0[xX] HexDigits_opt . HexDigits BinaryExponent FloatTypeSuffix_opt
-                    "(0[xX]" + HexDigits + "?(\\.)" + HexDigits + ")" +
-
-                    ")[pP][+-]?" + Digits + "))" +
-                    "[fFdD]?))" +
-                    "[\\x00-\\x20]*");// Optional trailing "whitespace"
 
 
     public void checkInfo(){
@@ -75,7 +47,7 @@ public class CreateTournamentInfo {
             if(rounds.equals("")){
                 finish(name);
             }
-            else if (Pattern.matches(fpRegex, rounds)) {
+            else if (Utils.isInteger(rounds)) {
                 numOfAllRounds = Integer.parseInt(rounds);
                 finish(name);
             }
@@ -92,6 +64,7 @@ public class CreateTournamentInfo {
         if (tournamentType.equals(TournamentTypeMeta.getSwissSystemName())){
             SwissSystem swissSystem = new SwissSystem(name, participants);
             swissSystem.setDate(localDate);
+            swissSystem.setSportType(sportTextField.getText());
             Database.tournaments.add(swissSystem);
             TournamentDetailController.tournament = swissSystem;
             ScreenController.activate("tournamentDetail");
@@ -99,6 +72,7 @@ public class CreateTournamentInfo {
         else if (tournamentType.equals(TournamentTypeMeta.getRoundRobinName())){
             FreeForAll freeForAll = new FreeForAll(name, participants, numOfAllRounds);
             freeForAll.setDate(localDate);
+            freeForAll.setSportType(sportTextField.getText());
             Database.tournaments.add(freeForAll);
             TournamentDetailController.tournament = freeForAll;
             ScreenController.activate("tournamentDetail");
@@ -106,6 +80,7 @@ public class CreateTournamentInfo {
         else if (tournamentType.equals(TournamentTypeMeta.getDoubleEliminationName())){
             DoubleElimination doubleElimination = new DoubleElimination(name, participants);
             doubleElimination.setDate(localDate);
+            doubleElimination.setSportType(sportTextField.getText());
             Database.tournaments.add(doubleElimination);
             TournamentDetailController.tournament = doubleElimination;
             ScreenController.activate("tournamentDetail");
@@ -113,6 +88,7 @@ public class CreateTournamentInfo {
         else if (tournamentType.equals(TournamentTypeMeta.getSingleEliminationName())){
             SingleElimination singleElimination = new SingleElimination(name, participants);
             singleElimination.setDate(localDate);
+            singleElimination.setSportType(sportTextField.getText());
             Database.tournaments.add(singleElimination);
             TournamentDetailController.tournament = singleElimination;
             ScreenController.activate("tournamentDetail");

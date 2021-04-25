@@ -4,11 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import tm.controller.utility.XMLParser;
 import tm.model.Participant;
 import tm.model.database.Database;
 import tm.model.tournament.*;
+import tm.view.AlertBox;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -36,7 +38,7 @@ public class Main extends Application {
         ScreenController.addScreen("freeForAll", "/tm/view/freeForAll.fxml");
         ScreenController.addScreen("swissSystem", "/tm/view/swissSystem.fxml");
         ScreenController.addScreen("bracketDetail", "/tm/view/bracketDetail.fxml");
-        ScreenController.addScreen("calendar", "/tm/calendar/fullCalendar.fxml");
+        ScreenController.addScreen("calendar", "/tm/controller/calendar/fullCalendar.fxml");
         ScreenController.addScreen("tournamentDetail", "/tm/view/tournamentDetail.fxml");
         ScreenController.addScreen("createTournamentType", "/tm/view/createTournamentType.fxml");
         ScreenController.addScreen("chooseParticipantsType", "/tm/view/chooseParticipantsType.fxml");
@@ -51,6 +53,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/tm/view/home.fxml"));
         Scene scene = new Scene(root, 1400, 900);
         scene.getStylesheets().add("tm/resources/css/eliminations.css");
+        primaryStage.getIcons().add(new Image("tm/resources/img/tm_icon.png"));
+//        AlertBox.displayError("Nadpis","Sprava");
         initializeScreenController(primaryStage,scene);
         primaryStage.setTitle("TM");
         primaryStage.setScene(scene);
@@ -82,7 +86,6 @@ public class Main extends Application {
 //        Database.loadAll();
         testElimination();
 
-        List<Tournament> t = Database.tournaments.getItems();
         launch(args);
         Database.saveAll();
 

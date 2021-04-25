@@ -20,6 +20,7 @@ public class Tournament implements Serializable {
     boolean isFinished;
     protected transient ObjectProperty<Participant> tournamentWinner = new SimpleObjectProperty<>();
     protected String typeString;
+    private String sportType;
 
     public Tournament(String name, List<Participant> participants) {
         this.name = name;
@@ -101,15 +102,15 @@ public class Tournament implements Serializable {
         }
         return "#34a32e";
     }
-//    public String getHoverColor(){
-//        if (this instanceof FreeForAll) {
-//            return "#4281f5";
-//        }
-//        else if (this instanceof DoubleElimination) {
-//            return "#de213a";
-//        }
-//        return "#34a32e";
-//    }
+
+    public String getSportType() {
+        return sportType;
+    }
+
+    public void setSportType(String sportType) {
+        this.sportType = sportType;
+    }
+
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
         s.writeObject(tournamentWinner.getValue());

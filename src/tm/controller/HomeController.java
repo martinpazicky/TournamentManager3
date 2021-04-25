@@ -1,12 +1,8 @@
 package tm.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import tm.calendar.FullCalendarView;
+import tm.controller.calendar.FullCalendarView;
 
-import java.awt.*;
-import java.net.URL;
 import java.time.YearMonth;
 
 public class HomeController {

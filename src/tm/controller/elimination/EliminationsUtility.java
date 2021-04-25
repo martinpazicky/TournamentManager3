@@ -1,4 +1,4 @@
-package tm.controller.utility;
+package tm.controller.elimination;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.property.ObjectProperty;
@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
-import tm.controller.BracketDetailController;
 import tm.controller.ScreenController;
 import tm.controller.TournamentDetailController;
 import tm.controller.bracketFX.BracketFX;

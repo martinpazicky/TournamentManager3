@@ -1,4 +1,4 @@
-package tm.controller;
+package tm.controller.elimination;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
+import tm.controller.ScreenController;
 import tm.controller.utility.Utils;
 import tm.model.Bracket;
 

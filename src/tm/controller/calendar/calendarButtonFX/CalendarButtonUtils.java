@@ -1,4 +1,4 @@
-package tm.controller.calendarButtonFX;
+package tm.controller.calendar.calendarButtonFX;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

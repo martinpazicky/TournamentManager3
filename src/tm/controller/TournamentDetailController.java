@@ -8,7 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import tm.calendar.FullCalendarView;
+import tm.controller.calendar.FullCalendarView;
+import tm.controller.elimination.DoubleEliminationController;
+import tm.controller.elimination.SingleEliminationController;
 import tm.model.Participant;
 import tm.model.tournament.*;
 import java.net.URL;
@@ -21,6 +23,8 @@ public class TournamentDetailController implements Initializable {
     private Label tournamentNameLabel;
     @FXML
     private Label tournamentDateLabel;
+    @FXML
+    private Label tournamentSportLabel;
     @FXML
     private Label tournamentTypeLabel;
     @FXML
@@ -56,6 +60,7 @@ public class TournamentDetailController implements Initializable {
         tournamentNameLabel.setText(tournament.getName());
         tournamentDateLabel.setText(tournament.getDate().toString());
         tournamentTypeLabel.setText(tournament.getTypeString());
+        tournamentSportLabel.setText(tournament.getSportType());
         if (tournament.isFinished())
             tournamentStateLabel.setText(tournamentStates.FINISHED.getCaution());
         else
@@ -92,9 +97,9 @@ public class TournamentDetailController implements Initializable {
 
     private void setTableView(){
         participantNickCol.prefWidthProperty().bind(participantsTable.widthProperty().multiply(0.3));
-        participantNickCol.prefWidthProperty().bind(participantsTable.widthProperty().multiply(0.3));
-        participantNickCol.prefWidthProperty().bind(participantsTable.widthProperty().multiply(0.3));
-        participantNickCol.prefWidthProperty().bind(participantsTable.widthProperty().multiply(0.1));
+        participantFirstNameCol.prefWidthProperty().bind(participantsTable.widthProperty().multiply(0.3));
+        participantLastNameCol.prefWidthProperty().bind(participantsTable.widthProperty().multiply(0.3));
+        participantAgeCol.prefWidthProperty().bind(participantsTable.widthProperty().multiply(0.1));
         participantNickCol.setCellValueFactory(new PropertyValueFactory<>("nickName"));
         participantFirstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         participantLastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));

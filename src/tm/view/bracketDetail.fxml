@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="298.0" prefWidth="350.0" styleClass="bracket-detail-root-pane" stylesheets="@../resources/css/eliminations.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.BracketDetailController">
+<AnchorPane prefHeight="298.0" prefWidth="350.0" styleClass="bracket-detail-root-pane" stylesheets="@../resources/css/eliminations.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.elimination.BracketDetailController">
    <children>
       <Button fx:id="SetWinnerP1Button" layoutX="34.0" layoutY="102.0" mnemonicParsing="false" onAction="#handleSetWinnerP1Button" prefHeight="44.0" prefWidth="129.0" styleClass="edit-button" text="-" textFill="WHITE" />
       <Button fx:id="SetWinnerP2Button" layoutX="187.0" layoutY="102.0" mnemonicParsing="false" onAction="#handleSetWinnerP2Button" prefHeight="44.0" prefWidth="129.0" styleClass="edit-button" text="-" textFill="WHITE" />

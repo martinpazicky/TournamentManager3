@@ -1,4 +1,4 @@
-package tm.model;
+package tm.model.utility;
 
 import java.util.logging.Logger;
 

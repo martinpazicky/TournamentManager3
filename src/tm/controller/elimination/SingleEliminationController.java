@@ -1,4 +1,4 @@
-package tm.controller;
+package tm.controller.elimination;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -7,12 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Line;
+import tm.controller.ScreenController;
 import tm.controller.bracketFX.BracketFX;
-import tm.controller.utility.EliminationsUtility;
 import tm.model.Bracket;
 import tm.model.Participant;
-import tm.model.database.Database;
 import tm.model.tournament.SingleElimination;
 import java.net.URL;
 import java.util.*;
@@ -71,7 +69,7 @@ public class SingleEliminationController implements Initializable {
             maxX = x;
             x += dx;
         }
-        rootAP.setPrefHeight(Math.max(maxY + dy,ScreenController.main.getHeight()));
+        rootAP.setPrefHeight(Math.max(maxY + dy, ScreenController.main.getHeight()));
         rootAP.setPrefWidth(Math.max(maxX + dx,ScreenController.main.getWidth()));
     }
 

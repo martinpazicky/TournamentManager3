@@ -1,6 +1,6 @@
-package tm.calendar;
+package tm.controller.calendar;
 
-import javafx.fxml.FXMLLoader;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import tm.controller.ScreenController;
-import tm.controller.calendarButtonFX.CalendarButtonFX;
+import tm.controller.calendar.calendarButtonFX.CalendarButtonFX;
 import tm.model.database.Database;
 import tm.model.tournament.Tournament;
 
@@ -81,7 +81,21 @@ public class FullCalendarView {
         nextMonth.getStyleClass().add("month-buttons");
 
         nextMonth.setOnAction(e -> nextMonth());
-        Button backButton = new Button("Späť");
+        Button backButton = new Button();
+        FontAwesomeIconView fontIconView = new FontAwesomeIconView();
+        fontIconView.setGlyphName("ARROW_LEFT");
+        fontIconView.setSize("25");
+        fontIconView.setStyle("-fx-text-alignment: center;" +
+                "-fx-fill:white;");
+        backButton.setPrefWidth(60);
+        backButton.setPrefHeight(35);
+        backButton.setGraphic(fontIconView);
+        backButton.setStyle("-fx-background-color:\n" +
+                "            linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),\n" +
+                "            linear-gradient(#020b02, #3a3a3a),\n" +
+                "            linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),\n" +
+                "            linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),\n" +
+                "            linear-gradient(#777777 0%, #606060 50%, #505250 51%, #2a2b2a 100%);");
         backButton.setOnAction(
                 e -> ScreenController.activate("home")
         );

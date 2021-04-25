@@ -1,16 +1,14 @@
 package tm.controller.utility;
 
+import java.util.regex.Pattern;
+
 public abstract class Utils {
 
     public static boolean isInteger(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch(NumberFormatException e) {
-            return false;
-        } catch(NullPointerException e) {
-            return false;
+        final String digitsRegex = "\\d+";
+        if (Pattern.matches(digitsRegex, s)){
+            return true;
         }
-        // only got here if we didn't return false
-        return true;
+        else return false;
     }
 }

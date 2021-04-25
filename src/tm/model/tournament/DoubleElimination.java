@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import tm.model.Bracket;
 import tm.model.Match;
 import tm.model.Participant;
-import tm.model.Utility;
+import tm.model.utility.Utility;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

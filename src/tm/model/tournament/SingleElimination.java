@@ -2,6 +2,7 @@ package tm.model.tournament;
 
 import javafx.beans.property.SimpleObjectProperty;
 import tm.model.*;
+import tm.model.utility.Utility;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

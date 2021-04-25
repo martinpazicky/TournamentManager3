@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,13 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="701.0" prefWidth="1201.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.TournamentDetailController">
+<AnchorPane prefHeight="701.0" prefWidth="1201.0" stylesheets="@../resources/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tm.controller.TournamentDetailController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="85.0" prefWidth="1201.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="tournamentNameLabel" text="nzv" textAlignment="CENTER">
                <font>
-                  <Font name="System Bold" size="29.0" />
+                  <Font name="System Bold" size="42.0" />
                </font>
                <HBox.margin>
                   <Insets top="10.0" />
@@ -33,12 +34,12 @@
           <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="857.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="120.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="564.0" minHeight="10.0" prefHeight="564.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="120.0" minHeight="55.0" prefHeight="6.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1000.0" minHeight="10.0" prefHeight="612.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="8.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="participantsTable" prefHeight="564.0" prefWidth="609.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TableView fx:id="participantsTable" prefHeight="564.0" prefWidth="609.0" stylesheets="@../resources/css/table.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
               <columns>
                 <TableColumn fx:id="participantNickCol" prefWidth="75.0" text="Prezívka" />
                 <TableColumn fx:id="participantFirstNameCol" prefWidth="123.0" text="Meno" />
@@ -49,17 +50,23 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </TableView>
-            <Button mnemonicParsing="false" onAction="#handleBackButton" prefHeight="31.0" prefWidth="28.0" text="b" />
+            <Button mnemonicParsing="false" onAction="#handleBackButton" prefHeight="39.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),            linear-gradient(#020b02, #3a3a3a),            linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),            linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),            linear-gradient(#777777 0%, #606060 50%, #505250 51%, #2a2b2a 100%);;">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="ARROW_LEFT" size="25" />
+               </graphic>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></Button>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
                   <HBox prefHeight="34.0" prefWidth="344.0">
                      <children>
-                        <Label text="Dátum:">
+                        <Label styleClass="infoLabel" text="Dátum:">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="tournamentDateLabel" text="dtm">
+                        <Label fx:id="tournamentDateLabel" styleClass="infoValueLabel" text="-">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -71,29 +78,12 @@
                   </HBox>
                   <HBox prefHeight="34.0" prefWidth="344.0">
                      <children>
-                        <Label text="Typ:">
+                        <Label styleClass="infoLabel" text="Šport">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="tournamentTypeLabel" text="typ">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="34.0" prefWidth="344.0">
-                     <children>
-                        <Label text="Label">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label fx:id="tournamentStateLabel" text="ukonceny">
+                        <Label fx:id="tournamentSportLabel" styleClass="infoValueLabel" text="-">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -105,12 +95,46 @@
                   </HBox>
                   <HBox prefHeight="34.0" prefWidth="344.0">
                      <children>
-                        <Label text="Víťaz">
+                        <Label styleClass="infoLabel" text="Typ:">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="tournamentWinnerLabel" text="-">
+                        <Label fx:id="tournamentTypeLabel" styleClass="infoValueLabel" text="-">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="34.0" prefWidth="344.0">
+                     <children>
+                        <Label styleClass="infoLabel" text="Label">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="tournamentStateLabel" styleClass="infoValueLabel" text="-">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="34.0" prefWidth="344.0">
+                     <children>
+                        <Label styleClass="infoLabel" text="Víťaz">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="tournamentWinnerLabel" styleClass="infoValueLabel" text="-">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -122,7 +146,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleEditButton" text="Spravovať" />
+                        <Button mnemonicParsing="false" onAction="#handleEditButton" prefHeight="46.0" prefWidth="128.0" styleClass="edit-button" text="Spravovať" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -133,7 +157,6 @@
                   <Insets />
                </GridPane.margin>
             </VBox>
-            <Button mnemonicParsing="false" text="Zmazať" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
