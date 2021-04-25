@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-public class CreateTournamentInfo {
+public class CreateTournamentInfo implements Initializable{
     public static String tournamentType;
     public static List<Participant> participants;
     public static int numOfAllRounds = 1;
@@ -96,5 +96,12 @@ public class CreateTournamentInfo {
         Stage stage = (Stage) numOfRounds.getScene().getWindow();
         // do what you have to do
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if (!(tournamentType.equals(TournamentTypeMeta.getRoundRobinName()))){
+            numOfRounds.setEditable(false);
+        }
     }
 }
