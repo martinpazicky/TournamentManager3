@@ -116,7 +116,6 @@ public class Main extends Application {
 
         List<Participant> participants = XMLParser.parseParticipants(f);
 
-//        List<Participant> participants = Main.createParticipants(11);
         SingleElimination de = new SingleElimination("turnaj", participants);
 //        DoubleElimination de = new DoubleElimination("Fakt velky turnaj ",participants);
         de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());
