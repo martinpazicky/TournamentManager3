@@ -13,6 +13,7 @@ import tm.model.Participant;
 import tm.model.database.Database;
 import tm.model.database.TournamentTypeMeta;
 import tm.model.tournament.*;
+import tm.view.AlertBox;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -40,7 +41,7 @@ public class CreateTournamentInfo implements Initializable{
         String name = nameTextField.getText();
         if( name == null || name.trim().isEmpty())
         {
-            //TODO AlERT BOX
+            AlertBox.displayError("CHUBA", "Prosím zadajte názov turnaja");
         }
         else
         {
@@ -52,8 +53,7 @@ public class CreateTournamentInfo implements Initializable{
                 finish(name);
             }
             else {
-//                root.controller.AlertBox.display("CHYBA","Cena musí byť zadaná ako číslo.");
-//                TODO ALERT BOX
+                AlertBox.displayError("CHUBA", "Počet kôl musí byť zadaný ako číslo");
             }
         }
     }
@@ -102,6 +102,7 @@ public class CreateTournamentInfo implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         if (!(tournamentType.equals(TournamentTypeMeta.getRoundRobinName()))){
             numOfRounds.setEditable(false);
+            numOfRounds.setStyle("-fx-control-inner-background: rgba(255,7,7,0.16)");
         }
     }
 }

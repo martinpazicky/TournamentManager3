@@ -7,6 +7,7 @@ import tm.controller.ScreenController;
 import tm.controller.utility.Utils;
 import tm.controller.utility.XMLParser;
 import tm.model.Participant;
+import tm.view.AlertBox;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,18 +23,18 @@ public class ChooseParticipantsTypeController {
 
     public void generateParticipants(){
         if (amountTextField.getText().equals(""))
-            System.out.println("Braskou daj pocet ucastnikov");
+            AlertBox.displayError("CHUBA", "Zadajte počet účastníkov pre vygenerovanie.");
         else if (Utils.isInteger(amountTextField.getText())){
             int amount = Integer.parseInt(amountTextField.getText());
             for (int i = 1; i <= amount; i++ ){
-                String name = "jozo" + i;
+                String name = "player" + i;
                 Participant p = new Participant(name);
                 participants.add(p);
             }
             goToInfo();
         }
         else {
-            System.out.println("Davaj cislo braskou");
+            AlertBox.displayError("CHUBA", "Počet účastníkov musí byť zadaný ako číslo.");
         }
     }
 
