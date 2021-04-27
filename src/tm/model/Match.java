@@ -32,7 +32,7 @@ public class Match implements Serializable {
         return winner;
     }
 
-    public Participant getLooser() {
+    public Participant getLoser() {
         if(winner.getValue() == participant1.getValue())
             return participant2.getValue();
         if(winner.getValue() == participant2.getValue())

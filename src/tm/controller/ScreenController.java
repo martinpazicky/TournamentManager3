@@ -3,6 +3,7 @@ package tm.controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -48,8 +49,7 @@ public class ScreenController {
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(stage);
             Scene dialogScene = new Scene(root, width, height);
-//            dialogScene.getStylesheets().add("booking/resources/style.css");
-//            dialog.getIcons().add(new Image("booking/resources/hotelIcon.jpg"));
+            dialog.getIcons().add(new Image("tm/resources/img/tm_icon.png"));
             dialog.setMaxWidth(width);
             dialog.setMaxHeight(height);
             dialog.setMinWidth(width);

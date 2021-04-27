@@ -41,7 +41,7 @@ public class CreateTournamentInfo implements Initializable{
         String name = nameTextField.getText();
         if( name == null || name.trim().isEmpty())
         {
-            AlertBox.displayError("CHUBA", "Prosím zadajte názov turnaja");
+            AlertBox.displayError("Chyba", "Prosím zadajte názov turnaja");
         }
         else
         {
@@ -53,7 +53,7 @@ public class CreateTournamentInfo implements Initializable{
                 finish(name);
             }
             else {
-                AlertBox.displayError("CHUBA", "Počet kôl musí byť zadaný ako číslo");
+                AlertBox.displayError("Chyba", "Počet kôl musí byť zadaný ako číslo");
             }
         }
     }

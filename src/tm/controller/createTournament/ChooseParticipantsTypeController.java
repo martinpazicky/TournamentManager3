@@ -23,7 +23,7 @@ public class ChooseParticipantsTypeController {
 
     public void generateParticipants(){
         if (amountTextField.getText().equals(""))
-            AlertBox.displayError("CHUBA", "Zadajte počet účastníkov pre vygenerovanie.");
+            AlertBox.displayError("Chyba", "Zadajte počet účastníkov pre vygenerovanie.");
         else if (Utils.isInteger(amountTextField.getText())){
             int amount = Integer.parseInt(amountTextField.getText());
             for (int i = 1; i <= amount; i++ ){
@@ -34,7 +34,7 @@ public class ChooseParticipantsTypeController {
             goToInfo();
         }
         else {
-            AlertBox.displayError("CHUBA", "Počet účastníkov musí byť zadaný ako číslo.");
+            AlertBox.displayError("Chyba", "Počet účastníkov musí byť zadaný ako číslo.");
         }
     }
 

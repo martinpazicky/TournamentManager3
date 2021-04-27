@@ -87,22 +87,6 @@ public class Tournament implements Serializable {
         this.typeString = typeString;
     }
 
-    public String getColor(){
-        if (this instanceof FreeForAll) {
-            return "#4281f5";
-        }
-        else if (this instanceof DoubleElimination) {
-            return "#870c1c";
-        }
-        else if (this instanceof SingleElimination) {
-            return "#b5b50e";
-        }
-        else if (this instanceof SwissSystem) {
-            return "#1520bf";
-        }
-        return "#34a32e";
-    }
-
     public String getSportType() {
         return sportType;
     }
