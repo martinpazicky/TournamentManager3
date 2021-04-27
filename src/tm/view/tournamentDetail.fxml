@@ -78,7 +78,7 @@
                   </HBox>
                   <HBox prefHeight="34.0" prefWidth="344.0">
                      <children>
-                        <Label styleClass="infoLabel" text="Šport">
+                        <Label styleClass="infoLabel" text="Šport:">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -112,7 +112,7 @@
                   </HBox>
                   <HBox prefHeight="34.0" prefWidth="344.0">
                      <children>
-                        <Label styleClass="infoLabel" text="Label">
+                        <Label styleClass="infoLabel" text="Stav:">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -129,7 +129,7 @@
                   </HBox>
                   <HBox prefHeight="34.0" prefWidth="344.0">
                      <children>
-                        <Label styleClass="infoLabel" text="Víťaz">
+                        <Label styleClass="infoLabel" text="Víťaz:">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
