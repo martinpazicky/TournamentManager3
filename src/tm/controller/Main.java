@@ -58,32 +58,15 @@ public class Main extends Application {
         primaryStage.setTitle("TM");
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setWidth(500);
-        primaryStage.setHeight(450);
+//        primaryStage.setWidth(500);
+//        primaryStage.setHeight(450);
     }
 
     public static void main(String[] args) {
-//        List<Participant> participants = createParticipants(8);
-//        FreeForAll freeForAll = new FreeForAll("Tabulka", participants);
-//        List<Bracket>[] brackets2 = freeForAll.getBrackets();
-//        Bracket r0c1 = brackets2[0].get(1);
-//        Bracket r0c2 = brackets2[0].get(2);
-//        Bracket r1c2 = brackets2[1].get(2);
-//        freeForAll.setWinner(r0c1, 1);
-//        freeForAll.setWinner(r0c2, 1);
-//        freeForAll.setWinner(r1c2, 1);
-//        Participant winner = freeForAll.countWinner();
-//        singleEliminationTest();
-
-
 //        testElimination();
 //        testTable();
 //        testSwiss();
-
-//
 //        Database.loadAll();
-        testElimination();
-
         launch(args);
         Database.saveAll();
 
