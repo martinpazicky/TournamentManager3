@@ -66,7 +66,7 @@ public class Main extends Application {
 //        testElimination();
 //        testTable();
 //        testSwiss();
-//        Database.loadAll();
+        Database.loadAll();
         launch(args);
         Database.saveAll();
 

@@ -41,7 +41,7 @@ public class DoubleEliminationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Bracket>[] brackets = doubleElimination.getBrackets();
-        List<Bracket>[] looserBrackets = doubleElimination.getLooserBrackets();
+        List<Bracket>[] looserBrackets = doubleElimination.getLoserBrackets();
         double dx = BracketFX.WIDTH + 150;
         double dy = BracketFX.HEIGHT + 20;
         renderBrackets(brackets,dx,dy);

@@ -53,7 +53,7 @@ public class CreateParticipantsController implements Initializable {
 
         if( firstName == null || firstName.trim().isEmpty() || lastName == null || lastName.trim().isEmpty() || nickName == null || nickName.trim().isEmpty())
         {
-            AlertBox.displayError("CHUBA", "Vyplnte prosím všetky polia.");
+            AlertBox.displayError("Chyba", "Vyplnte prosím všetky polia.");
         }
         else
         {
@@ -84,7 +84,7 @@ public class CreateParticipantsController implements Initializable {
         }
         else
         {
-            AlertBox.displayError("CHUBA", "Pred kliknutim na zmazat, oznacte riadok, ktory si prajete zmazat.");
+            AlertBox.displayError("Chyba", "Pred kliknutim na zmazat, oznacte riadok, ktory si prajete zmazat.");
         }
     }
 

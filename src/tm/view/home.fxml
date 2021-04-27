@@ -31,7 +31,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handleCalendarButton" prefHeight="89.0" prefWidth="170.0" styleClass="main-button" text="Kalendár" textFill="#02b510">
+                  <Button fx:id="calendarButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleCalendarButton" prefHeight="89.0" prefWidth="206.0" styleClass="main-button" text="Kalendár" textFill="#02b510">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="40" textAlignment="CENTER" />
                      </graphic>
@@ -39,14 +39,14 @@
                         <Insets right="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="86.0" prefWidth="170.0" styleClass="main-button" text="Vytvoriť turnaj" textFill="#02b510">
+                  <Button fx:id="createButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleCreateButton" prefHeight="86.0" prefWidth="205.0" styleClass="main-button" text="Vytvoriť turnaj" textFill="#02b510">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="SOCCER_BALL_ALT" size="40" />
                      </graphic>
                   </Button>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#handleSaveAndEndButton" prefHeight="80.0" prefWidth="377.0" styleClass="main-button" text="Uložiť a ukončiť" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="saveAndEndButton" mnemonicParsing="false" onAction="#handleSaveAndEndButton" prefHeight="80.0" prefWidth="377.0" styleClass="main-button" text="Uložiť a ukončiť" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -56,8 +56,8 @@
             </Button>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="edit-button" text="SK" />
-                  <Button mnemonicParsing="false" styleClass="edit-button" text="EN">
+                  <Button mnemonicParsing="false" onAction="#handleSKButton" styleClass="edit-button" text="SK" />
+                  <Button mnemonicParsing="false" onAction="#handleENButton" styleClass="edit-button" text="EN">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
