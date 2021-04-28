@@ -3,6 +3,7 @@ package tm.controller.createTournament;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tm.controller.ScreenController;
@@ -32,6 +33,9 @@ public class CreateTournamentInfo implements Initializable{
     private TextField nameTextField;
     @FXML
     private TextField sportTextField;
+    @FXML
+    private DatePicker datePicker;
+
 
 
 
@@ -60,7 +64,7 @@ public class CreateTournamentInfo implements Initializable{
 
 
     public void finish(String name){
-        LocalDate localDate = LocalDate.now();
+        LocalDate localDate = datePicker.getValue();
         if (tournamentType.equals(TournamentTypeMeta.getSwissSystemName())){
             SwissSystem swissSystem = new SwissSystem(name, participants);
             swissSystem.setDate(localDate);
@@ -104,5 +108,6 @@ public class CreateTournamentInfo implements Initializable{
             numOfRounds.setEditable(false);
             numOfRounds.setStyle("-fx-control-inner-background: rgba(255,7,7,0.16)");
         }
+        datePicker.setValue(LocalDate.now());
     }
 }
