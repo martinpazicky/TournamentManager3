@@ -108,14 +108,6 @@ public class SwissSystemController implements Initializable {
 
                 actualBracket =  brackets[0].get(i);
                 SwissBracketFX swissBracketFX = new SwissBracketFX(actualBracket, swissSystem);
-                //if cell have score
-//                if (swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue() >= 0){
-//                    String score1 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant1ScoreProperty().getValue());
-//                    String score2 = String.valueOf(swissBracketFX.getSwissBracket().getMatch().getParticipant2ScoreProperty().getValue());
-//                    swissBracketFX.getParticipant1Score().setText((score1));
-//                    swissBracketFX.getParticipant2Score().setText((score2));
-//                }
-
 
                 swissBracketFX.getSetResultBtn().setOnAction(event -> {
                     swissBracketFX.setResult();

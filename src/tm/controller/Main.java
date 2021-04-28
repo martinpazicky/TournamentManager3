@@ -10,8 +10,6 @@ import tm.controller.utility.XMLParser;
 import tm.model.Participant;
 import tm.model.database.Database;
 import tm.model.tournament.*;
-import tm.view.AlertBox;
-
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -58,8 +56,6 @@ public class Main extends Application {
         primaryStage.setTitle("TM");
         primaryStage.setScene(scene);
         primaryStage.show();
-//        primaryStage.setWidth(500);
-//        primaryStage.setHeight(450);
     }
 
     public static void main(String[] args) {
@@ -89,8 +85,6 @@ public class Main extends Application {
 
         LocalDate localDate = LocalDate.now();
         swissSystem.setDate(localDate);
-
-
         Database.tournaments.add(swissSystem);
     }
 
@@ -117,8 +111,6 @@ public class Main extends Application {
 
         LocalDate localDate = LocalDate.now();
         de.setDate(localDate);
-
-
         Database.tournaments.add(de);
 
     }

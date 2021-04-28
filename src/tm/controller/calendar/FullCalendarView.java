@@ -102,7 +102,6 @@ public class FullCalendarView {
         HBox titleBar = new HBox(previousMonth, calendarTitle, nextMonth);
         HBox.setMargin(calendarTitle, new Insets(0,20,0,20));
         titleBar.setPrefSize( ScreenController.stage.getWidth() - 120, 200);
-//        HBox.setMargin(titleBar, new Insets(80, 0, 80, 0));
         titleBar.setAlignment(Pos.BASELINE_CENTER);
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
@@ -116,7 +115,6 @@ public class FullCalendarView {
         VBox.setMargin(calendar, new Insets(0,30,40,30));
         VBox.setMargin(united, new Insets(10,0,0,0));
         VBox.setMargin(dayLabels, new Insets(0,30,0,30));
-//        VBox.setMargin(titleBar, new Insets(20,20,20,450));
 
     }
 

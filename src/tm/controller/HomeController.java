@@ -3,8 +3,6 @@ package tm.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import tm.controller.calendar.FullCalendarView;
-import tm.model.database.Database;
-
 import java.time.YearMonth;
 import java.util.Locale;
 import java.util.ResourceBundle;

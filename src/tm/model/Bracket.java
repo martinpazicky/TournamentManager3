@@ -30,18 +30,13 @@ public class Bracket implements Serializable {
             // winner was set to the same value as before -> no changes shall be made
             return;
         }
-//        if (match.hasBothParticipants() || level == 0) {
-            if (match.getWinner().getValue() == null) {
-                // winner was not set before -> set winner and put him in next bracket
-                setNewWinner(winner);
-            }else {
-                // winner was set before -> change winner and update brackets
-                changeWinner(winner);
-            }
-//        }
-//        else {
-//            System.out.println("neni mozne");
-//        }
+        if (match.getWinner().getValue() == null) {
+            // winner was not set before -> set winner and put him in next bracket
+            setNewWinner(winner);
+        }else {
+            // winner was set before -> change winner and update brackets
+            changeWinner(winner);
+        }
     }
 
     private void setNewWinner(Participant winner){

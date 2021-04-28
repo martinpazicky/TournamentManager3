@@ -20,7 +20,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class CreateTournamentInfo implements Initializable{
     public static String tournamentType;
@@ -98,7 +97,6 @@ public class CreateTournamentInfo implements Initializable{
             ScreenController.activate("tournamentDetail");
         }
         Stage stage = (Stage) numOfRounds.getScene().getWindow();
-        // do what you have to do
         stage.close();
     }
 

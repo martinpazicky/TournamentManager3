@@ -61,8 +61,6 @@ public class FreeForAllController implements Initializable {
 
     private Map<TableCell, CellFX> cellToCellFX = new HashMap<>();
 
-//    private Map<Participant, ParticipantRecord> participantsToRecords = new HashMap<>();
-
     public static FreeForAll freeForAll;
 
     private List<List<TableCell>[]> allRounds;
