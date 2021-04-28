@@ -22,9 +22,9 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <TextField fx:id="nameTextField" layoutX="134.0" layoutY="35.0" />
+      <TextField fx:id="nicknameTextField" layoutX="134.0" layoutY="35.0" />
       <TextField fx:id="sureNameTextField" layoutX="134.0" layoutY="96.0" />
-      <TextField fx:id="nicknameTextField" layoutX="134.0" layoutY="157.0" />
+      <TextField fx:id="nameTextField" layoutX="134.0" layoutY="157.0" />
       <Button layoutX="134.0" layoutY="304.0" mnemonicParsing="false" onAction="#nextScreen" prefHeight="69.0" prefWidth="187.0" style="-fx-background-color: #b5561b; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" text="Pokračovať" textFill="WHITE">
          <font>
             <Font size="26.0" />
