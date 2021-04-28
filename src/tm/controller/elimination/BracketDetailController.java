@@ -33,6 +33,8 @@ public class BracketDetailController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        p1ScoreTF.setEditable(editable);
+        p2ScoreTF.setEditable(editable);
         if (bracket.getMatch().getParticipant1().getValue() != null)
             SetWinnerP1Button.setText(bracket.getMatch().getParticipant1().getValue().getNickName());
         if (bracket.getMatch().getParticipant2().getValue() != null)
