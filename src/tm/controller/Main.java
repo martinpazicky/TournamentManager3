@@ -20,7 +20,7 @@ public class Main extends Application {
     public static List<Participant> createParticipants(int amount){
         List<Participant> participants = new ArrayList<>();
         for (int i = 1; i <= amount; i++ ){
-            String name = "jozo" + i;
+            String name = "player" + i;
             Participant p = new Participant(name);
             participants.add(p);
         }
@@ -90,15 +90,14 @@ public class Main extends Application {
 
     private static void testElimination(){
         File f = new File("src/tm/resources/participants.xml");
-
         List<Participant> participants = XMLParser.parseParticipants(f);
-
-        SingleElimination de = new SingleElimination("turnaj", participants);
-//        DoubleElimination de = new DoubleElimination("Fakt velky turnaj ",participants);
-        de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());
-        de.getBrackets()[0].get(1).setWinner(de.getBrackets()[0].get(1).getMatch().getParticipant1().getValue());
-        de.getBrackets()[0].get(2).setWinner(de.getBrackets()[0].get(2).getMatch().getParticipant1().getValue());
-        de.getBrackets()[0].get(3).setWinner(de.getBrackets()[0].get(3).getMatch().getParticipant1().getValue());
+//        SingleElimination de = new SingleElimination("AA", participants);
+        DoubleElimination de = new DoubleElimination("Majstrovstva EU",participants);
+        de.setSportType("Pogy");
+//        de.getBrackets()[0].get(0).setWinner(de.getBrackets()[0].get(0).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[0].get(1).setWinner(de.getBrackets()[0].get(1).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[0].get(2).setWinner(de.getBrackets()[0].get(2).getMatch().getParticipant1().getValue());
+//        de.getBrackets()[0].get(3).setWinner(de.getBrackets()[0].get(3).getMatch().getParticipant1().getValue());
 //        de.getBrackets()[0].get(4).setWinner(de.getBrackets()[0].get(4).getMatch().getParticipant1().getValue());
 //        de.getBrackets()[0].get(5).setWinner(de.getBrackets()[0].get(5).getMatch().getParticipant1().getValue());
 //        de.getBrackets()[0].get(6).setWinner(de.getBrackets()[0].get(6).getMatch().getParticipant1().getValue());
@@ -108,10 +107,8 @@ public class Main extends Application {
 //        de.getBrackets()[1].get(1).setWinner(de.getBrackets()[1].get(1).getMatch().getParticipant1().getValue());
 //        de.getBrackets()[1].get(2).setWinner(de.getBrackets()[1].get(2).getMatch().getParticipant1().getValue());
 //        de.getBrackets()[1].get(3).setWinner(de.getBrackets()[1].get(3).getMatch().getParticipant1().getValue());
-
         LocalDate localDate = LocalDate.now();
         de.setDate(localDate);
         Database.tournaments.add(de);
-
     }
 }
