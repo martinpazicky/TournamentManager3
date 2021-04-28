@@ -45,7 +45,6 @@ public class CreateParticipantsController implements Initializable {
         setTable();
     }
 
-    //Add buttom clicked
     public void addButtonClicked() {
         String firstName = nameTextField.getText();
         String lastName = sureNameTextField.getText();
@@ -66,7 +65,6 @@ public class CreateParticipantsController implements Initializable {
         }
     }
 
-    //Delete buttom clicked
     public void deleteButtonClicked() {
         Participant selected;
         selected = participantsTable.getSelectionModel().getSelectedItem();

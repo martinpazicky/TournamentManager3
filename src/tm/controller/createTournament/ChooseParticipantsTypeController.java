@@ -3,6 +3,8 @@ package tm.controller.createTournament;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import tm.controller.ScreenController;
 import tm.controller.utility.Utils;
 import tm.controller.utility.XMLParser;
@@ -45,16 +47,15 @@ public class ChooseParticipantsTypeController {
 
 
     public void importParticipants(){
-        File f = new File("src/tm/resources/participants.xml");
-        participants = XMLParser.parseParticipants(f);
-//        for (Participant p : participants) {
-//            System.out.println(p.getNickName());
-//            System.out.println(p.getAge());
-//            System.out.println(p.getFirstName());
-//            System.out.println(p.getLastName());
-//        }
-        goToInfo();
-
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "(*.xml)","*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File chosenFile = fileChooser.showOpenDialog(ScreenController.stage);
+        if (chosenFile != null && chosenFile.exists()){
+            participants = XMLParser.parseParticipants(chosenFile);
+            goToInfo();
+        }
     }
 
     public void goToInfo(){
